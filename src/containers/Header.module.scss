@@ -1,0 +1,11 @@
+.Header {
+  display: flex;
+  align-items: center;
+  grid-column: 1 / -1;
+  width: 50%;
+  background-color: rgb(53, 53, 53);
+
+  h1 {
+    padding-left: 2vw;
+  }
+}

@@ -1,6 +1,19 @@
 .App {
   background-color: #282c34;
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
+  height: 100vh;
+  width: 100vw;
+  font-size: calc(8px + 2vmin);
   color: white;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.Menu {
+  grid-column: 1 / -1;
+  display: flex;
+  // width: 100vw;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
 }

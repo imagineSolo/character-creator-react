@@ -32,12 +32,24 @@ class App extends Component {
     });
   };
 
-  handleBack = () => {
-    this.setState({
-      ...this.state,
-      startClicked: false,
-      active: "start"
-    });
+  handleBack = state => {
+    if (state === "gender") {
+      this.setState({
+        ...this.state,
+        startClicked: false,
+        active: "start",
+        gender: ""
+      });
+    }
+    if (state === "race") {
+      this.setState({
+        ...this.state,
+        startClicked: true,
+        active: "gender",
+        gender: "",
+        race: ""
+      });
+    }
   };
 
   handleGenderFemale = () => {
@@ -69,10 +81,12 @@ class App extends Component {
             <Gender
               female={this.handleGenderFemale}
               male={this.handleGenderMale}
-              undo={this.handleBack}
+              undo={() => this.handleBack(this.state.active)}
             />
           )}
-          {this.state.active === "race" && <Race />}
+          {this.state.active === "race" && (
+            <Race undo={() => this.handleBack(this.state.active)} />
+          )}
           <CharSheet gender={this.state.gender} />
         </div>
       </Router>

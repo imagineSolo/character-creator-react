@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../containers/Content.module.scss";
+import ButtonUndo from "../Button/Undo";
 
 const gender = props => {
   return (
@@ -16,7 +17,7 @@ const gender = props => {
           title="Male"
           onClick={props.male}
         ></button>
-        <button onClick={props.undo}>Undo</button>
+        <ButtonUndo undo={props.undo} />
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../../containers/Content.module.scss";
 import ButtonUndo from "../Button/Undo";
+import styles from "../../containers/Content.module.scss";
 
 const gender = props => {
   return (

@@ -5,18 +5,18 @@ const name = props => {
   return (
     <div>
       <p>Choose a name:</p>
-      <form>
+      <form onSubmit={props.submit}>
         <input
           type="text"
-          value={props.value}
           placeholder="My name is..."
           required
-          minlength="2"
-          maxlength="18"
-          autofocus
-          onChange={props.submit}
+          minLength="2"
+          maxLength="18"
+          autoFocus
+          value={props.value}
+          onChange={props.change}
         />
-        <button onClick={props.submit}>Submit Name</button>
+        <input type="submit" value="Submit Name" />
       </form>
       <ButtonUndo undo={props.undo} />
     </div>

@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import styles from "./Content.module.scss";
 
 class Start extends Component {
-  state = {
-    data: "start"
-  };
+  // state = {
+  //   data: "start"
+  // };
 
-  handleStart = () => {
-    this.setState({
-      data: "gender"
-    });
-    this.props.start(this.state.data);
-  };
+  // handleStart = () => {
+  //   console.log("Start.js handleStart");
+  //   this.setState({
+  //     data: "gender"
+  //   });
+  //   this.props.start(this.state.data);
+  // };
 
   render() {
     return (
@@ -23,7 +24,7 @@ class Start extends Component {
           on the right. You can save your finished characters and view them in
           Saved Characters panel. Enjoy & have fun!
         </p>
-        <button onClick={this.handleStart}>Start</button>
+        <button onClick={() => this.props.start("gender")}>Start</button>
       </section>
     );
   }

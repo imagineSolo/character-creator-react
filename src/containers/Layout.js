@@ -6,7 +6,6 @@ import Gender from "../components/Steps/Gender";
 import Race from "../components/Steps/Race";
 import Classes from "../components/Steps/Classes";
 import Name from "../components/Steps/Name";
-import Start from "./Start";
 import styles from "../App.module.scss";
 
 class Layout extends Component {
@@ -25,10 +24,10 @@ class Layout extends Component {
     story: ""
   };
 
-  passAppState = data => {
-    console.log("pass data");
+  passAppState = clicked => {
+    console.log("passed state.active");
     this.setState({
-      active: data
+      active: clicked
     });
   };
 
@@ -120,21 +119,24 @@ class Layout extends Component {
   };
 
   render() {
+    console.log("LAYOUT :::", this.props.clicked);
+    console.log("this.props ::: ", this.props.children);
     return (
       <div className={styles.App}>
         <div className={styles.Menu}>
           <Header />
           <Nav />
         </div>
-
-        {this.state.active === "gender" ? (
+        {this.state.active === "start" &&
+          React.cloneElement(this.props.children, {
+            start: clicked => this.passAppState(clicked)
+          })}
+        {this.state.active === "gender" && (
           <Gender
             female={this.handleGenderFemale}
             male={this.handleGenderMale}
             undo={() => this.handleBack(this.state.active)}
           />
-        ) : (
-          React.cloneElement(this.props.children, { start: this.passAppState })
         )}
         {this.state.active === "race" && (
           <Race

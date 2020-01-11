@@ -4,8 +4,8 @@ import ButtonUndo from "../Button/Undo";
 const name = props => {
   return (
     <div>
-      <p>Choose a name:</p>
       <form onSubmit={props.submit}>
+        <label>Choose a name:</label>
         <input
           type="text"
           placeholder="My name is..."

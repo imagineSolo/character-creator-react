@@ -5,22 +5,20 @@ import SavedChars from "./containers/SavedChars";
 import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
-  state = {
-    data: ""
-  };
-  handleStart = data => {
-    console.log("App.js clicked");
-    this.setState({ data });
-  };
+  // state = {
+  //   active: ""
+  // };
+
+  // handleStartClick = data => {
+  //   this.setState({ active: data });
+  // };
+
   render() {
     return (
-      <Layout clicked={this.state.data}>
+      <Layout>
         <Switch>
           <Route path="/saved" component={SavedChars}></Route>
-          <Route
-            path=""
-            render={props => <Start {...props} start={this.handleStart} />}
-          ></Route>
+          <Route path="" component={Start}></Route>
         </Switch>
       </Layout>
     );
@@ -28,3 +26,9 @@ class App extends Component {
 }
 
 export default App;
+
+/* <Layout active={this.state.active}> */
+
+// render={props => (
+//   <Start {...props} onStartClick={this.handleStartClick} />
+// )}

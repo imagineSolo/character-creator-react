@@ -3,9 +3,11 @@ import Header from "./Header";
 import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Gender from "../components/Steps/Gender";
+import Start from "./Start";
 import Race from "../components/Steps/Race";
 import Classes from "../components/Steps/Classes";
 import Name from "../components/Steps/Name";
+import Background from "../components/Steps/Background";
 import styles from "../App.module.scss";
 
 class Layout extends Component {
@@ -25,7 +27,6 @@ class Layout extends Component {
   };
 
   passAppState = clicked => {
-    console.log("passed state.active");
     this.setState({
       active: clicked
     });
@@ -52,7 +53,6 @@ class Layout extends Component {
     if (state === "class") {
       this.setState({
         ...this.state,
-        startClicked: true,
         active: "race",
         race: "",
         class: ""
@@ -61,10 +61,17 @@ class Layout extends Component {
     if (state === "name") {
       this.setState({
         ...this.state,
-        startClicked: true,
         active: "class",
         class: "",
         name: ""
+      });
+    }
+    if (state === "background") {
+      this.setState({
+        ...this.state,
+        active: "name",
+        name: "",
+        background: ""
       });
     }
   };
@@ -118,19 +125,37 @@ class Layout extends Component {
     });
   };
 
+  handleBackgroundChange = e => {
+    console.log(e.target.value);
+    this.setState({
+      ...this.state,
+      background: e.target.value
+    });
+  };
+
+  handleBackgroundSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      ...this.state
+    });
+  };
+
   render() {
-    console.log("LAYOUT :::", this.props.clicked);
-    console.log("this.props ::: ", this.props.children);
     return (
       <div className={styles.App}>
         <div className={styles.Menu}>
           <Header />
           <Nav />
         </div>
-        {this.state.active === "start" &&
+
+        {/* {this.state.active === "start" &&
           React.cloneElement(this.props.children, {
-            start: clicked => this.passAppState(clicked)
-          })}
+            onStartClick: this.passAppState
+          })} */}
+
+        {this.state.active === "start" && (
+          <Start onStartClick={this.passAppState} />
+        )}
         {this.state.active === "gender" && (
           <Gender
             female={this.handleGenderFemale}
@@ -158,11 +183,18 @@ class Layout extends Component {
             undo={() => this.handleBack(this.state.active)}
           />
         )}
+        {this.state.active === "background" && (
+          <Background
+            change={this.handleBackgroundChange}
+            submit={e => this.handleBackgroundSubmit(e)}
+            undo={() => this.handleBack(this.state.active)}
+          />
+        )}
         <CharSheet
           gender={this.state.gender}
           race={this.state.race}
           class={this.state.class}
-          name={this.state.name}
+          name={this.state.nameSaved}
         />
       </div>
     );

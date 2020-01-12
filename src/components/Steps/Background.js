@@ -7,13 +7,13 @@ const background = props => {
       <form onChange={props.change} onSubmit={props.submit}>
         <label>Select background:</label>
         <select name="Background">
-          <option value="commoner">Commoner</option>
-          <option value="criminal">Criminal</option>
-          <option value="entertainer">Entertainer</option>
-          <option value="investigator">Investigator</option>
-          <option value="outlander">Outlander</option>
-          <option value="noble">Noble</option>
-          <option value="sage">Sage</option>
+          <option value="Commoner">Commoner</option>
+          <option value="Criminal">Criminal</option>
+          <option value="Entertainer">Entertainer</option>
+          <option value="Bounty Hunter">Bounty Hunter</option>
+          <option value="Outlander">Outlander</option>
+          <option value="Noble">Noble</option>
+          <option value="Sage">Sage</option>
           <option value="Soldier">Soldier</option>
         </select>
         <input type="submit" value="Submit" />

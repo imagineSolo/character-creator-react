@@ -7,7 +7,7 @@ const nav = () => {
     <nav className={styles.Nav}>
       <ul>
         <li>
-          <NavLink to="/">New Character</NavLink>
+          <NavLink exact to="/">New Character</NavLink>
         </li>
         <li>
           <NavLink to="/saved">Saved Characters</NavLink>

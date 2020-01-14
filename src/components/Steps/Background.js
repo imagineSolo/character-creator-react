@@ -7,6 +7,9 @@ const background = props => {
       <form onChange={props.change} onSubmit={props.submit}>
         <label>Select background:</label>
         <select name="Background">
+          <option value="select" selected disabled>
+            --Select--
+          </option>
           <option value="Commoner">Commoner</option>
           <option value="Criminal">Criminal</option>
           <option value="Entertainer">Entertainer</option>

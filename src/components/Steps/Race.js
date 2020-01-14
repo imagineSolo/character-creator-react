@@ -28,16 +28,13 @@ const race = props => {
           </span>
         </div>
         <div>
-          <span id="Half-Elf" onClick={props.select}>
-            Half-elf
-          </span>
-        </div>
-        <div>
-          <span id="Half-Orc" onClick={props.select}>
-            Half-orc
+          <span id="Tiefling" onClick={props.select}>
+            Tiefling
           </span>
         </div>
         <ButtonUndo undo={props.undo} />
+        <br />
+        <p>{}</p>
       </div>
     </section>
   );

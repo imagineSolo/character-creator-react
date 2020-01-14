@@ -18,6 +18,11 @@ const gender = props => {
           onClick={props.male}
         ></button>
         <ButtonUndo undo={props.undo} />
+        <br />
+        <p>
+          Gender selection does not influence any of your character's
+          statistics.
+        </p>
       </div>
     </section>
   );

@@ -1,12 +1,14 @@
 .Content {
   display: flex;
-  grid-column: 1 / span 5;
-  grid-row: 2 / -1;
   text-align: center;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 60vw;
+  height: 80vh;
+  max-height: 90vh;
   padding: 2vw;
+  border: 2px solid blue;
 
   p {
     text-align: justify;

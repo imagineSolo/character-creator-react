@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./Content.module.scss";
 import Gender from "../components/Steps/Gender";
-import Race from "../components/Steps/Race";
+import Races from "../components/Steps/Races";
 import Classes from "../components/Steps/Classes";
 import Name from "../components/Steps/Name";
 import Background from "../components/Steps/Background";
@@ -55,7 +55,7 @@ class Content extends Component {
           />
         )}
         {this.props.active === "race" && (
-          <Race
+          <Races
             select={this.props.selectRace}
             undo={() => this.props.undo(this.props.active)}
           />

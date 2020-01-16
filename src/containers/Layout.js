@@ -110,12 +110,17 @@ class Layout extends Component {
     });
   };
 
-  handleBackgroundSubmit = prof => {
-    this.setState({
-      ...this.state,
-      active: "avatar",
-      backgroundSaved: prof
-    });
+  handleBackgroundSubmit = (prof, e) => {
+    e.preventDefault();
+    if (prof === "") {
+      alert("Select your background.");
+    } else {
+      this.setState({
+        ...this.state,
+        active: "avatar",
+        backgroundSaved: prof
+      });
+    }
   };
 
   render() {

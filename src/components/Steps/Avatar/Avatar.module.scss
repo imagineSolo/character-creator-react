@@ -1,0 +1,20 @@
+.Avatar {
+  padding: 10px;
+  text-align: center;
+  width: 70vw;
+  height: 90vh;
+  max-height: 90vh;
+  border: 2px solid red;
+}
+
+.Portraits {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  align-content: center;
+  border: 2px solid yellow;
+
+  div>img {
+    padding: 6px;
+  }
+}

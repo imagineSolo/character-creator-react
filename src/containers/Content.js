@@ -5,7 +5,7 @@ import Races from "../components/Steps/Races";
 import Classes from "../components/Steps/Classes";
 import Name from "../components/Steps/Name";
 import Background from "../components/Steps/Background";
-import Avatar from "../components/Steps/Avatar";
+import Avatar from "../components/Steps/Avatar/Avatar";
 
 class Content extends Component {
   state = {
@@ -77,7 +77,7 @@ class Content extends Component {
         {this.props.active === "background" && (
           <Background
             change={this.handleBackgroundChange}
-            submit={() => this.props.submitBackground(this.state.background)}
+            submit={e => this.props.submitBackground(this.state.background, e)}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

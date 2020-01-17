@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styles from "./Content.module.scss";
-import Gender from "../components/Steps/Gender";
-import Races from "../components/Steps/Races";
-import Classes from "../components/Steps/Classes";
-import Name from "../components/Steps/Name";
-import Background from "../components/Steps/Background";
+import Gender from "../components/Steps/Gender/Gender";
+import Races from "../components/Steps/Races/Races";
+import Classes from "../components/Steps/Classes/Classes";
+import Name from "../components/Steps/Name/Name";
+import Background from "../components/Steps/Background/Background";
 import Avatar from "../components/Steps/Avatar/Avatar";
 
 class Content extends Component {
@@ -34,7 +34,9 @@ class Content extends Component {
       <>
         {this.props.active === "start" && (
           <section className={styles.Content}>
-            <h2>Welcome to Fantasy Character Creator!</h2>
+            <h2 className={styles.Header}>
+              Welcome to Fantasy Character Creator!
+            </h2>
             <p>
               Create your own fantasy character by making step-by-step
               decisions. Once you start, each choice will be summarized in your
@@ -42,7 +44,10 @@ class Content extends Component {
               characters and view them in Saved Characters panel. Enjoy & have
               fun!
             </p>
-            <button onClick={() => this.props.passAppState("gender")}>
+            <button
+              className={styles.Start}
+              onClick={() => this.props.passAppState("gender")}
+            >
               Start
             </button>
           </section>

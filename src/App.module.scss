@@ -1,9 +1,10 @@
 .App {
   position: relative;
-  background-color: #282c34;
+  background: linear-gradient(to top, #191b1f 10%, #2c2f36 100%);
   font-size: calc(7px + 2vmin);
   color: white;
   max-width: 100vw;
+  min-height: 100vh;
 }
 
 .Menu {

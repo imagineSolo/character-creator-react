@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ButtonUndo from "../Button/Undo";
-import styles from "../../containers/Content.module.scss";
+import ButtonUndo from "../../Button/Undo";
+import styles from "./Races.module.scss";
 
 class Race extends Component {
   state = {
@@ -52,55 +52,52 @@ class Race extends Component {
   render() {
     return (
       <section className={styles.Content}>
-        <div>
-          <p>Select race:</p>
-          <div>
-            <span
-              id="Human"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Human
-            </span>
+        <p className={styles.Header}>Select race:</p>
+        <div className={styles.RaceChoices}>
+          <div
+            className={styles.RaceChoice}
+            id="Human"
+            onClick={this.props.select}
+            onPointerEnter={e => this.showDescription(e)}
+          >
+            Human
           </div>
-          <div>
-            <span
-              id="Elf"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Elf
-            </span>
+          <div
+            className={styles.RaceChoice}
+            id="Elf"
+            onClick={this.props.select}
+            onPointerEnter={e => this.showDescription(e)}
+          >
+            Elf
           </div>
-          <div>
-            <span
-              id="Dwarf"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Dwarf
-            </span>
+          <div
+            className={styles.RaceChoice}
+            id="Dwarf"
+            onClick={this.props.select}
+            onPointerEnter={e => this.showDescription(e)}
+          >
+            Dwarf
           </div>
-          <div>
-            <span
-              id="Halfling"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Halfling
-            </span>
+          <div
+            className={styles.RaceChoice}
+            id="Halfling"
+            onClick={this.props.select}
+            onPointerEnter={e => this.showDescription(e)}
+          >
+            Halfling
           </div>
-          <div>
-            <span
-              id="Tiefling"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Tiefling
-            </span>
+          <div
+            className={styles.RaceChoice}
+            id="Tiefling"
+            onClick={this.props.select}
+            onPointerEnter={e => this.showDescription(e)}
+          >
+            Tiefling
           </div>
-          <ButtonUndo undo={this.props.undo} />
-          <br />
+        </div>
+        <ButtonUndo className={styles.Undo} undo={this.props.undo} />
+        <br />
+        <div className={styles.Description}>
           <p>{this.state.description}</p>
         </div>
       </section>

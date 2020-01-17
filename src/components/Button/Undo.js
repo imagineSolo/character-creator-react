@@ -1,7 +1,12 @@
 import React from "react";
+import styles from "./Undo.module.scss";
 
 const buttonUndo = props => {
-  return <button onClick={props.undo}>Undo</button>;
+  return (
+    <button className={styles.Undo} onClick={props.undo}>
+      <i class="fas fa-arrow-left"></i> <span>Undo</span>
+    </button>
+  );
 };
 
 export default buttonUndo;

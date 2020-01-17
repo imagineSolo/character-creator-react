@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./CharSheet.module.scss";
-import blank from "../images/blank.png";
+// import blank from "../images/blank.png";
+import HF_01 from "../images/Human/Female/HF_01.png";
 
 class CharSheet extends Component {
   state = {
@@ -34,44 +35,58 @@ class CharSheet extends Component {
           this.state.draw ? styles.DrawOut : ""
         ].join(" ")}
       >
-        <button onClick={this.drawOut} className={styles.Draw}>
+        <button
+          onClick={this.drawOut}
+          className={styles.Draw}
+          title="Show more"
+        >
           <i className={"fas fa-scroll"}></i>
         </button>
         <div className={styles.CharHeader}>
           <h3 className={styles.CharTitle}>Character Sheet</h3>
-          <h4 className={styles.Name}>Name: {this.props.name}</h4>
-          <img src={blank} alt="Portrait" className={styles.Portrait} />
+          <h4 className={styles.Name}>
+            Name: <span className={styles.FontWhite}>{this.props.name}</span>
+          </h4>
         </div>
         <div className={styles.CharInfo}>
-          <span>Gender: {this.props.gender}</span>
-          <span>Race: {this.props.race}</span>
-          <span>Class: {this.props.class}</span>
-          <span>Level: 1</span>
-          <span>Background: {this.props.background}</span>
+          <p>
+            Gender:{" "}
+            <span className={styles.FontWhite}>{this.props.gender}</span>
+          </p>
+          <p>
+            Race: <span className={styles.FontWhite}>{this.props.race}</span>
+          </p>
+          <p>
+            Class: <span className={styles.FontWhite}>{this.props.class}</span>
+          </p>
+          <p>
+            Background:{" "}
+            <span className={styles.FontWhite}>{this.props.background}</span>
+          </p>
+          <p>Level: 1</p>
         </div>
         <div className={styles.CharAttributes}>
-          <h5>Attributes:</h5>
           <div>
-            Strength: <span></span>
+            Strength: <span className={styles.FontWhite}></span>
           </div>
           <div>
-            Dexterity: <span></span>
+            Dexterity: <span className={styles.FontWhite}></span>
           </div>
           <div>
-            Toughness: <span></span>
+            Toughness: <span className={styles.FontWhite}></span>
           </div>
           <div>
-            Intelligence: <span></span>
+            Intelligence: <span className={styles.FontWhite}></span>
           </div>
           <div>
-            Willpower: <span></span>
+            Willpower: <span className={styles.FontWhite}></span>
           </div>
           <div>
-            Charisma: <span></span>
+            Charisma: <span className={styles.FontWhite}></span>
           </div>
         </div>
+        <img src={HF_01} alt="Portrait" className={styles.Portrait} />
         <div className={styles.CharSkills}>
-          <h5>Skills:</h5>
           <form>
             <input type="radio" name="Animal Handling" id="01" /> Animal
             Handling

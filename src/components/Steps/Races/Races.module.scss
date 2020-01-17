@@ -1,0 +1,52 @@
+.Content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 67vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+
+  .Header {
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .RaceChoices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+
+    .RaceChoice {
+      width: 8vw;
+      background: linear-gradient(to bottom, #363b46 5%, #22262c 100%);
+      border: 2px solid rgb(131, 131, 131);
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px;
+      cursor: pointer;
+      text-shadow: 1px 2px 1px #242424;
+      box-shadow: 0px 8px 12px -5px #202020;
+    }
+
+    .RaceChoice:hover {
+      background: #282c34;
+    }
+
+    .RaceChoice:active {
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .Description {
+    width: 50vw;
+    min-height: 25vh;
+    border: 1px solid rgb(131, 131, 131);
+    padding: 10px;
+  }
+}

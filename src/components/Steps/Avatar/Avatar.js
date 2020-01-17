@@ -12,7 +12,7 @@ class Avatar extends Component {
   render() {
     return (
       <div className={styles.Avatar}>
-        <p>Select your character's portrait:</p>
+        <p className={styles.Header}>Select your character's portrait:</p>
         <div className={styles.Portraits}>
           <div>
             <img src={HF_01} alt="Portrait" />

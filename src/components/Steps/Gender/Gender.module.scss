@@ -1,0 +1,44 @@
+.Content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 67vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+
+  .Header {
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .Gender {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    .GenderButton {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      background: -webkit-linear-gradient(#eee, #333);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 55px;
+      line-height: 1.4;
+      text-align: center;
+      margin: 12px;
+      transition: 1s;
+    }
+
+    .GenderButton:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}

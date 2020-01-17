@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonUndo from "../Button/Undo";
+import ButtonUndo from "../../Button/Undo";
 
 const background = props => {
   return (

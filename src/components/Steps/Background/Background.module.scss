@@ -1,0 +1,51 @@
+.BackgroundForm {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  margin: 20px;
+
+
+  .BackgroundLabel {
+    padding: 8px;
+    margin: 20px;
+  }
+
+  .BackgroundSelect {
+    width: 10vw;
+    padding: 8px;
+    margin: 20px;
+  }
+
+  .BackgroundSubmit {
+    width: calc(100px + 2vmin);
+    box-shadow: 0px 10px 14px -7px #000000;
+    background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
+    background-color: #91d171;
+    border-radius: 25px;
+    border: 1px solid #4b8f29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'IM Fell Great Primer SC', serif;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 8px 14px;
+    margin: 10px;
+    text-decoration: none;
+    text-shadow: 2px 2px 0px #5b8a3c;
+  }
+
+  .BackgroundSubmit:hover {
+    background: linear-gradient(to bottom, #6ba64b 5%, #91d171 100%);
+    background-color: #6ba64b;
+  }
+
+  .BackgroundSubmit:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+h5 {
+  font-size: calc(8px + 2vmin);
+}

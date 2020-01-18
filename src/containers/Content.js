@@ -79,7 +79,7 @@ class Content extends Component {
             undo={() => this.props.undo(this.props.active)}
           />
         )}
-        {this.props.active === "background" && (
+        {this.props.active === "backgroundSaved" && (
           <Background
             change={this.handleBackgroundChange}
             submit={e => this.props.submitBackground(this.state.background, e)}

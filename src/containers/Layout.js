@@ -105,7 +105,7 @@ class Layout extends Component {
   handleNameSubmit = name => {
     this.setState({
       ...this.state,
-      active: "background",
+      active: "backgroundSaved",
       nameSaved: name
     });
   };

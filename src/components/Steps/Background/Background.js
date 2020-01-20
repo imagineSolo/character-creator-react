@@ -34,7 +34,7 @@ const background = props => {
       </form>
       <div className={styles.BackgroundDescription}>
         <h5>Background choice adds points to the character's Skills:</h5>
-        <p>Commoner: Athletics, Animal Handling</p>
+        <p>Commoner: Athletics, Crafting</p>
         <p>Courtier: Deception, Persuasion</p>
         <p>Criminal: Intimidation, Trickery</p>
         <p>Entertainer: Athletics, Performance</p>

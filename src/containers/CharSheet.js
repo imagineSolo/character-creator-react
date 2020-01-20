@@ -49,21 +49,22 @@ class CharSheet extends Component {
           </h4>
         </div>
         <div className={styles.CharInfo}>
-          <p>
-            Gender:{" "}
+          <div>
+            <p>Gender:</p>
             <span className={styles.FontWhite}>{this.props.gender}</span>
-          </p>
-          <p>
-            Race: <span className={styles.FontWhite}>{this.props.race}</span>
-          </p>
-          <p>
-            Class: <span className={styles.FontWhite}>{this.props.class}</span>
-          </p>
-          <p>
-            Background:{" "}
+          </div>
+          <div>
+            <p>Race:</p>
+            <span className={styles.FontWhite}>{this.props.race}</span>
+          </div>
+          <div>
+            <p>Class: </p>
+            <span className={styles.FontWhite}>{this.props.class}</span>
+          </div>
+          <div>
+            <p>Background:</p>
             <span className={styles.FontWhite}>{this.props.background}</span>
-          </p>
-          <p>Level: 1</p>
+          </div>
         </div>
         <div className={styles.CharAttributes}>
           <div>
@@ -88,27 +89,173 @@ class CharSheet extends Component {
         <img src={HF_01} alt="Portrait" className={styles.Portrait} />
         <div className={styles.CharSkills}>
           <form>
-            <input type="radio" name="Animal Handling" id="01" /> Animal
-            Handling
-            <input type="radio" name="Arcana" id="02" /> Arcana
-            <input type="radio" name="Athletics" id="03" /> Athletics
-            <input type="radio" name="Deception" id="04" /> Deception
-            <input type="radio" name="History" id="05" /> History
-            <input type="radio" name="Intimidation" id="06" /> Intimidation
-            <input type="radio" name="Investigation" id="07" /> Investigation
-            <input type="radio" name="Medicine" id="08" /> Medicine
-            <input type="radio" name="Nature" id="09" /> Nature
-            <input type="radio" name="Perception" id="10" /> Perception
-            <input type="radio" name="Performance" id="11" /> Performance
-            <input type="radio" name="Persuasion" id="12" /> Persuasion
-            <input type="radio" name="Religion" id="13" /> Religion
-            <input type="radio" name="Stealth" id="14" /> Stealth
-            <input type="radio" name="Survival" id="15" /> Survival
-            <input type="radio" name="Trickery" id="16" /> Trickery
+            <label htmlFor="01">
+              <input
+                type="checkbox"
+                value="Arcana"
+                id="02"
+                name="skill"
+                disabled
+              />
+              Arcana
+            </label>
+            <label htmlFor="02">
+              <input
+                type="checkbox"
+                value="Athletics"
+                id="03"
+                name="skill"
+                disabled
+              />
+              Athletics
+            </label>
+            <label htmlFor="03">
+              <input
+                type="checkbox"
+                value="Crafting"
+                id="01"
+                name="skill"
+                disabled
+              />
+              Crafting
+            </label>
+            <label htmlFor="04">
+              <input
+                type="checkbox"
+                value="Deception"
+                id="04"
+                name="skill"
+                disabled
+              />
+              Deception
+            </label>
+            <label htmlFor="05">
+              <input
+                type="checkbox"
+                value="History"
+                id="05"
+                name="skill"
+                disabled
+              />
+              History
+            </label>
+            <label htmlFor="06">
+              <input
+                type="checkbox"
+                value="Intimidation"
+                id="06"
+                name="skill"
+                disabled
+              />
+              Intimidation
+            </label>
+            <label htmlFor="07">
+              <input
+                type="checkbox"
+                value="Investigation"
+                id="07"
+                name="skill"
+                disabled
+              />
+              Investigation
+            </label>
+            <label htmlFor="08">
+              <input
+                type="checkbox"
+                value="Medicine"
+                id="08"
+                name="skill"
+                disabled
+              />
+              Medicine
+            </label>
+            <label htmlFor="09">
+              <input
+                type="checkbox"
+                value="Nature"
+                id="09"
+                name="skill"
+                disabled
+              />
+              Nature
+            </label>
+            <label htmlFor="10">
+              <input
+                type="checkbox"
+                value="Perception"
+                id="10"
+                name="skill"
+                disabled
+              />
+              Perception
+            </label>
+            <label htmlFor="11">
+              <input
+                type="checkbox"
+                value="Performance"
+                id="11"
+                name="skill"
+                disabled
+              />
+              Performance
+            </label>
+            <label htmlFor="12">
+              <input
+                type="checkbox"
+                value="Persuasion"
+                id="12"
+                name="skill"
+                disabled
+              />
+              Persuasion
+            </label>
+            <label htmlFor="13">
+              <input
+                type="checkbox"
+                value="Religion"
+                id="13"
+                name="skill"
+                disabled
+              />
+              Religion
+            </label>
+            <label htmlFor="14">
+              <input
+                type="checkbox"
+                value="Stealth"
+                id="14"
+                name="skill"
+                disabled
+              />
+              Stealth
+            </label>
+            <label htmlFor="15">
+              <input
+                type="checkbox"
+                value="Survival"
+                id="15"
+                name="skill"
+                disabled
+              />
+              Survival
+            </label>
+            <label htmlFor="16">
+              <input
+                type="checkbox"
+                value="Trickery"
+                id="16"
+                name="skill"
+                disabled
+              />
+              Trickery
+            </label>
           </form>
         </div>
         <div className={styles.CharTraits}>
           <h5>Personality Traits:</h5>
+        </div>
+        <div className={styles.CharStory}>
+          <h5>Backstory:</h5>
         </div>
       </section>
     );

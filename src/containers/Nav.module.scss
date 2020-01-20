@@ -2,12 +2,13 @@
   display: flex;
   width: 50%;
   height: 8vh;
-  background-color: rgb(53, 53, 53);
+  background-color: rgb(65, 65, 65);
   overflow: hidden;
   text-align: center;
   align-items: center;
   justify-content: right;
   padding-right: 2vw;
+  border-bottom: 1px solid black;
 
   ul {
     display: inline-block;

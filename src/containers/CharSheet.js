@@ -11,13 +11,11 @@ class CharSheet extends Component {
   drawOut = () => {
     switch (this.state.draw) {
       case false:
-        console.log("false");
         this.setState({
           draw: true
         });
         break;
       case true:
-        console.log("true");
         this.setState({
           draw: false
         });
@@ -68,22 +66,22 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharAttributes}>
           <div>
-            Strength: <span className={styles.FontWhite}></span>
+            Strength: <span className={styles.FontWhite}>10</span>
           </div>
           <div>
-            Dexterity: <span className={styles.FontWhite}></span>
+            Dexterity: <span className={styles.FontWhite}>10</span>
           </div>
           <div>
-            Toughness: <span className={styles.FontWhite}></span>
+            Toughness: <span className={styles.FontWhite}>10</span>
           </div>
           <div>
-            Intelligence: <span className={styles.FontWhite}></span>
+            Intelligence: <span className={styles.FontWhite}>10</span>
           </div>
           <div>
-            Willpower: <span className={styles.FontWhite}></span>
+            Willpower: <span className={styles.FontWhite}>10</span>
           </div>
           <div>
-            Charisma: <span className={styles.FontWhite}></span>
+            Charisma: <span className={styles.FontWhite}>10</span>
           </div>
         </div>
         <img src={HF_01} alt="Portrait" className={styles.Portrait} />
@@ -93,9 +91,9 @@ class CharSheet extends Component {
               <input
                 type="checkbox"
                 value="Arcana"
-                id="02"
+                id="01"
                 name="skill"
-                disabled
+                checked={this.props.arcana}
               />
               Arcana
             </label>
@@ -103,9 +101,10 @@ class CharSheet extends Component {
               <input
                 type="checkbox"
                 value="Athletics"
-                id="03"
+                id="02"
                 name="skill"
                 disabled
+                checked={this.props.athletics}
               />
               Athletics
             </label>
@@ -113,9 +112,10 @@ class CharSheet extends Component {
               <input
                 type="checkbox"
                 value="Crafting"
-                id="01"
+                id="03"
                 name="skill"
                 disabled
+                checked={this.props.crafting}
               />
               Crafting
             </label>
@@ -126,6 +126,7 @@ class CharSheet extends Component {
                 id="04"
                 name="skill"
                 disabled
+                checked={this.props.deception}
               />
               Deception
             </label>
@@ -136,6 +137,7 @@ class CharSheet extends Component {
                 id="05"
                 name="skill"
                 disabled
+                checked={this.props.history}
               />
               History
             </label>
@@ -146,6 +148,7 @@ class CharSheet extends Component {
                 id="06"
                 name="skill"
                 disabled
+                checked={this.props.intimidation}
               />
               Intimidation
             </label>
@@ -156,6 +159,7 @@ class CharSheet extends Component {
                 id="07"
                 name="skill"
                 disabled
+                checked={this.props.investigation}
               />
               Investigation
             </label>
@@ -166,6 +170,7 @@ class CharSheet extends Component {
                 id="08"
                 name="skill"
                 disabled
+                checked={this.props.medicine}
               />
               Medicine
             </label>
@@ -176,6 +181,7 @@ class CharSheet extends Component {
                 id="09"
                 name="skill"
                 disabled
+                checked={this.props.nature}
               />
               Nature
             </label>
@@ -186,6 +192,7 @@ class CharSheet extends Component {
                 id="10"
                 name="skill"
                 disabled
+                checked={this.props.perception}
               />
               Perception
             </label>
@@ -196,6 +203,7 @@ class CharSheet extends Component {
                 id="11"
                 name="skill"
                 disabled
+                checked={this.props.performance}
               />
               Performance
             </label>
@@ -206,6 +214,7 @@ class CharSheet extends Component {
                 id="12"
                 name="skill"
                 disabled
+                checked={this.props.persuasion}
               />
               Persuasion
             </label>
@@ -216,6 +225,7 @@ class CharSheet extends Component {
                 id="13"
                 name="skill"
                 disabled
+                checked={this.props.religion}
               />
               Religion
             </label>
@@ -226,6 +236,7 @@ class CharSheet extends Component {
                 id="14"
                 name="skill"
                 disabled
+                checked={this.props.stealth}
               />
               Stealth
             </label>
@@ -236,6 +247,7 @@ class CharSheet extends Component {
                 id="15"
                 name="skill"
                 disabled
+                checked={this.props.survival}
               />
               Survival
             </label>
@@ -246,6 +258,7 @@ class CharSheet extends Component {
                 id="16"
                 name="skill"
                 disabled
+                checked={this.props.trickery}
               />
               Trickery
             </label>

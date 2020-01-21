@@ -75,7 +75,7 @@
 
   .CharSkills {
     font-size: calc(5px + 2vmin);
-    grid-column: 1 / 4;
+    grid-column: 1 / 5;
     grid-row: 6 / -1;
     display: flex;
     flex-wrap: wrap;
@@ -152,7 +152,7 @@
   position: absolute;
   top: 8vh;
   left: 20vw;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
   width: 80vw;
   max-height: 90vh;

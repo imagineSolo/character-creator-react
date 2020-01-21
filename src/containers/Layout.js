@@ -17,22 +17,24 @@ class Layout extends Component {
     backgroundSaved: "",
     avatar: "",
     attributes: {},
-    arcana: false,
-    athletics: false,
-    crafting: false,
-    deception: false,
-    history: false,
-    intimidation: false,
-    investigation: false,
-    medicine: false,
-    nature: false,
-    perception: false,
-    performance: false,
-    persuasion: false,
-    religion: false,
-    stealth: false,
-    survival: false,
-    trickery: false,
+    skills: {
+      arcana: false,
+      athletics: false,
+      crafting: false,
+      deception: false,
+      history: false,
+      intimidation: false,
+      investigation: false,
+      medicine: false,
+      nature: false,
+      perception: false,
+      performance: false,
+      persuasion: false,
+      religion: false,
+      stealth: false,
+      survival: false,
+      trickery: false
+    },
     traits: [],
     story: ""
   };
@@ -174,7 +176,7 @@ class Layout extends Component {
             active: "avatar",
             backgroundSaved: prof,
             investigation: true,
-            stealth: true
+            perception: true
           });
           break;
         case "Outlander":
@@ -241,22 +243,7 @@ class Layout extends Component {
           class={this.state.class}
           name={this.state.nameSaved}
           background={this.state.backgroundSaved}
-          arcana={this.state.arcana}
-          athletics={this.state.athletics}
-          crafting={this.state.crafting}
-          deception={this.state.deception}
-          history={this.state.history}
-          intimidation={this.state.intimidation}
-          investigation={this.state.investigation}
-          medicine={this.state.medicine}
-          nature={this.state.nature}
-          perception={this.state.perception}
-          performance={this.state.performance}
-          persuasion={this.state.persuasion}
-          religion={this.state.religion}
-          stealth={this.state.stealth}
-          survival={this.state.survival}
-          trickery={this.state.trickery}
+          skills={this.state.skills}
         />
       </div>
     );

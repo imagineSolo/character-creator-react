@@ -38,7 +38,7 @@ const background = props => {
         <p>Courtier: Deception, Persuasion</p>
         <p>Criminal: Intimidation, Trickery</p>
         <p>Entertainer: Athletics, Performance</p>
-        <p>Investigator: Insight, Investigation</p>
+        <p>Investigator: Investigation. Perception</p>
         <p>Outlander: Nature, Survival</p>
         <p>Sage: Arcana, History</p>
         <p>Soldier: Athletics, Intimidation</p>

@@ -66,22 +66,40 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharAttributes}>
           <div>
-            Strength: <span className={styles.FontWhite}>10</span>
+            Strength:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.strength}
+            </span>
           </div>
           <div>
-            Dexterity: <span className={styles.FontWhite}>10</span>
+            Dexterity:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.dexterity}
+            </span>
           </div>
           <div>
-            Toughness: <span className={styles.FontWhite}>10</span>
+            Toughness:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.toughness}
+            </span>
           </div>
           <div>
-            Intelligence: <span className={styles.FontWhite}>10</span>
+            Intelligence:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.inteligence}
+            </span>
           </div>
           <div>
-            Willpower: <span className={styles.FontWhite}>10</span>
+            Willpower:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.willpower}
+            </span>
           </div>
           <div>
-            Charisma: <span className={styles.FontWhite}>10</span>
+            Charisma:{" "}
+            <span className={styles.FontWhite}>
+              {this.props.attributes.charisma}
+            </span>
           </div>
         </div>
         <img src={HF_01} alt="Portrait" className={styles.Portrait} />

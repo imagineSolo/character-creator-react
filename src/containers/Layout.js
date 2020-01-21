@@ -16,7 +16,14 @@ class Layout extends Component {
     nameSaved: "",
     backgroundSaved: "",
     avatar: "",
-    attributes: {},
+    attributes: {
+      strength: 10,
+      dexterity: 10,
+      toughness: 10,
+      intelligence: 10,
+      willpower: 10,
+      charisma: 10
+    },
     skills: {
       arcana: false,
       athletics: false,
@@ -133,82 +140,65 @@ class Layout extends Component {
     if (prof === "") {
       alert("Select your background.");
     } else {
+      let updatedState = { ...this.state };
       switch (prof) {
         case "Commoner":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            athletics: true,
-            crafting: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.athletics = true;
+          updatedState.skills.crafting = true;
           break;
         case "Courtier":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            deception: true,
-            persuasion: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.deception = true;
+          updatedState.skills.persuasion = true;
           break;
         case "Criminal":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            intimidation: true,
-            trickery: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.intimidation = true;
+          updatedState.skills.trickery = true;
           break;
         case "Entertainer":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            athletics: true,
-            performance: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.athletics = true;
+          updatedState.skills.performance = true;
           break;
         case "Investigator":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            investigation: true,
-            perception: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.investigation = true;
+          updatedState.skills.perception = true;
           break;
         case "Outlander":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            nature: true,
-            survival: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.nature = true;
+          updatedState.skills.survival = true;
           break;
         case "Sage":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            arcana: true,
-            history: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.arcana = true;
+          updatedState.skills.history = true;
           break;
         case "Soldier":
-          this.setState({
-            ...this.state,
-            active: "avatar",
-            backgroundSaved: prof,
-            athletics: true,
-            intimidation: true
-          });
+          updatedState.active = "avatar";
+          updatedState.backgroundSaved = prof;
+          updatedState.skills.athletics = true;
+          updatedState.skills.intimidation = true;
           break;
         default:
           console.log("Default");
       }
+      this.setState({
+        ...this.state,
+        active: "avatar",
+        backgroundSaved: prof,
+        updatedState
+      });
     }
   };
 
@@ -244,6 +234,7 @@ class Layout extends Component {
           name={this.state.nameSaved}
           background={this.state.backgroundSaved}
           skills={this.state.skills}
+          attributes={this.state.attributes}
         />
       </div>
     );

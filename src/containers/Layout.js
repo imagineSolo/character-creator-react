@@ -92,6 +92,14 @@ class Layout extends Component {
         backgroundSaved: ""
       });
     }
+    if (state === "avatar") {
+      this.setState({
+        ...this.state,
+        active: "backgroundSaved",
+        backgroundSaved: "",
+        avatar: ""
+      });
+    }
   };
 
   handleGenderFemale = () => {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ButtonUndo from "../../Button/Undo";
 import styles from "./Avatar.module.scss";
 import HF_01 from "../../../images/Human/Female/HF_01.png";
 import HF_02 from "../../../images/Human/Female/HF_02.png";
@@ -72,7 +73,6 @@ class Avatar extends Component {
       HLF_02,
       HLF_03,
       HLF_04,
-      HLM_04,
       HLM_01,
       HLM_02,
       HLM_03,
@@ -164,6 +164,7 @@ class Avatar extends Component {
       <div className={styles.Avatar}>
         <p className={styles.Header}>Select your character's portrait:</p>
         <div className={styles.Portraits}>{mappedPortraits}</div>
+        <ButtonUndo undo={this.props.undo} />
       </div>
     );
   }

@@ -224,6 +224,8 @@ class Layout extends Component {
               selectClass={this.handleClassSelect}
               submitName={this.handleNameSubmit}
               submitBackground={this.handleBackgroundSubmit}
+              gender={this.state.gender}
+              race={this.state.race}
             />
           </Route>
         </Switch>

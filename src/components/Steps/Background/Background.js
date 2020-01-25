@@ -12,7 +12,7 @@ const background = props => {
       >
         <label className={styles.BackgroundLabel}>Select background:</label>
         <select className={styles.BackgroundSelect} name="Background">
-          <option value="select" selected disabled>
+          <option value="select" disabled>
             --Select--
           </option>
           <option value="Commoner">Commoner</option>

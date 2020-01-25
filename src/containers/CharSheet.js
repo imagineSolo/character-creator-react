@@ -66,37 +66,37 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharAttributes}>
           <div>
-            Strength:{" "}
+            Strength:
             <span className={styles.FontWhite}>
               {this.props.attributes.strength}
             </span>
           </div>
           <div>
-            Dexterity:{" "}
+            Dexterity:
             <span className={styles.FontWhite}>
               {this.props.attributes.dexterity}
             </span>
           </div>
           <div>
-            Toughness:{" "}
+            Toughness:
             <span className={styles.FontWhite}>
               {this.props.attributes.toughness}
             </span>
           </div>
           <div>
-            Intelligence:{" "}
+            Intelligence:
             <span className={styles.FontWhite}>
-              {this.props.attributes.inteligence}
+              {this.props.attributes.intelligence}
             </span>
           </div>
           <div>
-            Willpower:{" "}
+            Willpower:
             <span className={styles.FontWhite}>
               {this.props.attributes.willpower}
             </span>
           </div>
           <div>
-            Charisma:{" "}
+            Charisma:
             <span className={styles.FontWhite}>
               {this.props.attributes.charisma}
             </span>
@@ -107,6 +107,7 @@ class CharSheet extends Component {
           <form>
             <label htmlFor="01">
               <input
+                readOnly
                 type="checkbox"
                 value="Arcana"
                 id="01"
@@ -117,6 +118,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="02">
               <input
+                readOnly
                 type="checkbox"
                 value="Athletics"
                 id="02"
@@ -128,6 +130,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="03">
               <input
+                readOnly
                 type="checkbox"
                 value="Crafting"
                 id="03"
@@ -139,6 +142,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="04">
               <input
+                readOnly
                 type="checkbox"
                 value="Deception"
                 id="04"
@@ -150,6 +154,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="05">
               <input
+                readOnly
                 type="checkbox"
                 value="History"
                 id="05"
@@ -161,6 +166,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="06">
               <input
+                readOnly
                 type="checkbox"
                 value="Intimidation"
                 id="06"
@@ -172,6 +178,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="07">
               <input
+                readOnly
                 type="checkbox"
                 value="Investigation"
                 id="07"
@@ -183,6 +190,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="08">
               <input
+                readOnly
                 type="checkbox"
                 value="Medicine"
                 id="08"
@@ -194,6 +202,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="09">
               <input
+                readOnly
                 type="checkbox"
                 value="Nature"
                 id="09"
@@ -205,6 +214,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="10">
               <input
+                readOnly
                 type="checkbox"
                 value="Perception"
                 id="10"
@@ -216,6 +226,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="11">
               <input
+                readOnly
                 type="checkbox"
                 value="Performance"
                 id="11"
@@ -227,6 +238,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="12">
               <input
+                readOnly
                 type="checkbox"
                 value="Persuasion"
                 id="12"
@@ -238,6 +250,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="13">
               <input
+                readOnly
                 type="checkbox"
                 value="Religion"
                 id="13"
@@ -249,6 +262,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="14">
               <input
+                readOnly
                 type="checkbox"
                 value="Stealth"
                 id="14"
@@ -260,6 +274,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="15">
               <input
+                readOnly
                 type="checkbox"
                 value="Survival"
                 id="15"
@@ -271,6 +286,7 @@ class CharSheet extends Component {
             </label>
             <label htmlFor="16">
               <input
+                readOnly
                 type="checkbox"
                 value="Trickery"
                 id="16"

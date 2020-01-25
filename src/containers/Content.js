@@ -86,7 +86,9 @@ class Content extends Component {
             undo={() => this.props.undo(this.props.active)}
           />
         )}
-        {this.props.active === "avatar" && <Avatar />}
+        {this.props.active === "avatar" && (
+          <Avatar gender={this.props.gender} race={this.props.race} />
+        )}
       </>
     );
   }

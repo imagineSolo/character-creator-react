@@ -21,7 +21,6 @@ const background = props => {
           <option value="Entertainer">Entertainer</option>
           <option value="Investigator">Investigator</option>
           <option value="Outlander">Outlander</option>
-          <option value="Noble">Noble</option>
           <option value="Sage">Sage</option>
           <option value="Soldier">Soldier</option>
         </select>

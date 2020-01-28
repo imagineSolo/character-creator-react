@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import styles from "./Content.module.scss";
 import Gender from "../components/Steps/Gender/Gender";
 import Races from "../components/Steps/Races/Races";
 import Classes from "../components/Steps/Classes/Classes";
 import Name from "../components/Steps/Name/Name";
 import Background from "../components/Steps/Background/Background";
 import Avatar from "../components/Steps/Avatar/Avatar";
+import Attributes from "../components/Steps/Attributes/Attributes";
+import styles from "./Content.module.scss";
 
 class Content extends Component {
   state = {
@@ -87,7 +88,24 @@ class Content extends Component {
           />
         )}
         {this.props.active === "avatar" && (
-          <Avatar gender={this.props.gender} race={this.props.race} />
+          <Avatar
+            gender={this.props.gender}
+            race={this.props.race}
+            selectPortrait={this.props.selectPortrait}
+            undo={() => this.props.undo(this.props.active)}
+          />
+        )}
+        {this.props.active === "attributes" && (
+          <Attributes
+            strength={this.props.strength}
+            dexterity={this.props.dexterity}
+            toughness={this.props.toughness}
+            intelligence={this.props.intelligence}
+            willpower={this.props.willpower}
+            charisma={this.props.charisma}
+            pool={this.props.pool}
+            undo={() => this.props.undo(this.props.active)}
+          />
         )}
       </>
     );

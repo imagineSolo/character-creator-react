@@ -6,8 +6,10 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
   width: 80vw;
-  max-height: 90vh;
-  background-color: rgb(148, 121, 62);
+  max-height: 92vh;
+  // background-color: rgb(160, 135, 83); 
+  background-image: url(../images/Paper.jpg);
+  background-size: cover;
   padding-left: 2vw;
   color: black;
   transition: ease-in-out 0.5s;
@@ -26,7 +28,7 @@
       display: block;
       height: 4vh;
       width: 100%;
-      margin-top: 16px;
+      margin-top: 12px;
       font-size: calc(9px + 2vmin);
       line-height: 0.6;
     }
@@ -71,6 +73,7 @@
     margin-top: 5px;
     margin-left: 30%;
     border: 1px solid black;
+    background-color: rgb(66, 66, 66);
   }
 
   .CharSkills {
@@ -104,24 +107,22 @@
     }
 
     input:checked {
-      border: 7px solid black;
+      border: 8px solid black;
     }
   }
 
   .CharTraits {
-    border: 1px solid black;
     grid-column: 5 / -1;
     grid-row: 1 / 3;
   }
 
   .CharStory {
-    border: 1px solid black;
     grid-column: 5 / -1;
     grid-row: 3 / -1;
   }
 
   .FontWhite {
-    color: white;
+    // color: white;
     font-weight: bold;
   }
 
@@ -155,7 +156,7 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
   width: 80vw;
-  max-height: 90vh;
-  background-color: rgb(122, 94, 32);
+  max-height: 92vh;
+  background-color: rgb(160, 135, 83);
   transition: ease-in-out 0.5s;
 }

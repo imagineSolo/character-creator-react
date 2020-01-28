@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Content from "./Content";
 import SavedChars from "./SavedChars";
+import blank from "../images/blank.png";
 import styles from "../App.module.scss";
 
 class Layout extends Component {
@@ -15,7 +16,7 @@ class Layout extends Component {
     class: "",
     nameSaved: "",
     backgroundSaved: "",
-    avatar: "",
+    avatar: blank,
     attributes: {
       strength: 10,
       dexterity: 10,
@@ -24,6 +25,7 @@ class Layout extends Component {
       willpower: 10,
       charisma: 10
     },
+    attributesPool: 5,
     skills: {
       arcana: false,
       athletics: false,
@@ -97,7 +99,33 @@ class Layout extends Component {
         ...this.state,
         active: "backgroundSaved",
         backgroundSaved: "",
-        avatar: ""
+        avatar: "",
+        skills: {
+          arcana: false,
+          athletics: false,
+          crafting: false,
+          deception: false,
+          history: false,
+          intimidation: false,
+          investigation: false,
+          medicine: false,
+          nature: false,
+          perception: false,
+          performance: false,
+          persuasion: false,
+          religion: false,
+          stealth: false,
+          survival: false,
+          trickery: false
+        }
+      });
+    }
+    if (state.active === "attributes") {
+      this.setState({
+        ...this.state,
+        active: "avatar",
+        avatar: "",
+        attributes: ""
       });
     }
   };
@@ -210,6 +238,15 @@ class Layout extends Component {
     }
   };
 
+  handlePortraitSelect = e => {
+    console.log(e.target.value);
+    this.setState({
+      ...this.state,
+      active: "attributes",
+      avatar: e.target.src
+    });
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -234,6 +271,14 @@ class Layout extends Component {
               submitBackground={this.handleBackgroundSubmit}
               gender={this.state.gender}
               race={this.state.race}
+              selectPortrait={this.handlePortraitSelect}
+              strength={this.state.attributes.strength}
+              dexterity={this.state.attributes.dexterity}
+              toughness={this.state.attributes.toughness}
+              intelligence={this.state.attributes.intelligence}
+              willpower={this.state.attributes.willpower}
+              charisma={this.state.attributes.charisma}
+              pool={this.state.attributesPool}
             />
           </Route>
         </Switch>
@@ -245,6 +290,7 @@ class Layout extends Component {
           background={this.state.backgroundSaved}
           skills={this.state.skills}
           attributes={this.state.attributes}
+          avatar={this.state.avatar}
         />
       </div>
     );

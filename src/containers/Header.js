@@ -4,7 +4,11 @@ import styles from "./Header.module.scss";
 const header = () => {
   return (
     <header className={styles.Header}>
-      <h1>Fantasy Character Creator</h1>
+      <img
+        src="https://blog.flamingtext.com/blog/2020/01/28/flamingtext_com_1580239524_834328161.png"
+        alt="Logo Design by FlamingText.com"
+        title="Logo Design by FlamingText.com"
+      ></img>
     </header>
   );
 };

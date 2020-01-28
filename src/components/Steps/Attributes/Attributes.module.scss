@@ -1,0 +1,13 @@
+.Attributes {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  margin: 20px;
+  border: 1px solid red;
+  justify-content: center;
+  width: 63vw;
+
+  p {
+    margin: 2vh;
+  }
+}

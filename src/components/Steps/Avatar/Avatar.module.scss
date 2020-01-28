@@ -16,8 +16,13 @@
     align-items: center;
     align-content: center;
 
-    div>img {
-      padding: 6px;
+    img {
+      margin: 6px;
+      cursor: pointer;
+    }
+
+    img:hover {
+      opacity: 0.9;
     }
   }
 }

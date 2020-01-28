@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import styles from "./CharSheet.module.scss";
-// import blank from "../images/blank.png";
-import HF_01 from "../images/Human/Female/HF_01.png";
 
 class CharSheet extends Component {
   state = {
@@ -102,7 +100,11 @@ class CharSheet extends Component {
             </span>
           </div>
         </div>
-        <img src={HF_01} alt="Portrait" className={styles.Portrait} />
+        <img
+          src={this.props.avatar}
+          alt="Portrait"
+          className={styles.Portrait}
+        />
         <div className={styles.CharSkills}>
           <form>
             <label htmlFor="01">

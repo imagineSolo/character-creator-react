@@ -5,9 +5,105 @@
   margin: 20px;
   border: 1px solid red;
   justify-content: center;
+  align-items: center;
   width: 63vw;
 
-  p {
-    margin: 2vh;
+  h3 {
+    text-align: center;
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+    font-size: calc(20px + 2vmin);
   }
+
+  p {
+    text-align: center;
+  }
+
+  .Points {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0 20px 0;
+
+    .Button {
+      display: flex;
+      flex-direction: column;
+      font-size: calc(16px + 2vmin);
+      font-family: inherit;
+      margin: 1vh;
+      border: 0;
+      color: aliceblue;
+      background: transparent;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.85);
+    }
+
+    span {
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      width: calc(16px + 2vmin);
+    }
+
+    span:hover {
+      color: white;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1vh;
+      margin: 1vw;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.85);
+    }
+
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      padding: 1vh;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.85);
+    }
+  }
+
+  .Buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .Apply {
+    box-shadow: 0px 10px 14px -7px #000000;
+    background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
+    background-color: #91d171;
+    border-radius: 20px;
+    border: 1px solid #4b8f29;
+    display: inline-block;
+    width: calc(100px + 2vmin);
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'IM Fell Great Primer SC', serif;
+    font-size: calc(7px + 2vmin);
+    font-weight: bold;
+    padding: 8px 14px;
+    margin: 4vh;
+    text-decoration: none;
+    text-shadow: 2px 2px 0px #5b8a3c;
+  }
+
+  .Apply:hover {
+    background: linear-gradient(to bottom, #6ba64b 5%, #91d171 100%);
+    background-color: #6ba64b;
+  }
+
+  .Apply:active {
+    position: relative;
+    top: 1px;
+  }
+
 }

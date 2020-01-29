@@ -13,6 +13,7 @@
     margin: 12px;
     padding: 10px;
     text-align: center;
+    font-size: calc(20px + 2vmin);
   }
 
   .Gender {
@@ -22,17 +23,17 @@
     align-items: center;
 
     .GenderButton {
-      height: 80px;
-      width: 80px;
+      height: calc(100px + 2vmin);
+      width: calc(100px + 2vmin);
       border-radius: 50%;
       background: -webkit-linear-gradient(#eee, #333);
       background-clip: border-box;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 55px;
-      line-height: 1.4;
+      font-size: calc(80px + 2vmin);
+      line-height: 1;
       text-align: center;
-      margin: 12px;
+      margin: calc(14px + 2vmin);
       transition: 1s;
     }
 

@@ -171,7 +171,6 @@ class Layout extends Component {
   };
 
   handleBackgroundSubmit = (prof, e) => {
-    console.log(prof);
     e.preventDefault();
     if (prof === "") {
       alert("Select your background.");
@@ -239,11 +238,66 @@ class Layout extends Component {
   };
 
   handlePortraitSelect = e => {
-    console.log(e.target.value);
     this.setState({
       ...this.state,
       active: "attributes",
       avatar: e.target.src
+    });
+  };
+
+  handleIncreaseAttribute = e => {
+    let updatedState = { ...this.state };
+    switch (e) {
+      case "str":
+        updatedState.attributes.strength++;
+        break;
+      case "dex":
+        updatedState.attributes.dexterity++;
+        break;
+      case "tou":
+        updatedState.attributes.toughness++;
+        break;
+      case "int":
+        updatedState.attributes.intelligence++;
+        break;
+      case "will":
+        updatedState.attributes.willpower++;
+        break;
+      case "cha":
+        updatedState.attributes.charisma++;
+        break;
+      default:
+    }
+    this.setState({
+      updatedState
+    });
+  };
+
+  handleDecreaseAttribute = e => {
+    let updatedState = { ...this.state };
+    switch (e) {
+      case "str":
+        updatedState.attributes.strength--;
+        break;
+      case "dex":
+        updatedState.attributes.dexterity--;
+        break;
+      case "tou":
+        updatedState.attributes.toughness--;
+        break;
+      case "int":
+        updatedState.attributes.intelligence--;
+        break;
+      case "will":
+        updatedState.attributes.willpower--;
+        break;
+      case "cha":
+        updatedState.attributes.charisma--;
+        break;
+      default:
+    }
+    this.setState({
+      updatedState
     });
   };
 
@@ -279,6 +333,8 @@ class Layout extends Component {
               willpower={this.state.attributes.willpower}
               charisma={this.state.attributes.charisma}
               pool={this.state.attributesPool}
+              increment={this.handleIncreaseAttribute}
+              decrement={this.handleDecreaseAttribute}
             />
           </Route>
         </Switch>

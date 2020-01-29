@@ -17,7 +17,7 @@
       float: left;
       padding: 14px 16px;
       text-decoration: none;
-      font-size: 17px;
+      font-size: calc(7px + 2vmin);
       list-style: none;
 
       a {
@@ -33,7 +33,7 @@
   }
 
   .Github {
-    font-size: 28px;
+    font-size: calc(12px + 2vmin);
     line-height: 0.5;
   }
 }

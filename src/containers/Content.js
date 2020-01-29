@@ -104,6 +104,8 @@ class Content extends Component {
             willpower={this.props.willpower}
             charisma={this.props.charisma}
             pool={this.props.pool}
+            increment={this.props.increment}
+            decrement={this.props.decrement}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

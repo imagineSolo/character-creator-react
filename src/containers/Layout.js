@@ -120,7 +120,7 @@ class Layout extends Component {
         }
       });
     }
-    if (state.active === "attributes") {
+    if (state === "attributes") {
       this.setState({
         ...this.state,
         active: "avatar",
@@ -250,26 +250,72 @@ class Layout extends Component {
     switch (e) {
       case "str":
         updatedState.attributes.strength++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.strength >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       case "dex":
         updatedState.attributes.dexterity++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.dexterity >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       case "tou":
         updatedState.attributes.toughness++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.toughness >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       case "int":
         updatedState.attributes.intelligence++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.intelligence >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       case "will":
         updatedState.attributes.willpower++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.willpower >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       case "cha":
         updatedState.attributes.charisma++;
+        updatedState.attributesPool--;
+        if (updatedState.attributes.charisma >= 20) {
+          return;
+        }
+        if (updatedState.attributesPool <= 0) {
+          return;
+        }
         break;
       default:
     }
-    this.setState({
-      updatedState
+    this.setState(prevState => {
+      return {
+        willpower: prevState.willpower + 1,
+        attributesPool: prevState.attributesPool - 1,
+        updatedState
+      };
     });
   };
 
@@ -278,26 +324,36 @@ class Layout extends Component {
     switch (e) {
       case "str":
         updatedState.attributes.strength--;
+        updatedState.attributesPool++;
         break;
       case "dex":
         updatedState.attributes.dexterity--;
+        updatedState.attributesPool++;
         break;
       case "tou":
         updatedState.attributes.toughness--;
+        updatedState.attributesPool++;
         break;
       case "int":
         updatedState.attributes.intelligence--;
+        updatedState.attributesPool++;
         break;
       case "will":
         updatedState.attributes.willpower--;
+        updatedState.attributesPool++;
         break;
       case "cha":
         updatedState.attributes.charisma--;
+        updatedState.attributesPool++;
         break;
       default:
     }
-    this.setState({
-      updatedState
+    this.setState(prevState => {
+      return {
+        willpower: prevState.willpower + 1,
+        attributesPool: prevState.attributesPool - 1,
+        updatedState
+      };
     });
   };
 

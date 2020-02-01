@@ -3,8 +3,48 @@ import ButtonUndo from "../../Button/Undo";
 import styles from "./Attributes.module.scss";
 
 class Attributes extends Component {
-  state = {};
+  state = {
+    name: {
+      strength: "Strength",
+      dexterity: "Dexterity",
+      toughness: "Toughness",
+      intelligence: "Intelligence",
+      willpower: "Willpower",
+      charisma: "Charisma"
+    },
+    short: {
+      str: "str",
+      dex: "dex",
+      tou: "tou",
+      int: "int",
+      will: "will",
+      cha: "cha"
+    }
+  };
+
   render() {
+    const mappedAttributes = this.state.map(attr => {
+      console.log(attr);
+      return (
+        <p>
+          {attr.name}:
+          <button
+            className={styles.Button}
+            onClick={() => this.props.increment(attr.short)}
+          >
+            <span>+</span>
+          </button>
+          <span>{this.props.strength}</span>
+          <button
+            className={styles.Button}
+            onClick={() => this.props.decrement(attr.short)}
+          >
+            <span>-</span>
+          </button>
+        </p>
+      );
+    });
+
     return (
       <div className={styles.Attributes}>
         <h3>Select attributes:</h3>
@@ -15,7 +55,8 @@ class Attributes extends Component {
           class selection will affect this value).
         </p>
         <div className={styles.Points}>
-          <p>
+          {mappedAttributes}
+          {/* <p>
             Strength:
             <button
               className={styles.Button}
@@ -110,7 +151,7 @@ class Attributes extends Component {
             >
               <span>-</span>
             </button>
-          </p>
+          </p> */}
         </div>
         <p>
           Points left: <span>{this.props.pool}</span>

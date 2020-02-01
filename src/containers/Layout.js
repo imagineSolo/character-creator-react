@@ -245,10 +245,10 @@ class Layout extends Component {
     });
   };
 
-  handleIncreaseAttribute = e => {
+  handleIncreaseAttribute = attr => {
     let updatedState = { ...this.state };
-    switch (e) {
-      case "str":
+    switch (attr) {
+      case "Strength":
         updatedState.attributes.strength++;
         updatedState.attributesPool--;
         if (updatedState.attributes.strength >= 20) {
@@ -258,7 +258,7 @@ class Layout extends Component {
           return;
         }
         break;
-      case "dex":
+      case "Dexterity":
         updatedState.attributes.dexterity++;
         updatedState.attributesPool--;
         if (updatedState.attributes.dexterity >= 20) {
@@ -268,7 +268,7 @@ class Layout extends Component {
           return;
         }
         break;
-      case "tou":
+      case "Toughness":
         updatedState.attributes.toughness++;
         updatedState.attributesPool--;
         if (updatedState.attributes.toughness >= 20) {
@@ -278,7 +278,7 @@ class Layout extends Component {
           return;
         }
         break;
-      case "int":
+      case "Intelligence":
         updatedState.attributes.intelligence++;
         updatedState.attributesPool--;
         if (updatedState.attributes.intelligence >= 20) {
@@ -288,7 +288,7 @@ class Layout extends Component {
           return;
         }
         break;
-      case "will":
+      case "Willpower":
         updatedState.attributes.willpower++;
         updatedState.attributesPool--;
         if (updatedState.attributes.willpower >= 20) {
@@ -298,7 +298,7 @@ class Layout extends Component {
           return;
         }
         break;
-      case "cha":
+      case "Charisma":
         updatedState.attributes.charisma++;
         updatedState.attributesPool--;
         if (updatedState.attributes.charisma >= 20) {
@@ -312,7 +312,6 @@ class Layout extends Component {
     }
     this.setState(prevState => {
       return {
-        willpower: prevState.willpower + 1,
         attributesPool: prevState.attributesPool - 1,
         updatedState
       };
@@ -322,27 +321,27 @@ class Layout extends Component {
   handleDecreaseAttribute = e => {
     let updatedState = { ...this.state };
     switch (e) {
-      case "str":
+      case "Strength":
         updatedState.attributes.strength--;
         updatedState.attributesPool++;
         break;
-      case "dex":
+      case "Dexterity":
         updatedState.attributes.dexterity--;
         updatedState.attributesPool++;
         break;
-      case "tou":
+      case "Toughness":
         updatedState.attributes.toughness--;
         updatedState.attributesPool++;
         break;
-      case "int":
+      case "Intelligence":
         updatedState.attributes.intelligence--;
         updatedState.attributesPool++;
         break;
-      case "will":
+      case "Willpower":
         updatedState.attributes.willpower--;
         updatedState.attributesPool++;
         break;
-      case "cha":
+      case "Charisma":
         updatedState.attributes.charisma--;
         updatedState.attributesPool++;
         break;
@@ -350,8 +349,7 @@ class Layout extends Component {
     }
     this.setState(prevState => {
       return {
-        willpower: prevState.willpower + 1,
-        attributesPool: prevState.attributesPool - 1,
+        attributesPool: prevState.attributesPool + 1,
         updatedState
       };
     });

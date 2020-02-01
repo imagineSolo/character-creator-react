@@ -1,12 +1,15 @@
 import React from "react";
 import ButtonUndo from "../../Button/Undo";
+import styles from "./Name.module.scss";
+import inkwell from "../../../images/inkwell.png";
 
 const name = props => {
   return (
-    <div>
-      <p>Choose a name:</p>
+    <div className={styles.Content}>
+      <p className={styles.Header}>Choose a name:</p>
       <form onSubmit={props.submit}>
         <input
+          className={styles.InputText}
           type="text"
           placeholder="My name is..."
           required
@@ -16,8 +19,13 @@ const name = props => {
           value={props.value}
           onChange={props.change}
         />
-        <input type="submit" value="Submit Name" />
+        <input
+          className={styles.InputSubmit}
+          type="submit"
+          value="Submit Name"
+        />
       </form>
+      <img className={styles.Inkwell} src={inkwell} alt="Inkwell" />
       <ButtonUndo undo={props.undo} />
     </div>
   );

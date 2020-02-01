@@ -4,14 +4,18 @@ import styles from "./Background.module.scss";
 
 const background = props => {
   return (
-    <div>
+    <div className={styles.Content}>
       <form
         className={styles.BackgroundForm}
         onChange={props.change}
         onSubmit={props.submit}
       >
         <label className={styles.BackgroundLabel}>Select background:</label>
-        <select className={styles.BackgroundSelect} name="Background">
+        <select
+          className={styles.BackgroundSelect}
+          name="Background"
+          defaultValue="select"
+        >
           <option value="select" disabled>
             --Select--
           </option>

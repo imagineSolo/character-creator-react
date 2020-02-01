@@ -124,7 +124,7 @@ class Layout extends Component {
       this.setState({
         ...this.state,
         active: "avatar",
-        avatar: "",
+        avatar: blank,
         attributes: ""
       });
     }

@@ -158,7 +158,7 @@ class Avatar extends Component {
           <img
             src={el}
             alt="Portrait"
-            key={index}
+            key={Math.random(index) * 5}
             onClick={this.props.selectPortrait}
           />
         </div>

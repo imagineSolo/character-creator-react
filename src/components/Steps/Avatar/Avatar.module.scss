@@ -1,8 +1,13 @@
 .Avatar {
+  display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 67vw;
-  height: 90vh;
-  max-height: 90vh;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
 
   .Header {
     margin: 12px;
@@ -14,8 +19,6 @@
   .Portraits {
     display: flex;
     padding: 8px;
-    align-items: center;
-    align-content: center;
 
     img {
       margin: 6px;

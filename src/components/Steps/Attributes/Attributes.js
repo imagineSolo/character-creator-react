@@ -3,45 +3,37 @@ import ButtonUndo from "../../Button/Undo";
 import styles from "./Attributes.module.scss";
 
 class Attributes extends Component {
-  state = {
-    name: {
-      strength: "Strength",
-      dexterity: "Dexterity",
-      toughness: "Toughness",
-      intelligence: "Intelligence",
-      willpower: "Willpower",
-      charisma: "Charisma"
-    },
-    short: {
-      str: "str",
-      dex: "dex",
-      tou: "tou",
-      int: "int",
-      will: "will",
-      cha: "cha"
-    }
-  };
+  state = {};
 
   render() {
-    const mappedAttributes = this.state.map(attr => {
+    const attributes = [
+      { str: "Strength" },
+      { dex: "Dexterity" },
+      { tou: "Toughness" },
+      { int: "Intelligence" },
+      { will: "Willpower" },
+      { char: "Charisma" }
+    ];
+
+    const mappedAttributes = attributes.map(attr => {
       console.log(attr);
       return (
-        <p>
-          {attr.name}:
+        <div key={attr.key}>
+          <p>{attr.value}</p>
           <button
             className={styles.Button}
-            onClick={() => this.props.increment(attr.short)}
+            onClick={() => this.props.increment(attr.key)}
           >
             <span>+</span>
           </button>
           <span>{this.props.strength}</span>
           <button
             className={styles.Button}
-            onClick={() => this.props.decrement(attr.short)}
+            onClick={() => this.props.decrement(attr.key)}
           >
             <span>-</span>
           </button>
-        </p>
+        </div>
       );
     });
 

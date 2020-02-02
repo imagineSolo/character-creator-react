@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonUndo from "../../Button/Undo";
+import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Name.module.scss";
 import inkwell from "../../../images/inkwell.png";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonUndo from "../../Button/Undo";
+import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Races.module.scss";
 
 class Race extends Component {
@@ -50,51 +50,26 @@ class Race extends Component {
   };
 
   render() {
+    const options = ["Human", "Elf", "Dwarf", "Halfling", "Tiefling"];
+
+    const mappedOptions = options.map(race => {
+      return (
+        <div
+          className={styles.RaceChoice}
+          key={race}
+          id={race}
+          onClick={this.props.select}
+          onPointerEnter={e => this.showDescription(e)}
+        >
+          {race}
+        </div>
+      );
+    });
+
     return (
       <section className={styles.Content}>
         <p className={styles.Header}>Select race:</p>
-        <div className={styles.RaceChoices}>
-          <div
-            className={styles.RaceChoice}
-            id="Human"
-            onClick={this.props.select}
-            onPointerEnter={e => this.showDescription(e)}
-          >
-            Human
-          </div>
-          <div
-            className={styles.RaceChoice}
-            id="Elf"
-            onClick={this.props.select}
-            onPointerEnter={e => this.showDescription(e)}
-          >
-            Elf
-          </div>
-          <div
-            className={styles.RaceChoice}
-            id="Dwarf"
-            onClick={this.props.select}
-            onPointerEnter={e => this.showDescription(e)}
-          >
-            Dwarf
-          </div>
-          <div
-            className={styles.RaceChoice}
-            id="Halfling"
-            onClick={this.props.select}
-            onPointerEnter={e => this.showDescription(e)}
-          >
-            Halfling
-          </div>
-          <div
-            className={styles.RaceChoice}
-            id="Tiefling"
-            onClick={this.props.select}
-            onPointerEnter={e => this.showDescription(e)}
-          >
-            Tiefling
-          </div>
-        </div>
+        <div className={styles.RaceChoices}>{mappedOptions}</div>
         <ButtonUndo className={styles.Undo} undo={this.props.undo} />
         <br />
         <div className={styles.Description}>

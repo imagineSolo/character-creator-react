@@ -75,7 +75,16 @@ class Layout extends Component {
         ...this.state,
         active: "race",
         race: "",
-        class: ""
+        class: "",
+        attributes: {
+          strength: 10,
+          dexterity: 10,
+          toughness: 10,
+          intelligence: 10,
+          willpower: 10,
+          charisma: 10
+        },
+        attributesPool: 5
       });
     }
     if (state === "name") {
@@ -147,10 +156,49 @@ class Layout extends Component {
   };
 
   handleRaceSelect = e => {
+    let updatedState = { ...this.state };
+    switch (e.target.id) {
+      case "Human":
+        updatedState.active = "class";
+        updatedState.race = e.target.id;
+        updatedState.attributesPool = updatedState.attributesPool + 2;
+        updatedState.attributes.willpower--;
+        break;
+      case "Elf":
+        updatedState.active = "class";
+        updatedState.race = e.target.id;
+        updatedState.attributes.dexterity++;
+        updatedState.attributes.intelligence++;
+        updatedState.attributes.toughness--;
+        break;
+      case "Dwarf":
+        updatedState.active = "class";
+        updatedState.race = e.target.id;
+        updatedState.attributes.dexterity--;
+        updatedState.attributes.strength++;
+        updatedState.attributes.toughness++;
+        break;
+      case "Halfling":
+        updatedState.active = "class";
+        updatedState.race = e.target.id;
+        updatedState.attributes.dexterity++;
+        updatedState.attributes.willpower++;
+        updatedState.attributes.strength--;
+        break;
+      case "Tiefling":
+        updatedState.active = "class";
+        updatedState.race = e.target.id;
+        updatedState.attributes.charisma++;
+        updatedState.attributes.intelligence++;
+        updatedState.attributes.willpower--;
+        break;
+      default:
+    }
     this.setState({
       ...this.state,
       active: "class",
-      race: e.target.id
+      race: e.target.id,
+      updatedState
     });
   };
 

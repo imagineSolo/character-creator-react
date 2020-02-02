@@ -1,5 +1,6 @@
 import React from "react";
-import ButtonUndo from "../../Button/Undo";
+import ButtonUndo from "../../Button/Undo/Undo";
+import ButtonApply from "../../Button/Apply/Apply";
 import styles from "./Attributes.module.scss";
 
 const attributes = props => {
@@ -19,7 +20,7 @@ const attributes = props => {
         <button className={styles.Button} onClick={() => props.increment(attr)}>
           <span>+</span>
         </button>
-        <span>{props.strength}</span>
+        <span>{`props.${attr.toLowerCase()}`}</span>
         <button className={styles.Button} onClick={() => props.decrement(attr)}>
           <span>-</span>
         </button>
@@ -42,7 +43,7 @@ const attributes = props => {
       </p>
       <div className={styles.Buttons}>
         <ButtonUndo undo={props.undo} />
-        <button className={styles.Apply}>Apply</button>
+        <ButtonApply className={styles.Apply} />
       </div>
     </div>
   );

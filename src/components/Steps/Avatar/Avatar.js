@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonUndo from "../../Button/Undo";
+import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Avatar.module.scss";
 import HF_01 from "../../../images/Human/Female/HF_01.png";
 import HF_02 from "../../../images/Human/Female/HF_02.png";

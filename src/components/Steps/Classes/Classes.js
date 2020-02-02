@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonUndo from "../../Button/Undo";
+import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Classes.module.scss";
 
 class Classes extends Component {
@@ -50,52 +50,27 @@ class Classes extends Component {
   };
 
   render() {
+    const options = ["Warrior", "Wizard", "Rogue", "Cleric", "Ranger"];
+
+    const mappedOptions = options.map(charClass => {
+      return (
+        <div
+          className={styles.ClassChoice}
+          key={charClass}
+          id={charClass}
+          onClick={this.props.select}
+          onPointerEnter={e => this.showDescription(e)}
+        >
+          {charClass}
+        </div>
+      );
+    });
+
     return (
       <section className={styles.Content}>
         <div>
           <p className={styles.Header}>Select class:</p>
-          <div className={styles.ClassChoices}>
-            <div
-              className={styles.ClassChoice}
-              id="Warrior"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Warrior
-            </div>
-            <div
-              className={styles.ClassChoice}
-              id="Wizard"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Wizard
-            </div>
-            <div
-              className={styles.ClassChoice}
-              id="Rogue"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Rogue
-            </div>
-            <div
-              className={styles.ClassChoice}
-              id="Cleric"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Cleric
-            </div>
-            <div
-              className={styles.ClassChoice}
-              id="Ranger"
-              onClick={this.props.select}
-              onPointerEnter={e => this.showDescription(e)}
-            >
-              Ranger
-            </div>
-          </div>
+          <div className={styles.ClassChoices}>{mappedOptions}</div>
           <ButtonUndo undo={this.props.undo} />
         </div>
         <div className={styles.Description}>

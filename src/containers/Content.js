@@ -97,12 +97,7 @@ class Content extends Component {
         )}
         {this.props.active === "attributes" && (
           <Attributes
-            strength={this.props.strength}
-            dexterity={this.props.dexterity}
-            toughness={this.props.toughness}
-            intelligence={this.props.intelligence}
-            willpower={this.props.willpower}
-            charisma={this.props.charisma}
+            attributes={this.props.attributes}
             pool={this.props.pool}
             increment={this.props.increment}
             decrement={this.props.decrement}

@@ -198,6 +198,7 @@ class Layout extends Component {
       ...this.state,
       active: "class",
       race: e.target.id,
+      attributesPool: updatedState.attributesPool,
       updatedState
     });
   };
@@ -428,12 +429,7 @@ class Layout extends Component {
               gender={this.state.gender}
               race={this.state.race}
               selectPortrait={this.handlePortraitSelect}
-              strength={this.state.attributes.strength}
-              dexterity={this.state.attributes.dexterity}
-              toughness={this.state.attributes.toughness}
-              intelligence={this.state.attributes.intelligence}
-              willpower={this.state.attributes.willpower}
-              charisma={this.state.attributes.charisma}
+              attributes={this.state.attributes}
               pool={this.state.attributesPool}
               increment={this.handleIncreaseAttribute}
               decrement={this.handleDecreaseAttribute}

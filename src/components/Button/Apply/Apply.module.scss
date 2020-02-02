@@ -1,6 +1,6 @@
 .Apply {
   box-shadow: 0px 10px 14px -7px #000000;
-  background: linear-gradient(to bottom, #fc9700 5%, #fc8600 100%);
+  background: linear-gradient(to bottom, #fc9700 5%, #c96b00 100%);
   background-color: #fc9700;
   border-radius: 20px;
   border: 1px solid #a37700;
@@ -14,13 +14,13 @@
   padding: 8px 14px;
   margin: 4vh;
   text-decoration: none;
-  text-shadow: 1px 2px 1px #540202;
+  text-shadow: 1px 2px 1px #834600;
   text-align: center;
 }
 
 .Apply:hover {
-  background: linear-gradient(to bottom, #b30202 5%, #fc0000 100%);
-  background-color: #b30202;
+  background: linear-gradient(to bottom, #c96b00 5%, #fc9700 100%);
+  background-color: #c96b00;
 }
 
 .Apply:active {

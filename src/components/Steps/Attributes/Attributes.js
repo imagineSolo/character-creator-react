@@ -20,7 +20,7 @@ const attributes = props => {
         <button className={styles.Button} onClick={() => props.increment(attr)}>
           <span>+</span>
         </button>
-        <span>{`props.${attr.toLowerCase()}`}</span>
+        <span>{props.attributes[attr.toLowerCase()]}</span>
         <button className={styles.Button} onClick={() => props.decrement(attr)}>
           <span>-</span>
         </button>

@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonUndo from "../../Button/Undo/Undo";
-import ButtonApply from "../../Button/Apply/Apply";
+import Undo from "../../Button/Undo/Undo";
+import Apply from "../../Button/Apply/Apply";
 import styles from "./Attributes.module.scss";
 
 const attributes = props => {
@@ -42,8 +42,8 @@ const attributes = props => {
         Points left: <span>{props.pool}</span>
       </p>
       <div className={styles.Buttons}>
-        <ButtonUndo undo={props.undo} />
-        <ButtonApply className={styles.Apply} />
+        <Undo undo={props.undo} />
+        <Apply apply={props.submit} />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Name from "../components/Steps/Name/Name";
 import Background from "../components/Steps/Background/Background";
 import Avatar from "../components/Steps/Avatar/Avatar";
 import Attributes from "../components/Steps/Attributes/Attributes";
+import Skills from "../components/Steps/Skills/Skills";
 import styles from "./Content.module.scss";
 
 class Content extends Component {
@@ -102,6 +103,14 @@ class Content extends Component {
             increment={this.props.increment}
             decrement={this.props.decrement}
             undo={() => this.props.undo(this.props.active)}
+            submit={this.props.apply}
+          />
+        )}
+        {this.props.active === "skills" && (
+          <Skills
+            addSkill={this.props.submitSkills}
+            undo={() => this.props.undo(this.props.active)}
+            submit={this.props.apply}
           />
         )}
       </>

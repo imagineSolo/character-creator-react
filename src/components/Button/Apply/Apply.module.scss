@@ -1,9 +1,9 @@
 .Apply {
   box-shadow: 0px 10px 14px -7px #000000;
-  background: linear-gradient(to bottom, #fc9700 5%, #c96b00 100%);
-  background-color: #fc9700;
+  background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
+  background-color: #91d171;
   border-radius: 20px;
-  border: 1px solid #a37700;
+  border: 1px solid #4b8f29;
   display: inline-block;
   width: calc(100px + 2vmin);
   cursor: pointer;
@@ -14,13 +14,12 @@
   padding: 8px 14px;
   margin: 4vh;
   text-decoration: none;
-  text-shadow: 1px 2px 1px #834600;
-  text-align: center;
+  text-shadow: 2px 2px 0px #5b8a3c;
 }
 
 .Apply:hover {
-  background: linear-gradient(to bottom, #c96b00 5%, #fc9700 100%);
-  background-color: #c96b00;
+  background: linear-gradient(to bottom, #6ba64b 5%, #91d171 100%);
+  background-color: #6ba64b;
 }
 
 .Apply:active {

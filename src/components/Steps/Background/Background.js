@@ -28,12 +28,14 @@ const background = props => {
           <option value="Sage">Sage</option>
           <option value="Soldier">Soldier</option>
         </select>
-        <input
-          className={styles.BackgroundSubmit}
-          type="submit"
-          value="Submit"
-        />
-        <ButtonUndo undo={props.undo} />
+        <div className={styles.Buttons}>
+          <input
+            className={styles.BackgroundSubmit}
+            type="submit"
+            value="Submit"
+          />
+          <ButtonUndo undo={props.undo} />
+        </div>
       </form>
       <div className={styles.BackgroundDescription}>
         <h5>Background choice adds points to the character's Skills:</h5>

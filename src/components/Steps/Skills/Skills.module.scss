@@ -1,0 +1,47 @@
+.Content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 67vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+
+  .SkillsForm {
+    font-size: calc(5px + 2vmin);
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+
+    label {
+      display: inline-block;
+      width: 30%;
+      height: 30%;
+    }
+
+    input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      background-color: white;
+      border: 2px solid rgb(0, 0, 0);
+      transition: 0.2s all linear;
+      margin-right: 5px;
+    }
+
+    input:checked {
+      border: 7px solid black;
+    }
+  }
+
+  .Buttons {
+    display: flex;
+    margin-top: 10vh;
+  }
+}

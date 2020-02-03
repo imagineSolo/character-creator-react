@@ -104,38 +104,28 @@ class Layout extends Component {
       });
     }
     if (state === "avatar") {
-      this.setState({
+      this.setState(prevState => ({
         ...this.state,
         active: "backgroundSaved",
         backgroundSaved: "",
-        avatar: "",
-        skills: {
-          arcana: false,
-          athletics: false,
-          crafting: false,
-          deception: false,
-          history: false,
-          intimidation: false,
-          investigation: false,
-          medicine: false,
-          nature: false,
-          perception: false,
-          performance: false,
-          persuasion: false,
-          religion: false,
-          stealth: false,
-          survival: false,
-          trickery: false
-        }
-      });
+        avatar: blank,
+        skills: prevState.skills
+      }));
     }
     if (state === "attributes") {
-      this.setState({
+      this.setState(prevState => ({
         ...this.state,
         active: "avatar",
         avatar: blank,
-        attributes: ""
-      });
+        attributes: prevState.attributes
+      }));
+    }
+    if (state === "skills") {
+      this.setState(prevState => ({
+        ...this.state,
+        active: "attributes",
+        attributes: prevState.attributes
+      }));
     }
   };
 
@@ -204,10 +194,51 @@ class Layout extends Component {
   };
 
   handleClassSelect = e => {
+    let updatedState = { ...this.state };
+    switch (e.target.id) {
+      case "Warrior":
+        updatedState.active = "name";
+        updatedState.class = e.target.id;
+        updatedState.attributes.strength++;
+        updatedState.attributes.toughness++;
+        updatedState.skills.intimidation = true;
+        break;
+      case "Wizard":
+        updatedState.active = "name";
+        updatedState.class = e.target.id;
+        updatedState.attributes.intelligence =
+          updatedState.attributes.intelligence + 2;
+        updatedState.skills.arcana = true;
+        break;
+      case "Rogue":
+        updatedState.active = "name";
+        updatedState.class = e.target.id;
+        updatedState.attributes.dexterity =
+          updatedState.attributes.dexterity + 2;
+        updatedState.skills.stealth = true;
+        break;
+      case "Cleric":
+        updatedState.active = "name";
+        updatedState.class = e.target.id;
+        updatedState.attributes.willpower =
+          updatedState.attributes.willpower + 2;
+        updatedState.skills.religion = true;
+        break;
+      case "Ranger":
+        updatedState.active = "name";
+        updatedState.class = e.target.id;
+        updatedState.attributes.dexterity++;
+        updatedState.attributes.toughness++;
+        updatedState.skills.nature = true;
+        break;
+      default:
+    }
     this.setState({
       ...this.state,
       active: "name",
-      class: e.target.id
+      class: e.target.id,
+      attributesPool: updatedState.attributesPool,
+      updatedState
     });
   };
 
@@ -404,6 +435,19 @@ class Layout extends Component {
     });
   };
 
+  handleSkillsSubmit = () => {
+    console.log("skill test");
+  };
+
+  applyChanges = () => {
+    if (this.state.active === "attributes") {
+      this.setState({
+        ...this.state,
+        active: "skills"
+      });
+    }
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -433,6 +477,8 @@ class Layout extends Component {
               pool={this.state.attributesPool}
               increment={this.handleIncreaseAttribute}
               decrement={this.handleDecreaseAttribute}
+              submitSkills={this.handleSkillsSubmit}
+              apply={this.applyChanges}
             />
           </Route>
         </Switch>

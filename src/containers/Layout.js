@@ -237,7 +237,6 @@ class Layout extends Component {
       ...this.state,
       active: "name",
       class: e.target.id,
-      attributesPool: updatedState.attributesPool,
       updatedState
     });
   };
@@ -326,76 +325,77 @@ class Layout extends Component {
   };
 
   handleIncreaseAttribute = attr => {
+    // Wartość atrybutu: max 20; min 3 (+1 do min za punkt dodany z Rasy i Klasy)
+    // Point Pool min 0;
+
     let updatedState = { ...this.state };
-    switch (attr) {
-      case "Strength":
-        updatedState.attributes.strength++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.strength >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      case "Dexterity":
-        updatedState.attributes.dexterity++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.dexterity >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      case "Toughness":
-        updatedState.attributes.toughness++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.toughness >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      case "Intelligence":
-        updatedState.attributes.intelligence++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.intelligence >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      case "Willpower":
-        updatedState.attributes.willpower++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.willpower >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      case "Charisma":
-        updatedState.attributes.charisma++;
-        updatedState.attributesPool--;
-        if (updatedState.attributes.charisma >= 20) {
-          return;
-        }
-        if (updatedState.attributesPool <= 0) {
-          return;
-        }
-        break;
-      default:
+
+    console.log(attr);
+
+    if (
+      attr === "strength" &&
+      updatedState.attributes.strength <= 19 &&
+      updatedState.attributesPool >= 1
+    ) {
+      console.log("test");
+
+      this.setState(prevState => {
+        return {
+          updatedState,
+          attributes: {
+            strength: this.state.attributes.strength + 1
+          },
+          attributesPool: prevState.attributesPool - 1
+        };
+      });
     }
-    this.setState(prevState => {
-      return {
-        attributesPool: prevState.attributesPool - 1,
-        updatedState
-      };
-    });
+
+    // switch (attr) {
+    //   case "Strength" &&
+    //     updatedState.attributes.strength <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.strength++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   case "Dexterity" &&
+    //     updatedState.attributes.dexterity <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.dexterity++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   case "Toughness" &&
+    //     updatedState.attributes.toughness <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.toughness++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   case "Intelligence" &&
+    //     updatedState.attributes.intelligence <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.intelligence++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   case "Willpower" &&
+    //     updatedState.attributes.willpower <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.willpower++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   case "Charisma" &&
+    //     updatedState.attributes.charisma <= 19 &&
+    //     updatedState.attributesPool <= -1:
+    //     updatedState.attributes.charisma++;
+    //     updatedState.attributesPool--;
+    //     break;
+    //   default:
+    // }
+
+    // this.setState(prevState => {
+    //   return {
+    //     attributesPool: prevState.attributesPool - 1,
+    //     updatedState
+    //   };
+    // });
   };
 
   handleDecreaseAttribute = e => {

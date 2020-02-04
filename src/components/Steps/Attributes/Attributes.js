@@ -15,15 +15,23 @@ const attributes = props => {
 
   const mappedAttributes = attributes.map(attr => {
     return (
-      <div key={attr}>
+      <div key={attr} className={styles.AttributeControl}>
         <p>{attr}</p>
-        <button className={styles.Button} onClick={() => props.increment(attr)}>
-          <span>+</span>
-        </button>
+        <div className={styles.Button}>
+          {props.attributes[attr.toLowerCase()] >= 20 ? null : (
+            <button onClick={() => props.increment(attr.toLowerCase())}>
+              <span>+</span>
+            </button>
+          )}
+        </div>
         <span>{props.attributes[attr.toLowerCase()]}</span>
-        <button className={styles.Button} onClick={() => props.decrement(attr)}>
-          <span>-</span>
-        </button>
+        <div className={styles.Button}>
+          {props.attributes[attr] >= 3 ? null : (
+            <button onClick={() => props.decrement(attr)}>
+              <span>-</span>
+            </button>
+          )}
+        </div>
       </div>
     );
   });

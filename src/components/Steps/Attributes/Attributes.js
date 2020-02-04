@@ -27,7 +27,7 @@ const attributes = props => {
         <span>{props.attributes[attr.toLowerCase()]}</span>
         <div className={styles.Button}>
           {props.attributes[attr] >= 3 ? null : (
-            <button onClick={() => props.decrement(attr)}>
+            <button onClick={() => props.decrement(attr.toLowerCase())}>
               <span>-</span>
             </button>
           )}

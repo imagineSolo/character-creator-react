@@ -421,11 +421,7 @@ class Layout extends Component {
 
   handleDecreaseAttribute = attr => {
     let updatedState = { ...this.state };
-    if (
-      attr === "strength" &&
-      updatedState.attributes.strength >= 4 &&
-      updatedState.attributesPool >= 1
-    ) {
+    if (attr === "strength" && updatedState.attributes.strength >= 4) {
       this.setState(prevState => {
         return {
           updatedState,
@@ -436,11 +432,7 @@ class Layout extends Component {
           attributesPool: prevState.attributesPool + 1
         };
       });
-    } else if (
-      attr === "dexterity" &&
-      updatedState.attributes.dexterity >= 4 &&
-      updatedState.attributesPool >= 1
-    ) {
+    } else if (attr === "dexterity" && updatedState.attributes.dexterity >= 4) {
       this.setState(prevState => {
         return {
           updatedState,
@@ -451,11 +443,7 @@ class Layout extends Component {
           attributesPool: prevState.attributesPool + 1
         };
       });
-    } else if (
-      attr === "toughness" &&
-      updatedState.attributes.toughness >= 4 &&
-      updatedState.attributesPool >= 1
-    ) {
+    } else if (attr === "toughness" && updatedState.attributes.toughness >= 4) {
       this.setState(prevState => {
         return {
           updatedState,
@@ -468,8 +456,7 @@ class Layout extends Component {
       });
     } else if (
       attr === "intelligence" &&
-      updatedState.attributes.intelligence >= 4 &&
-      updatedState.attributesPool >= 1
+      updatedState.attributes.intelligence >= 4
     ) {
       this.setState(prevState => {
         return {
@@ -481,11 +468,7 @@ class Layout extends Component {
           attributesPool: prevState.attributesPool + 1
         };
       });
-    } else if (
-      attr === "willpower" &&
-      updatedState.attributes.willpower >= 4 &&
-      updatedState.attributesPool >= 1
-    ) {
+    } else if (attr === "willpower" && updatedState.attributes.willpower >= 4) {
       this.setState(prevState => {
         return {
           updatedState,
@@ -496,11 +479,7 @@ class Layout extends Component {
           attributesPool: prevState.attributesPool + 1
         };
       });
-    } else if (
-      attr === "charisma" &&
-      updatedState.attributes.charisma >= 4 &&
-      updatedState.attributesPool >= 1
-    ) {
+    } else if (attr === "charisma" && updatedState.attributes.charisma >= 4) {
       this.setState(prevState => {
         return {
           updatedState,
@@ -514,8 +493,26 @@ class Layout extends Component {
     }
   };
 
-  handleSkillsSubmit = () => {
-    console.log("skill test");
+  handleSkillsSubmit = cb => {
+    if (this.state.skills[cb] === true) {
+      console.log(cb);
+      this.setState({
+        ...this.state,
+        skills: {
+          ...this.state.skills,
+          [cb]: false
+        }
+      });
+    } else if (this.state.skills[cb] === false) {
+      console.log(cb);
+      this.setState({
+        ...this.state,
+        skills: {
+          ...this.state.skills,
+          [cb]: true
+        }
+      });
+    }
   };
 
   applyChanges = () => {
@@ -553,6 +550,7 @@ class Layout extends Component {
               race={this.state.race}
               selectPortrait={this.handlePortraitSelect}
               attributes={this.state.attributes}
+              skills={this.state.skills}
               pool={this.state.attributesPool}
               increment={this.handleIncreaseAttribute}
               decrement={this.handleDecreaseAttribute}

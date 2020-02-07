@@ -4,6 +4,16 @@ import Undo from "../../Button/Undo/Undo";
 import styles from "./Skills.module.scss";
 
 const skills = props => {
+  // const keysSkills = Object.keys(props.skills);
+  // const valuesSkills = Object.values(props.skills);
+  // console.log(keysSkills);
+  // console.log(valuesSkills);
+
+  // const trueSkills = Array.from(props.skills);
+  // console.log(trueSkills);
+  // let filteredSkills = trueSkills.filter(Boolean);
+  // console.log(filteredSkills);
+
   const skills = [
     "Arcana",
     "Athletics",
@@ -29,7 +39,7 @@ const skills = props => {
           type="checkbox"
           value={skill}
           name="skill"
-          onChange={props.addSkill}
+          onChange={() => props.submit(skill.toLowerCase())}
         />
         {skill}
       </label>

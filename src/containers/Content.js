@@ -109,8 +109,9 @@ class Content extends Component {
         {this.props.active === "skills" && (
           <Skills
             addSkill={this.props.submitSkills}
+            skills={this.props.skills}
             undo={() => this.props.undo(this.props.active)}
-            submit={this.props.apply}
+            submit={this.props.submitSkills}
           />
         )}
       </>

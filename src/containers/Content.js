@@ -7,6 +7,7 @@ import Background from "../components/Steps/Background/Background";
 import Avatar from "../components/Steps/Avatar/Avatar";
 import Attributes from "../components/Steps/Attributes/Attributes";
 import Skills from "../components/Steps/Skills/Skills";
+import Traits from "../components/Steps/Traits/Traits";
 import styles from "./Content.module.scss";
 
 class Content extends Component {
@@ -103,7 +104,7 @@ class Content extends Component {
             increment={this.props.increment}
             decrement={this.props.decrement}
             undo={() => this.props.undo(this.props.active)}
-            submit={this.props.apply}
+            submit={this.props.applyAttributes}
           />
         )}
         {this.props.active === "skills" && (
@@ -111,8 +112,11 @@ class Content extends Component {
             addSkill={this.props.submitSkills}
             skills={this.props.skills}
             undo={() => this.props.undo(this.props.active)}
-            submit={this.props.submitSkills}
+            submit={this.props.applySkills}
           />
+        )}
+        {this.props.active === "traits" && (
+          <Traits undo={() => this.props.undo(this.props.active)} />
         )}
       </>
     );

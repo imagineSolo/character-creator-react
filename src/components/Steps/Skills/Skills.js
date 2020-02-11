@@ -22,25 +22,43 @@ class Skills extends Component {
       stealth: false,
       survival: false,
       trickery: false
+    },
+    skillsPool: 3
+  };
+
+  handleSkillsSubmit = key => {
+    if (this.state.skills[key] === true) {
+      this.setState({
+        ...this.state,
+        skills: {
+          ...this.state.skills,
+          [key]: false
+        },
+        skillsPool: this.state.skillsPool + 1
+      });
+    } else if (this.state.skills[key] === false && this.state.skillsPool > 0) {
+      this.setState({
+        ...this.state,
+        skills: {
+          ...this.state.skills,
+          [key]: true
+        },
+        skillsPool: this.state.skillsPool - 1
+      });
     }
   };
 
   render() {
-    const skills = Object.entries(this.state.skills);
+    const skills = Object.entries(this.props.skills);
 
     const mappedSkills = skills.map(([key, value]) => {
-      const skillsSheet = Object.entries(this.props.skills);
-      console.log(skillsSheet);
-
       return value === false ? (
         <label key={key} className={styles.SkillsLabel}>
           <input
             type="checkbox"
             value={key}
             name="skill"
-            // disabled={value === true ? true : false}
-            readOnly={value === true ? true : false}
-            onChange={() => this.props.submit(key)}
+            onChange={() => this.handleSkillsSubmit(key)}
           />
           {key}
         </label>
@@ -54,9 +72,16 @@ class Skills extends Component {
           character.
         </p>
         <form className={styles.SkillsForm}>{mappedSkills}</form>
+        <p>
+          Points left: <span>{this.state.skillsPool}</span>
+        </p>
         <div className={styles.Buttons}>
           <Undo undo={this.props.undo} />
-          <Apply apply={this.props.submit} />
+          <Apply
+            apply={() =>
+              this.props.submit(this.state.skills, this.state.skillsPool)
+            }
+          />
         </div>
       </div>
     );

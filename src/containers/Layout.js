@@ -127,6 +127,12 @@ class Layout extends Component {
         attributes: prevState.attributes
       }));
     }
+    if (state === "traits") {
+      this.setState({
+        ...this.state,
+        active: "skills"
+      });
+    }
   };
 
   handleGenderFemale = () => {
@@ -493,34 +499,30 @@ class Layout extends Component {
     }
   };
 
-  handleSkillsSubmit = cb => {
-    if (this.state.skills[cb] === true) {
-      console.log(cb);
-      this.setState({
-        ...this.state,
-        skills: {
-          ...this.state.skills,
-          [cb]: false
-        }
-      });
-    } else if (this.state.skills[cb] === false) {
-      console.log(cb);
-      this.setState({
-        ...this.state,
-        skills: {
-          ...this.state.skills,
-          [cb]: true
-        }
-      });
-    }
-  };
-
-  applyChanges = () => {
-    if (this.state.active === "attributes") {
+  applyChangesAttributes = () => {
+    if (this.state.attributesPool <= 0) {
       this.setState({
         ...this.state,
         active: "skills"
       });
+    } else {
+      alert("You have points left to spend!");
+    }
+  };
+
+  applyChangesSkills = (skill, pool) => {
+    console.log(skill);
+    if (pool <= 0) {
+      this.setState({
+        ...this.state,
+        active: "traits",
+        skills: {
+          ...this.state.skills,
+          skill
+        }
+      });
+    } else {
+      alert("You have skill points left to spend!");
     }
   };
 
@@ -555,7 +557,8 @@ class Layout extends Component {
               increment={this.handleIncreaseAttribute}
               decrement={this.handleDecreaseAttribute}
               submitSkills={this.handleSkillsSubmit}
-              apply={this.applyChanges}
+              applyAttributes={this.applyChangesAttributes}
+              applySkills={this.applyChangesSkills}
             />
           </Route>
         </Switch>

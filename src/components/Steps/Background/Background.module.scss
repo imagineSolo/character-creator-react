@@ -9,29 +9,38 @@
   max-height: 92vh;
   padding: 2vw;
 
+  .Header {
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+    font-size: calc(20px + 2vmin);
+  }
+
+  p {
+    font-size: calc(5px + 2vmin);
+  }
+
   .BackgroundForm {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     padding: 8px;
-    margin: 20px;
-
 
     .BackgroundLabel {
-      padding: 8px;
-      margin: 20px;
+      padding: 1vw;
     }
 
     .BackgroundSelect {
       width: 20vw;
       height: 5vh;
       font-size: inherit;
-      margin: 1vw;
       background-color: lightgray;
     }
 
     .Buttons {
       display: flex;
-      margin: 20px;
     }
 
     .BackgroundSubmit {

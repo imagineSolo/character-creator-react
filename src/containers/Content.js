@@ -13,7 +13,8 @@ import styles from "./Content.module.scss";
 class Content extends Component {
   state = {
     name: "",
-    background: ""
+    background: "",
+    traits: []
   };
 
   handleNameChange = e => {
@@ -111,12 +112,16 @@ class Content extends Component {
           <Skills
             addSkill={this.props.submitSkills}
             skills={this.props.skills}
+            skillsPool={this.props.skillsPool}
             undo={() => this.props.undo(this.props.active)}
             submit={this.props.applySkills}
           />
         )}
         {this.props.active === "traits" && (
-          <Traits undo={() => this.props.undo(this.props.active)} />
+          <Traits
+            submit={() => this.props.submitTrait(this.state.traits)}
+            undo={() => this.props.undo(this.props.active)}
+          />
         )}
       </>
     );

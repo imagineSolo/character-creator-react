@@ -153,7 +153,6 @@ class Avatar extends Component {
 
   render() {
     const mappedPortraits = this.state.filtered.map((el, index) => {
-      console.log(index);
       return (
         <div>
           <img

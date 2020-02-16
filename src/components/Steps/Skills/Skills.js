@@ -3,6 +3,8 @@ import Apply from "../../Button/Apply/Apply";
 import Undo from "../../Button/Undo/Undo";
 import styles from "./Skills.module.scss";
 
+// const { pool } = skillsPool;
+
 class Skills extends Component {
   state = {
     skills: {
@@ -23,7 +25,7 @@ class Skills extends Component {
       survival: false,
       trickery: false
     },
-    skillsPool: 3
+    skillsPool: this.props.skillsPool
   };
 
   handleSkillsSubmit = key => {
@@ -64,6 +66,7 @@ class Skills extends Component {
         </label>
       ) : null;
     });
+
     return (
       <div className={styles.Content}>
         <h3>Add additional skills:</h3>

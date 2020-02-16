@@ -44,6 +44,7 @@ class Layout extends Component {
       survival: false,
       trickery: false
     },
+    skillsPool: 3,
     traits: [],
     story: ""
   };
@@ -128,10 +129,11 @@ class Layout extends Component {
       }));
     }
     if (state === "traits") {
-      this.setState({
+      this.setState(prevState => ({
         ...this.state,
-        active: "skills"
-      });
+        active: "skills",
+        skills: prevState.skills
+      }));
     }
   };
 
@@ -277,7 +279,11 @@ class Layout extends Component {
         case "Criminal":
           updatedState.active = "avatar";
           updatedState.backgroundSaved = prof;
-          updatedState.skills.intimidation = true;
+          if (this.state.class === "Warrior") {
+            updatedState.skillsPool = updatedState.skillsPool + 1;
+          } else {
+            updatedState.skills.intimidation = true;
+          }
           updatedState.skills.trickery = true;
           break;
         case "Entertainer":
@@ -295,20 +301,32 @@ class Layout extends Component {
         case "Outlander":
           updatedState.active = "avatar";
           updatedState.backgroundSaved = prof;
-          updatedState.skills.nature = true;
+          if (this.state.class === "Ranger") {
+            updatedState.skillsPool = updatedState.skillsPool + 1;
+          } else {
+            updatedState.skills.nature = true;
+          }
           updatedState.skills.survival = true;
           break;
         case "Sage":
           updatedState.active = "avatar";
           updatedState.backgroundSaved = prof;
-          updatedState.skills.arcana = true;
+          if (this.state.class === "Wizard") {
+            updatedState.skillsPool = updatedState.skillsPool + 1;
+          } else {
+            updatedState.skills.arcana = true;
+          }
           updatedState.skills.history = true;
           break;
         case "Soldier":
           updatedState.active = "avatar";
           updatedState.backgroundSaved = prof;
+          if (this.state.class === "Warrior") {
+            updatedState.skillsPool = updatedState.skillsPool + 1;
+          } else {
+            updatedState.skills.intimidation = true;
+          }
           updatedState.skills.athletics = true;
-          updatedState.skills.intimidation = true;
           break;
         default:
           console.log("Default");
@@ -317,6 +335,7 @@ class Layout extends Component {
         ...this.state,
         active: "avatar",
         backgroundSaved: prof,
+        skillsPool: updatedState.skillsPool,
         updatedState
       });
     }
@@ -511,19 +530,30 @@ class Layout extends Component {
   };
 
   applyChangesSkills = (skill, pool) => {
-    console.log(skill);
+    const addedSkills = this.handleAddSkills(skill);
+    console.log(addedSkills);
     if (pool <= 0) {
       this.setState({
         ...this.state,
         active: "traits",
         skills: {
           ...this.state.skills,
-          skill
+          ...addedSkills
         }
       });
     } else {
       alert("You have skill points left to spend!");
     }
+  };
+
+  handleAddSkills = skills => {
+    let newSkills = {};
+    for (let key in skills) {
+      if (skills[key]) {
+        newSkills[key] = true;
+      }
+    }
+    return newSkills;
   };
 
   render() {
@@ -553,6 +583,7 @@ class Layout extends Component {
               selectPortrait={this.handlePortraitSelect}
               attributes={this.state.attributes}
               skills={this.state.skills}
+              skillsPool={this.state.skillsPool}
               pool={this.state.attributesPool}
               increment={this.handleIncreaseAttribute}
               decrement={this.handleDecreaseAttribute}

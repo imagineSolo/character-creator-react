@@ -5,6 +5,15 @@ import styles from "./Background.module.scss";
 const background = props => {
   return (
     <div className={styles.Content}>
+      <h3 className={styles.Header}>Background:</h3>
+      <p>
+        Background is who your character was before becoming an adventurer. It's
+        his past profession. Background choice adds points to the character's
+        skills. If the skill duplicates the one you have gained during class
+        selection, don't worry. You'll receive a free skill point. In the next
+        few steps you will choose an additional skills to help you shape up the
+        character.
+      </p>
       <form
         className={styles.BackgroundForm}
         onChange={props.change}
@@ -29,16 +38,16 @@ const background = props => {
           <option value="Soldier">Soldier</option>
         </select>
         <div className={styles.Buttons}>
+          <ButtonUndo undo={props.undo} />
           <input
             className={styles.BackgroundSubmit}
             type="submit"
             value="Submit"
           />
-          <ButtonUndo undo={props.undo} />
         </div>
       </form>
       <div className={styles.BackgroundDescription}>
-        <h5>Background choice adds points to the character's Skills:</h5>
+        <h5>Background choice:</h5>
         <p>Commoner: Athletics, Crafting</p>
         <p>Courtier: Deception, Persuasion</p>
         <p>Criminal: Intimidation, Trickery</p>

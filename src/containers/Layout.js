@@ -531,7 +531,6 @@ class Layout extends Component {
 
   applyChangesSkills = (skill, pool) => {
     const addedSkills = this.handleAddSkills(skill);
-    console.log(addedSkills);
     if (pool <= 0) {
       this.setState({
         ...this.state,

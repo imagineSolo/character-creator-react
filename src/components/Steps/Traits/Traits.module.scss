@@ -1,0 +1,30 @@
+.Content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 67vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+
+  .Header {
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+    font-size: calc(20px + 2vmin);
+    border: 1px solid red;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+
+    .Item {
+      padding: 10px;
+    }
+  }
+
+
+}

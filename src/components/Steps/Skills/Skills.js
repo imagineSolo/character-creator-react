@@ -3,8 +3,6 @@ import Apply from "../../Button/Apply/Apply";
 import Undo from "../../Button/Undo/Undo";
 import styles from "./Skills.module.scss";
 
-// const { pool } = skillsPool;
-
 class Skills extends Component {
   state = {
     skills: {

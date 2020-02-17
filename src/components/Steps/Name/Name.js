@@ -6,7 +6,7 @@ import inkwell from "../../../images/inkwell.png";
 const name = props => {
   return (
     <div className={styles.Content}>
-      <p className={styles.Header}>Choose a name:</p>
+      <h3 className={styles.Header}>Choose a name:</h3>
       <form onSubmit={props.submit}>
         <input
           className={styles.InputText}

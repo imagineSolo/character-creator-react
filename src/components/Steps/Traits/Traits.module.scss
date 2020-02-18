@@ -19,10 +19,11 @@
 
   ul {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: 25%;
 
     .Item {
-      padding: 10px;
+      padding: 5px;
     }
   }
 

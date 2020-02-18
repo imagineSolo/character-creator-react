@@ -54,12 +54,15 @@ class Traits extends Component {
   };
 
   render() {
-    const traitList = this.state.traits;
-    traitList.map((trait, index) => (
-      <li key={index} className={styles.Item}>
-        {trait}
-      </li>
-    ));
+    const traitList = Array.from(this.state.traits);
+    traitList.map((trait, index) => {
+      return (
+        <li key={index} className={styles.Item}>
+          <span>{trait}</span>
+        </li>
+      );
+    });
+    console.log(traitList);
 
     return (
       <div className={styles.Content}>

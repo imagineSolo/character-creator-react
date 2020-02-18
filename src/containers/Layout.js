@@ -130,8 +130,10 @@ class Layout extends Component {
     }
     if (state === "traits") {
       this.setState(prevState => ({
-        ...this.state,
+        ...prevState,
         active: "skills",
+        traits: [],
+        ...prevState.skills,
         skills: prevState.skills
       }));
     }

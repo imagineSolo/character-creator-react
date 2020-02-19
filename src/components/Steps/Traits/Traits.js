@@ -51,7 +51,7 @@ class Traits extends Component {
     });
   };
 
-  handleRandomTrait = () => {
+  handleRandomTraits = () => {
     const physical = this.state.random.physical;
     const rndmPhysical = Math.floor(
       Math.random() * this.state.random.physical.length
@@ -64,17 +64,20 @@ class Traits extends Component {
     const rndmSocial = Math.floor(
       Math.random() * this.state.random.social.length
     );
-    const rndmTraits = this.state.random.traits;
-    rndmTraits.push(physical[rndmPhysical]);
-    rndmTraits.push(mental[rndmMental]);
-    rndmTraits.push(social[rndmSocial]);
+
+    const physicalTrait = physical[rndmPhysical];
+    const mentalTrait = mental[rndmMental];
+    const socialTrait = social[rndmSocial];
+
+    const mergedTraits = [].concat(physicalTrait, mentalTrait, socialTrait);
+    console.log(mergedTraits);
 
     this.setState({
       ...this.state,
       active: "random",
       random: {
         ...this.state.random,
-        traits: rndmTraits
+        traits: mergedTraits
       }
     });
   };
@@ -113,7 +116,7 @@ class Traits extends Component {
           <input
             type="button"
             value="Random traits"
-            onClick={this.handleRandomTrait}
+            onClick={this.handleRandomTraits}
           />
         </form>
         <ul>{this.state.active === "custom" ? customTraits : randomTraits}</ul>

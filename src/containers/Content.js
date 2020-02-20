@@ -119,8 +119,7 @@ class Content extends Component {
         )}
         {this.props.active === "traits" && (
           <Traits
-            // value={this.state.traits}
-            submit={() => this.props.submitTrait(this.state.traits)}
+            submit={() => this.props.applyTraits(this.props.traits)}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

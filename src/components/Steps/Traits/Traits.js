@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Apply from "../../Button/Apply/Apply";
 import Undo from "../../Button/Undo/Undo";
 import styles from "./Traits.module.scss";
 
@@ -13,7 +14,13 @@ class Traits extends Component {
         "Smells funny",
         "Gesticules vividly",
         "Has an interesting eye color",
-        "Dresses well"
+        "Dresses well",
+        "Often changes outfits",
+        "Strong voice",
+        "Thick voice",
+        "Can only hear on one ear",
+        "Talks very fast",
+        "Is older than it looks"
       ],
       mental: [
         "Is ambitious",
@@ -21,7 +28,10 @@ class Traits extends Component {
         "Is very religious",
         "Courageous",
         "Sceptical",
-        "Has a positive attitude"
+        "Has a positive attitude",
+        "Is always pesimistic",
+        "Always gives the best ideas",
+        "Forgets names"
       ],
       social: [
         "Laughs loud",
@@ -29,7 +39,11 @@ class Traits extends Component {
         "Likes to meet new people",
         "Trusts only his companions",
         "Drinks a lot",
-        "Loves baked potatoes"
+        "Likes baked potatoes",
+        "Sleeps long",
+        "Loves sweet rolls",
+        "Has an outlandish dialect",
+        "Tells bad jokes"
       ],
       traits: []
     }
@@ -44,11 +58,15 @@ class Traits extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const arr = this.state.traits;
-    arr.push(this.state.input);
     this.setState({
       active: "custom",
       traits: arr
     });
+    if (this.state.traits.length <= 2) {
+      arr.push(this.state.input);
+    } else {
+      console.log("Enough");
+    }
   };
 
   handleRandomTraits = () => {
@@ -121,6 +139,7 @@ class Traits extends Component {
         </form>
         <ul>{this.state.active === "custom" ? customTraits : randomTraits}</ul>
         <Undo undo={this.props.undo} />
+        <Apply apply={() => this.props.submit(this.state.traits)} />
       </div>
     );
   }

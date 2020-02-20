@@ -591,6 +591,7 @@ class Layout extends Component {
               submitSkills={this.handleSkillsSubmit}
               applyAttributes={this.applyChangesAttributes}
               applySkills={this.applyChangesSkills}
+              applyTraits={this.applyChangesTraits}
             />
           </Route>
         </Switch>

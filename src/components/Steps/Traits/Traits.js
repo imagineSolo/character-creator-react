@@ -86,9 +86,7 @@ class Traits extends Component {
     const physicalTrait = physical[rndmPhysical];
     const mentalTrait = mental[rndmMental];
     const socialTrait = social[rndmSocial];
-
     const mergedTraits = [].concat(physicalTrait, mentalTrait, socialTrait);
-    console.log(mergedTraits);
 
     this.setState({
       ...this.state,
@@ -120,7 +118,7 @@ class Traits extends Component {
     return (
       <div className={styles.Content}>
         <h3 className={styles.Header}>Personality Traits</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form className={styles.TraitsForm} onSubmit={this.handleSubmit}>
           <label>Add personality trait:</label>
           <input
             type="text"
@@ -130,16 +128,18 @@ class Traits extends Component {
             autoFocus
             onChange={this.handleChange}
           />
-          <input type="submit" value="Add" />
-          <input
-            type="button"
-            value="Random traits"
-            onClick={this.handleRandomTraits}
-          />
+          <div className={styles.Buttons}>
+            <input className={styles.Submit} type="submit" value="Add" />
+            <button className={styles.Random} onClick={this.handleRandomTraits}>
+              <i className="fas fa-dice"></i>
+            </button>
+          </div>
         </form>
         <ul>{this.state.active === "custom" ? customTraits : randomTraits}</ul>
-        <Undo undo={this.props.undo} />
-        <Apply apply={() => this.props.submit(this.state.traits)} />
+        <div className={styles.Buttons}>
+          <Undo undo={this.props.undo} />
+          <Apply apply={() => this.props.submit(this.state.traits)} />
+        </div>
       </div>
     );
   }

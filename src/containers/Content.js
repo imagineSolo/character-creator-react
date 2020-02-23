@@ -8,6 +8,7 @@ import Avatar from "../components/Steps/Avatar/Avatar";
 import Attributes from "../components/Steps/Attributes/Attributes";
 import Skills from "../components/Steps/Skills/Skills";
 import Traits from "../components/Steps/Traits/Traits";
+import Story from "../components/Steps/Story/Story";
 import styles from "./Content.module.scss";
 
 class Content extends Component {
@@ -119,7 +120,13 @@ class Content extends Component {
         )}
         {this.props.active === "traits" && (
           <Traits
-            submit={() => this.props.applyTraits(this.props.traits)}
+            submit={this.props.applyTraits}
+            undo={() => this.props.undo(this.props.active)}
+          />
+        )}
+        {this.props.active === "story" && (
+          <Story
+            submit={this.props.applyTraits}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

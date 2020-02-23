@@ -16,30 +16,45 @@
     font-size: calc(20px + 2vmin);
   }
 
-  .TraitsForm {
-    font-size: calc(5px + 2vmin);
+  .Form {
     display: flex;
-    flex-direction: column;
-    margin: 20px;
+    align-items: center;
 
-    .Buttons {
+    .TraitsForm {
+      font-size: calc(5px + 2vmin);
       display: flex;
-      margin-top: 1vh;
+      flex-direction: row;
+      align-items: center;
+      margin: 5px;
+
+      .TextInput {
+        width: 25vw;
+        height: 5vh;
+        background-color: rgb(194, 194, 194);
+        border-radius: 3px;
+        margin: 2vw;
+        font-size: inherit;
+      }
+
+      .TextInput:focus {
+        background-color: #fff;
+      }
 
       .Submit {
         box-shadow: 0px 10px 14px -7px #000000;
         background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
         background-color: #91d171;
-        border-radius: 20px;
+        border-radius: 5px;
         border: 1px solid #4b8f29;
         display: inline-block;
-        width: calc(60px + 2vmin);
+        width: calc(90px + 2vmin);
         cursor: pointer;
         color: #ffffff;
         font-family: 'IM Fell Great Primer SC', serif;
         font-size: calc(7px + 2vmin);
         font-weight: bold;
-        margin: 1vh;
+        margin: 2vh;
+        padding: 1vh;
         text-decoration: none;
         text-shadow: 2px 2px 0px #5b8a3c;
       }
@@ -53,37 +68,33 @@
         position: relative;
         top: 1px;
       }
-
-      .Random {
-        box-shadow: 0px 10px 14px -7px #000000;
-        background: linear-gradient(to bottom, #ffbb00 5%, #bd8a00 100%);
-        background-color: #91d171;
-        border-radius: 5px;
-        border: 1px solid #b98800;
-        display: inline-block;
-        width: calc(30px + 2vmin);
-        height: calc(30px + 2vmin);
-        cursor: pointer;
-        color: #ffffff;
-        font-size: calc(7px + 2vmin);
-        font-weight: bold;
-        margin: 1vh;
-        text-decoration: none;
-        text-shadow: 2px 2px 0px #5b8a3c;
-      }
-
-      .Random:hover {
-        background: linear-gradient(to bottom, #bd8a00 5%, #ffbb00 100%);
-      }
-
-      .Random:active {
-        position: relative;
-        top: 1px;
-      }
-
     }
 
+    .Random {
+      box-shadow: 0px 10px 14px -7px #000000;
+      background: linear-gradient(to bottom, #ffbb00 5%, #bd8a00 100%);
+      background-color: #91d171;
+      border-radius: 5px;
+      border: 1px solid #b98800;
+      display: inline-block;
+      width: calc(30px + 2vmin);
+      height: calc(30px + 2vmin);
+      cursor: pointer;
+      color: #ffffff;
+      font-size: calc(7px + 2vmin);
+      font-weight: bold;
+      text-decoration: none;
+      text-shadow: 2px 2px 0px #5b8a3c;
+    }
 
+    .Random:hover {
+      background: linear-gradient(to bottom, #bd8a00 5%, #ffbb00 100%);
+    }
+
+    .Random:active {
+      position: relative;
+      top: 1px;
+    }
   }
 
   ul {
@@ -93,6 +104,16 @@
 
     .Item {
       padding: 5px;
+      text-align: left;
+
+      .Delete {
+        background: transparent;
+        border: none;
+        padding-left: 10px;
+        color: white;
+        cursor: pointer;
+      }
+
     }
   }
 

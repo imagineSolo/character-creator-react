@@ -24,6 +24,11 @@ class CharSheet extends Component {
   };
 
   render() {
+    const traits = this.props.traits;
+    const traitList = traits.map((trait, index) => {
+      return <li key={index}>{trait}</li>;
+    });
+
     return (
       <section
         className={[
@@ -302,6 +307,7 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharTraits}>
           <h5>Personality Traits:</h5>
+          <ul>{traitList}</ul>
         </div>
         <div className={styles.CharStory}>
           <h5>Backstory:</h5>

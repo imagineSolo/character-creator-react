@@ -557,6 +557,14 @@ class Layout extends Component {
     return newSkills;
   };
 
+  applyChangesTraits = traits => {
+    console.log(traits);
+    this.setState({
+      active: "story",
+      traits
+    });
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -592,6 +600,7 @@ class Layout extends Component {
               applyAttributes={this.applyChangesAttributes}
               applySkills={this.applyChangesSkills}
               applyTraits={this.applyChangesTraits}
+              story={this.state.story}
             />
           </Route>
         </Switch>
@@ -600,10 +609,11 @@ class Layout extends Component {
           race={this.state.race}
           class={this.state.class}
           name={this.state.nameSaved}
-          background={this.state.backgroundSaved}
-          skills={this.state.skills}
-          attributes={this.state.attributes}
           avatar={this.state.avatar}
+          background={this.state.backgroundSaved}
+          attributes={this.state.attributes}
+          skills={this.state.skills}
+          traits={this.state.traits}
         />
       </div>
     );

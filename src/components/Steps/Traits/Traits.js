@@ -55,21 +55,24 @@ class Traits extends Component {
     });
   };
 
-  handleSubmit = e => {
+  handleAddTrait = e => {
+    console.log("custom");
     e.preventDefault();
-    const arr = this.state.traits;
+    const traits = this.state.traits;
     this.setState({
       active: "custom",
-      traits: arr
+      input: "",
+      traits
     });
     if (this.state.traits.length <= 2) {
-      arr.push(this.state.input);
+      traits.push(this.state.input);
     } else {
       console.log("Enough");
     }
   };
 
   handleRandomTraits = () => {
+    console.log("random");
     const physical = this.state.random.physical;
     const rndmPhysical = Math.floor(
       Math.random() * this.state.random.physical.length
@@ -98,11 +101,26 @@ class Traits extends Component {
     });
   };
 
+  deleteTrait = i => {
+    const traits = [...this.state.traits];
+    const index = traits.findIndex(trait => trait.index === i);
+    traits.splice(index, 1);
+    this.setState({
+      traits
+    });
+  };
+
   render() {
     const customTraits = this.state.traits.map((trait, index) => {
       return (
         <li key={index} className={styles.Item}>
           <span>{trait}</span>
+          <button
+            className={styles.Delete}
+            onClick={() => this.deleteTrait(trait.index)}
+          >
+            [x]
+          </button>
         </li>
       );
     });
@@ -118,27 +136,40 @@ class Traits extends Component {
     return (
       <div className={styles.Content}>
         <h3 className={styles.Header}>Personality Traits</h3>
-        <form className={styles.TraitsForm} onSubmit={this.handleSubmit}>
-          <label>Add personality trait:</label>
-          <input
-            type="text"
-            required
-            minLength="3"
-            maxLength="40"
-            autoFocus
-            onChange={this.handleChange}
-          />
-          <div className={styles.Buttons}>
-            <input className={styles.Submit} type="submit" value="Add" />
-            <button className={styles.Random} onClick={this.handleRandomTraits}>
-              <i className="fas fa-dice"></i>
-            </button>
-          </div>
-        </form>
+        <p>
+          Add up to three personality traits characterize your hero. You can
+          also select them randomly.
+        </p>
+        <div className={styles.Form}>
+          <form className={styles.TraitsForm} onSubmit={this.handleAddTrait}>
+            <label>Add personality trait:</label>
+            <input
+              className={styles.TextInput}
+              type="text"
+              value={this.state.input}
+              minLength="3"
+              maxLength="40"
+              autoFocus
+              onChange={this.handleChange}
+            />
+            <input className={styles.Submit} type="submit" value="Add trait" />
+          </form>
+          <button className={styles.Random} onClick={this.handleRandomTraits}>
+            <i className="fas fa-dice"></i>
+          </button>
+        </div>
         <ul>{this.state.active === "custom" ? customTraits : randomTraits}</ul>
         <div className={styles.Buttons}>
           <Undo undo={this.props.undo} />
-          <Apply apply={() => this.props.submit(this.state.traits)} />
+          <Apply
+            apply={() =>
+              this.props.submit(
+                this.state.active === "custom"
+                  ? this.state.traits
+                  : this.state.random.traits
+              )
+            }
+          />
         </div>
       </div>
     );

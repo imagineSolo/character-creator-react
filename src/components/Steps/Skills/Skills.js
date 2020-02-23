@@ -23,7 +23,8 @@ class Skills extends Component {
       survival: false,
       trickery: false
     },
-    skillsPool: this.props.skillsPool
+    skillsPool: this.props.skillsPool,
+    checked: 0
   };
 
   handleSkillsSubmit = key => {
@@ -43,7 +44,8 @@ class Skills extends Component {
           ...this.state.skills,
           [key]: true
         },
-        skillsPool: this.state.skillsPool - 1
+        skillsPool: this.state.skillsPool - 1,
+        checked: this.state.checked + 1
       });
     }
   };
@@ -58,6 +60,7 @@ class Skills extends Component {
             type="checkbox"
             value={key}
             name="skill"
+            disabled={this.state.checked >= 3 ? true : false}
             onChange={() => this.handleSkillsSubmit(key)}
           />
           {key}

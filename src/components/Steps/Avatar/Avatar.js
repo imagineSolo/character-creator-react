@@ -154,11 +154,11 @@ class Avatar extends Component {
   render() {
     const mappedPortraits = this.state.filtered.map((el, index) => {
       return (
-        <div>
+        <div key={index}>
           <img
             src={el}
-            alt="Portrait"
             key={index}
+            alt="Portrait"
             onClick={this.props.selectPortrait}
           />
         </div>

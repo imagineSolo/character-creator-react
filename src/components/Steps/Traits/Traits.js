@@ -56,7 +56,6 @@ class Traits extends Component {
   };
 
   handleAddTrait = e => {
-    console.log("custom");
     e.preventDefault();
     const traits = this.state.traits;
     this.setState({
@@ -72,7 +71,6 @@ class Traits extends Component {
   };
 
   handleRandomTraits = () => {
-    console.log("random");
     const physical = this.state.random.physical;
     const rndmPhysical = Math.floor(
       Math.random() * this.state.random.physical.length

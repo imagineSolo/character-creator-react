@@ -558,7 +558,6 @@ class Layout extends Component {
   };
 
   applyChangesTraits = traits => {
-    console.log(traits);
     this.setState({
       active: "story",
       traits

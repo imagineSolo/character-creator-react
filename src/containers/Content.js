@@ -42,12 +42,13 @@ class Content extends Component {
             <h2 className={styles.Header}>
               Welcome to Fantasy Character Creator!
             </h2>
-            <p>
+            <p className={styles.Description}>
               Create your own fantasy character by making step-by-step
               decisions. Once you start, each choice will be summarized in your
               character sheet on the right. You can save your finished
-              characters and view them in Saved Characters panel. Enjoy & have
-              fun!
+              characters and view them in Saved Characters panel.
+              <br />
+              Enjoy & have fun!
             </p>
             <button
               className={styles.Start}
@@ -126,7 +127,7 @@ class Content extends Component {
         )}
         {this.props.active === "story" && (
           <Story
-            submit={this.props.applyTraits}
+            submit={this.props.applyStory}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

@@ -5,12 +5,11 @@ import styles from "./Story.module.scss";
 class Story extends Component {
   state = {
     input: "",
-    story: "",
-    letters: 300
+    letters: 600
   };
 
   handleChange = e => {
-    const baseLetters = 300;
+    const baseLetters = 600;
     this.setState({
       ...this.state,
       input: e.target.value,
@@ -24,16 +23,26 @@ class Story extends Component {
     return (
       <div className={styles.Content}>
         <h3 className={styles.Header}>Backstory</h3>
-        <form>
+        <p>
+          This is the final step. Write a short backstory for your character.
+          Where was he born? Who were his parents? What was his childhood and
+          adulthood? Why he chose to become an adventurer?
+          <br />
+          After you're done, click Submit and end the character creation.
+        </p>
+        <form
+          className={styles.StoryForm}
+          onSubmit={e => this.props.submit(e, this.state.input)}
+        >
           <textarea
             className={styles.TextInput}
             value={this.state.input}
-            maxLength="300"
+            maxLength="600"
             autoFocus
             onChange={this.handleChange}
           />
           <div className={styles.Remaining}>
-            <span style={this.state.letters <= 30 ? red : null}>
+            <span style={this.state.letters <= 50 ? red : null}>
               Characters remaining: {this.state.letters}
             </span>
           </div>

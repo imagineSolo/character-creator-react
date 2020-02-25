@@ -24,6 +24,45 @@ class CharSheet extends Component {
   };
 
   render() {
+    const info = ["Gender", "Race", "Class", "Background"];
+    const attributes = [
+      "Strength",
+      "Dexterity",
+      "Toughness",
+      "Intelligence",
+      "Willpower",
+      "Charisma"
+    ];
+    const skills = [
+      "Arcana",
+      "Athletics",
+      "Crafting",
+      "Deception",
+      "History",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Stealth",
+      "Survival",
+      "Trickery"
+    ];
+
+    const mappedInfo = info.map((info, index) => {
+      return (
+        <div key={index}>
+          <p>{info}:</p>
+          <span className={styles.Choice}>
+            {this.props[info.toLowerCase()]}
+          </span>
+        </div>
+      );
+    });
+
     const traits = this.props.traits;
     const traitList = traits.map((trait, index) => {
       return <li key={index}>{trait}</li>;
@@ -46,61 +85,45 @@ class CharSheet extends Component {
         <div className={styles.CharHeader}>
           <h3 className={styles.CharTitle}>Character Sheet</h3>
           <h4 className={styles.Name}>
-            Name: <span className={styles.FontWhite}>{this.props.name}</span>
+            Name: <span className={styles.Choice}>{this.props.name}</span>
           </h4>
         </div>
-        <div className={styles.CharInfo}>
-          <div>
-            <p>Gender:</p>
-            <span className={styles.FontWhite}>{this.props.gender}</span>
-          </div>
-          <div>
-            <p>Race:</p>
-            <span className={styles.FontWhite}>{this.props.race}</span>
-          </div>
-          <div>
-            <p>Class: </p>
-            <span className={styles.FontWhite}>{this.props.class}</span>
-          </div>
-          <div>
-            <p>Background:</p>
-            <span className={styles.FontWhite}>{this.props.background}</span>
-          </div>
-        </div>
+        <div className={styles.CharInfo}>{mappedInfo}</div>
         <div className={styles.CharAttributes}>
+          <span>Attributes:</span>
           <div>
             Strength:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.strength}
             </span>
           </div>
           <div>
             Dexterity:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.dexterity}
             </span>
           </div>
           <div>
             Toughness:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.toughness}
             </span>
           </div>
           <div>
             Intelligence:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.intelligence}
             </span>
           </div>
           <div>
             Willpower:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.willpower}
             </span>
           </div>
           <div>
             Charisma:
-            <span className={styles.FontWhite}>
+            <span className={styles.Choice}>
               {this.props.attributes.charisma}
             </span>
           </div>
@@ -111,6 +134,7 @@ class CharSheet extends Component {
           className={styles.Portrait}
         />
         <div className={styles.CharSkills}>
+          <span>Skills:</span>
           <form>
             <label htmlFor="01">
               <input
@@ -311,6 +335,7 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharStory}>
           <h5>Backstory:</h5>
+          <p>{this.props.story}</p>
         </div>
       </section>
     );

@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Content from "./Content";
 import SavedChars from "./SavedChars";
-import blank from "../images/blank.png";
+import blank from "../images/blank_01.png";
 import styles from "../App.module.scss";
 
 class Layout extends Component {
@@ -93,14 +93,14 @@ class Layout extends Component {
         ...this.state,
         active: "class",
         class: "",
-        name: ""
+        nameSaved: ""
       });
     }
     if (state === "backgroundSaved") {
       this.setState({
         ...this.state,
         active: "name",
-        name: "",
+        nameSaved: "",
         backgroundSaved: ""
       });
     }
@@ -136,6 +136,13 @@ class Layout extends Component {
         ...prevState.skills,
         skills: prevState.skills
       }));
+    }
+    if (state === "story") {
+      this.setState({
+        ...this.state,
+        active: "traits",
+        story: ""
+      });
     }
   };
 
@@ -564,6 +571,11 @@ class Layout extends Component {
     });
   };
 
+  applyChangesStory = (e, story) => {
+    e.preventDefault();
+    this.setState({ story });
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -599,7 +611,7 @@ class Layout extends Component {
               applyAttributes={this.applyChangesAttributes}
               applySkills={this.applyChangesSkills}
               applyTraits={this.applyChangesTraits}
-              story={this.state.story}
+              applyStory={this.applyChangesStory}
             />
           </Route>
         </Switch>
@@ -613,6 +625,7 @@ class Layout extends Component {
           attributes={this.state.attributes}
           skills={this.state.skills}
           traits={this.state.traits}
+          story={this.state.story}
         />
       </div>
     );

@@ -60,7 +60,9 @@ class Skills extends Component {
             type="checkbox"
             value={key}
             name="skill"
-            disabled={this.state.checked >= 3 ? true : false}
+            disabled={
+              this.state.checked >= this.props.skillsPool ? true : false
+            }
             onChange={() => this.handleSkillsSubmit(key)}
           />
           {key}

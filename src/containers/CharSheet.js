@@ -24,6 +24,15 @@ class CharSheet extends Component {
   };
 
   render() {
+    const summary = {
+      left: "10vw",
+      transition: "ease-in-out 1.5s"
+    };
+
+    const draw = {
+      display: "none"
+    };
+
     const info = ["Gender", "Race", "Class", "Background"];
     const attributes = [
       "Strength",
@@ -63,6 +72,32 @@ class CharSheet extends Component {
       );
     });
 
+    const mappedAttributes = attributes.map((attr, index) => {
+      return (
+        <div key={index}>
+          {attr}:
+          <span className={styles.Choice}>
+            {this.props.attributes[attr.toLowerCase()]}
+          </span>
+        </div>
+      );
+    });
+
+    const mappedSkills = skills.map((skill, index) => {
+      return (
+        <label key={index}>
+          <input
+            readOnly
+            type="checkbox"
+            value={skill}
+            name="skill"
+            checked={this.props.skills[skill.toLowerCase()]}
+          />
+          {skill}
+        </label>
+      );
+    });
+
     const traits = this.props.traits;
     const traitList = traits.map((trait, index) => {
       return <li key={index}>{trait}</li>;
@@ -74,11 +109,13 @@ class CharSheet extends Component {
           styles.CharSheet,
           this.state.draw ? styles.DrawOut : ""
         ].join(" ")}
+        style={this.props.active === "summary" ? summary : null}
       >
         <button
           onClick={this.drawOut}
           className={styles.Draw}
           title="Show more"
+          style={this.props.active === "summary" ? draw : null}
         >
           <i className={"fas fa-scroll"}></i>
         </button>
@@ -90,43 +127,8 @@ class CharSheet extends Component {
         </div>
         <div className={styles.CharInfo}>{mappedInfo}</div>
         <div className={styles.CharAttributes}>
-          <span>Attributes:</span>
-          <div>
-            Strength:
-            <span className={styles.Choice}>
-              {this.props.attributes.strength}
-            </span>
-          </div>
-          <div>
-            Dexterity:
-            <span className={styles.Choice}>
-              {this.props.attributes.dexterity}
-            </span>
-          </div>
-          <div>
-            Toughness:
-            <span className={styles.Choice}>
-              {this.props.attributes.toughness}
-            </span>
-          </div>
-          <div>
-            Intelligence:
-            <span className={styles.Choice}>
-              {this.props.attributes.intelligence}
-            </span>
-          </div>
-          <div>
-            Willpower:
-            <span className={styles.Choice}>
-              {this.props.attributes.willpower}
-            </span>
-          </div>
-          <div>
-            Charisma:
-            <span className={styles.Choice}>
-              {this.props.attributes.charisma}
-            </span>
-          </div>
+          <h4>Attributes:</h4>
+          {mappedAttributes}
         </div>
         <img
           src={this.props.avatar}
@@ -134,207 +136,15 @@ class CharSheet extends Component {
           className={styles.Portrait}
         />
         <div className={styles.CharSkills}>
-          <span>Skills:</span>
-          <form>
-            <label htmlFor="01">
-              <input
-                readOnly
-                type="checkbox"
-                value="Arcana"
-                id="01"
-                name="skill"
-                checked={this.props.skills.arcana}
-              />
-              Arcana
-            </label>
-            <label htmlFor="02">
-              <input
-                readOnly
-                type="checkbox"
-                value="Athletics"
-                id="02"
-                name="skill"
-                disabled
-                checked={this.props.skills.athletics}
-              />
-              Athletics
-            </label>
-            <label htmlFor="03">
-              <input
-                readOnly
-                type="checkbox"
-                value="Crafting"
-                id="03"
-                name="skill"
-                disabled
-                checked={this.props.skills.crafting}
-              />
-              Crafting
-            </label>
-            <label htmlFor="04">
-              <input
-                readOnly
-                type="checkbox"
-                value="Deception"
-                id="04"
-                name="skill"
-                disabled
-                checked={this.props.skills.deception}
-              />
-              Deception
-            </label>
-            <label htmlFor="05">
-              <input
-                readOnly
-                type="checkbox"
-                value="History"
-                id="05"
-                name="skill"
-                disabled
-                checked={this.props.skills.history}
-              />
-              History
-            </label>
-            <label htmlFor="06">
-              <input
-                readOnly
-                type="checkbox"
-                value="Intimidation"
-                id="06"
-                name="skill"
-                disabled
-                checked={this.props.skills.intimidation}
-              />
-              Intimidation
-            </label>
-            <label htmlFor="07">
-              <input
-                readOnly
-                type="checkbox"
-                value="Investigation"
-                id="07"
-                name="skill"
-                disabled
-                checked={this.props.skills.investigation}
-              />
-              Investigation
-            </label>
-            <label htmlFor="08">
-              <input
-                readOnly
-                type="checkbox"
-                value="Medicine"
-                id="08"
-                name="skill"
-                disabled
-                checked={this.props.skills.medicine}
-              />
-              Medicine
-            </label>
-            <label htmlFor="09">
-              <input
-                readOnly
-                type="checkbox"
-                value="Nature"
-                id="09"
-                name="skill"
-                disabled
-                checked={this.props.skills.nature}
-              />
-              Nature
-            </label>
-            <label htmlFor="10">
-              <input
-                readOnly
-                type="checkbox"
-                value="Perception"
-                id="10"
-                name="skill"
-                disabled
-                checked={this.props.skills.perception}
-              />
-              Perception
-            </label>
-            <label htmlFor="11">
-              <input
-                readOnly
-                type="checkbox"
-                value="Performance"
-                id="11"
-                name="skill"
-                disabled
-                checked={this.props.skills.performance}
-              />
-              Performance
-            </label>
-            <label htmlFor="12">
-              <input
-                readOnly
-                type="checkbox"
-                value="Persuasion"
-                id="12"
-                name="skill"
-                disabled
-                checked={this.props.skills.persuasion}
-              />
-              Persuasion
-            </label>
-            <label htmlFor="13">
-              <input
-                readOnly
-                type="checkbox"
-                value="Religion"
-                id="13"
-                name="skill"
-                disabled
-                checked={this.props.skills.religion}
-              />
-              Religion
-            </label>
-            <label htmlFor="14">
-              <input
-                readOnly
-                type="checkbox"
-                value="Stealth"
-                id="14"
-                name="skill"
-                disabled
-                checked={this.props.skills.stealth}
-              />
-              Stealth
-            </label>
-            <label htmlFor="15">
-              <input
-                readOnly
-                type="checkbox"
-                value="Survival"
-                id="15"
-                name="skill"
-                disabled
-                checked={this.props.skills.survival}
-              />
-              Survival
-            </label>
-            <label htmlFor="16">
-              <input
-                readOnly
-                type="checkbox"
-                value="Trickery"
-                id="16"
-                name="skill"
-                disabled
-                checked={this.props.skills.trickery}
-              />
-              Trickery
-            </label>
-          </form>
+          <h4>Skills:</h4>
+          <form>{mappedSkills}</form>
         </div>
         <div className={styles.CharTraits}>
-          <h5>Personality Traits:</h5>
+          <h4>Personality Traits:</h4>
           <ul>{traitList}</ul>
         </div>
         <div className={styles.CharStory}>
-          <h5>Backstory:</h5>
+          <h4>Backstory:</h4>
           <p>{this.props.story}</p>
         </div>
       </section>

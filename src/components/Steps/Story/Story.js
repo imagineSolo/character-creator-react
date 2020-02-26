@@ -5,11 +5,11 @@ import styles from "./Story.module.scss";
 class Story extends Component {
   state = {
     input: "",
-    letters: 600
+    letters: 800
   };
 
   handleChange = e => {
-    const baseLetters = 600;
+    const baseLetters = 800;
     this.setState({
       ...this.state,
       input: e.target.value,
@@ -37,7 +37,7 @@ class Story extends Component {
           <textarea
             className={styles.TextInput}
             value={this.state.input}
-            maxLength="600"
+            maxLength="800"
             autoFocus
             onChange={this.handleChange}
           />

@@ -1,0 +1,50 @@
+.Content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+  font-size: calc(14px + 2vmin);
+
+  .Header {
+    margin: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .Description {
+    font-size: calc(12px + 2vmin);
+  }
+
+  .Start {
+    box-shadow: 0px 10px 14px -7px #000000;
+    background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
+    background-color: #91d171;
+    border-radius: 20px;
+    border: 1px solid #4b8f29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'IM Fell Great Primer SC', serif;
+    font-size: calc(16px + 2vmin);
+    font-weight: bold;
+    padding: 8px 14px;
+    margin-top: 6vh;
+    text-decoration: none;
+    text-shadow: 2px 2px 0px #5b8a3c;
+  }
+
+  .Start:hover {
+    background: linear-gradient(to bottom, #6ba64b 5%, #91d171 100%);
+    background-color: #6ba64b;
+  }
+
+  .Start:active {
+    position: relative;
+    top: 1px;
+  }
+}

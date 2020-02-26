@@ -103,6 +103,8 @@
     height: 25%;
 
     .Item {
+      list-style-position: inside;
+      list-style-type: square;
       padding: 5px;
       text-align: left;
 

@@ -1,3 +1,9 @@
+$ribbonNew: #91d171;
+$ribbonSave: #0095c2;
+$tailNew: darken($ribbonNew, 5%);
+$tailSave: darken($ribbonSave, 5%);
+$ribbonSize: 0.5em;
+
 .App {
   position: relative;
   background: linear-gradient(to top, #0e1011 20%, #363a42 90%);
@@ -9,4 +15,148 @@
 
 .Menu {
   display: flex;
+}
+
+.RibbonNew {
+  font-family: inherit;
+  font-size: calc(4px + 2vmin);
+  font-weight: 900;
+  cursor: pointer;
+  background: $ribbonNew;
+  display: inline-block;
+  color: white;
+  padding: $ribbonSize 0.9em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 30%;
+  right: -30%;
+  text-shadow: 1px 1px 0px $tailNew;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: rotate(-20deg) skew(-20deg, 10deg);
+  transition: ease-in-out 2s;
+
+  &:before,
+  &:after {
+    content: "";
+    width: 0;
+    height: 2em;
+    display: block;
+    background: #4993da;
+    position: absolute;
+    border-style: solid;
+    border-width: $ribbonSize;
+    z-index: -1;
+    transform: translateZ(-1em);
+  }
+
+  &:before {
+    left: $ribbonSize * -1;
+    top: $ribbonSize;
+    border-color: $tailNew darken($tailNew, 10%) $tailNew $tailNew;
+  }
+
+  &:after {
+    right: $ribbonSize * -1;
+    top: $ribbonSize * -1;
+    border-color: $tailNew $tailNew $tailNew darken($tailNew, 10%);
+  }
+}
+
+.RibbonSave {
+  font-family: inherit;
+  font-size: calc(4px + 2vmin);
+  font-weight: 900;
+  cursor: pointer;
+  background: $ribbonSave;
+  display: inline-block;
+  color: white;
+  padding: $ribbonSize 0.9em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 40%;
+  right: -30%;
+  text-shadow: 1px 1px 0px $tailSave;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: rotate(-20deg) skew(-20deg, 10deg);
+  transition: ease-in-out 2s;
+
+  &:before,
+  &:after {
+    content: "";
+    width: 0;
+    height: 2em;
+    display: block;
+    background: #4993da;
+    position: absolute;
+    border-style: solid;
+    border-width: $ribbonSize;
+    z-index: -1;
+    transform: translateZ(-1em);
+  }
+
+  &:before {
+    left: $ribbonSize * -1;
+    top: $ribbonSize;
+    border-color: $tailSave darken($tailSave, 10%) $tailSave $tailSave;
+  }
+
+  &:after {
+    right: $ribbonSize * -1;
+    top: $ribbonSize * -1;
+    border-color: $tailSave $tailSave $tailSave darken($tailSave, 10%);
+  }
+
+  &:hover {
+    right: 0;
+  }
+}
+
+.drawRibbonsNew {
+  right: -0.5%;
+}
+
+.drawRibbonsSave {
+  right: -0.5%;
+}
+
+.RibbonNewDrawRibbons extends .RibbonNew,
+.drawRibbonsNew {
+  font-family: inherit;
+  font-size: calc(3px + 2vmin);
+  font-weight: 900;
+  cursor: pointer;
+  background: $ribbonNew;
+  display: inline-block;
+  color: white;
+  padding: $ribbonSize 0.7em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 30%;
+  right: -0.5%;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: rotate(-20deg) skew(-20deg, 10deg);
+  transition: ease-in-out 2.5s;
+}
+
+.RibbonSaveDrawRibbons extends .RibbonSave,
+.drawRibbonsSave {
+  font-family: inherit;
+  font-size: calc(3px + 2vmin);
+  font-weight: 900;
+  cursor: pointer;
+  background: $ribbonSave;
+  display: inline-block;
+  color: white;
+  padding: $ribbonSize 0.7em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 40%;
+  right: -0.5%;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: rotate(-20deg) skew(-20deg, 10deg);
+  transition: ease-in-out 2.7s;
 }

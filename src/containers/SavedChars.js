@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Content.module.scss";
+import styles from "./Steps.module.scss";
 
 const savedChars = () => {
   return (

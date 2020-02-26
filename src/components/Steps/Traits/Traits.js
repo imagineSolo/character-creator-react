@@ -20,7 +20,9 @@ class Traits extends Component {
         "Thick voice",
         "Can only hear on one ear",
         "Talks very fast",
-        "Is older than it looks"
+        "Is older than it looks",
+        "Has an ear ring",
+        "Always wears a mysterious signet ring"
       ],
       mental: [
         "Is ambitious",
@@ -43,7 +45,10 @@ class Traits extends Component {
         "Sleeps long",
         "Loves sweet rolls",
         "Has an outlandish dialect",
-        "Tells bad jokes"
+        "Tells bad jokes",
+        "Likes smoking",
+        "Always wakes up at sunrise",
+        "Loves trinkets"
       ],
       traits: []
     }

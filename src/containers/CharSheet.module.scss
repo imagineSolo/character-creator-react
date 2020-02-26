@@ -17,6 +17,11 @@
   box-shadow: -5px 5px 6px 0px rgba(0, 0, 0, 0.6);
   transition: ease-in-out 0.5s;
 
+  h4 {
+    font-size: calc(8px + 2vmin);
+    padding: 4px 0;
+  }
+
   .CharHeader {
     display: flex;
     flex-direction: column;
@@ -69,10 +74,6 @@
     margin: 5px;
     font-size: calc(5px + 2vmin);
     border-top: 1px solid black;
-
-    span {
-      font-weight: bold;
-    }
   }
 
   .Portrait {
@@ -94,10 +95,6 @@
     flex-direction: row;
     margin: 2px;
     border-top: 1px solid black;
-
-    span {
-      font-weight: bold;
-    }
 
     label {
       display: inline-block;
@@ -128,11 +125,17 @@
     grid-row: 1 / 4;
 
     ul {
-      height: 80%;
+      height: 75%;
       width: 90%;
-      margin: 3px;
-      padding-left: 5%;
+      margin-top: 1%;
       border: 1px solid black;
+
+      li {
+        list-style-position: inside;
+        list-style-type: square;
+        padding: 1%;
+        margin-left: 1%;
+      }
     }
   }
 
@@ -141,10 +144,15 @@
     grid-row: 4 / -1;
 
     p {
+      font-size: calc(3px + 2vmin);
       height: 90%;
       width: 90%;
       margin: 3px;
+      padding: 1%;
       border: 1px solid black;
+      text-align: justify;
+      white-space: pre-line;
+      overflow-wrap: break-word;
     }
   }
 

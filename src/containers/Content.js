@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../store/actions";
+
 import Header from "./Header";
 import Nav from "./Nav";
 import CharSheet from "./CharSheet";
@@ -17,14 +20,6 @@ class Content extends Component {
     nameSaved: "",
     backgroundSaved: "",
     avatar: blank,
-    attributes: {
-      strength: 10,
-      dexterity: 10,
-      toughness: 10,
-      intelligence: 10,
-      willpower: 10,
-      charisma: 10
-    },
     attributesPool: 5,
     skills: {
       arcana: false,
@@ -169,35 +164,35 @@ class Content extends Component {
         updatedState.active = "class";
         updatedState.race = e.target.id;
         updatedState.attributesPool = updatedState.attributesPool + 2;
-        updatedState.attributes.willpower--;
+        this.props.attr["willpower"]--;
         break;
       case "Elf":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        updatedState.attributes.dexterity++;
-        updatedState.attributes.intelligence++;
-        updatedState.attributes.toughness--;
+        this.props.attr["dexterity"]++;
+        this.props.attr["intelligence"]++;
+        this.props.attr["toughness"]--;
         break;
       case "Dwarf":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        updatedState.attributes.dexterity--;
-        updatedState.attributes.strength++;
-        updatedState.attributes.toughness++;
+        this.props.attr["dexterity"]--;
+        this.props.attr["strength"]++;
+        this.props.attr["toughness"]++;
         break;
       case "Halfling":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        updatedState.attributes.dexterity++;
-        updatedState.attributes.willpower++;
-        updatedState.attributes.strength--;
+        this.props.attr["dexterity"]++;
+        this.props.attr["willpower"]++;
+        this.props.attr["strength"]--;
         break;
       case "Tiefling":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        updatedState.attributes.charisma++;
-        updatedState.attributes.intelligence++;
-        updatedState.attributes.willpower--;
+        this.props.attr["charisma"]++;
+        this.props.attr["intelligence"]++;
+        this.props.attr["willpower"]--;
         break;
       default:
     }
@@ -216,36 +211,33 @@ class Content extends Component {
       case "Warrior":
         updatedState.active = "name";
         updatedState.class = e.target.id;
-        updatedState.attributes.strength++;
-        updatedState.attributes.toughness++;
+        this.props.attr["strength"]++;
+        this.props.attr["toughness"]++;
         updatedState.skills.intimidation = true;
         break;
       case "Wizard":
         updatedState.active = "name";
         updatedState.class = e.target.id;
-        updatedState.attributes.intelligence =
-          updatedState.attributes.intelligence + 2;
+        this.props.attr["intelligence"] = this.props.attr["intelligence"] + 2;
         updatedState.skills.arcana = true;
         break;
       case "Rogue":
         updatedState.active = "name";
         updatedState.class = e.target.id;
-        updatedState.attributes.dexterity =
-          updatedState.attributes.dexterity + 2;
+        this.props.attr["dexterity"] = this.props.attr["dexterity"] + 2;
         updatedState.skills.stealth = true;
         break;
       case "Cleric":
         updatedState.active = "name";
         updatedState.class = e.target.id;
-        updatedState.attributes.willpower =
-          updatedState.attributes.willpower + 2;
+        this.props.attr["willpower"] = this.props.attr["willpower"] + 2;
         updatedState.skills.religion = true;
         break;
       case "Ranger":
         updatedState.active = "name";
         updatedState.class = e.target.id;
-        updatedState.attributes.dexterity++;
-        updatedState.attributes.toughness++;
+        this.props.attr["dexterity"]++;
+        this.props.attr["toughness"]++;
         updatedState.skills.nature = true;
         break;
       default:
@@ -604,12 +596,12 @@ class Content extends Component {
               gender={this.state.gender}
               race={this.state.race}
               selectPortrait={this.handlePortraitSelect}
-              attributes={this.state.attributes}
+              attributes={this.props.attr}
+              pool={this.state.attributesPool}
+              increment={this.props.onAttributeIncrease}
+              decrement={this.props.onAttributeDecrease}
               skills={this.state.skills}
               skillsPool={this.state.skillsPool}
-              pool={this.state.attributesPool}
-              increment={this.handleIncreaseAttribute}
-              decrement={this.handleDecreaseAttribute}
               submitSkills={this.handleSkillsSubmit}
               applyAttributes={this.applyChangesAttributes}
               applySkills={this.applyChangesSkills}
@@ -626,7 +618,7 @@ class Content extends Component {
           name={this.state.nameSaved}
           avatar={this.state.avatar}
           background={this.state.backgroundSaved}
-          attributes={this.state.attributes}
+          attributes={this.props.attr}
           skills={this.state.skills}
           traits={this.state.traits}
           story={this.state.story}
@@ -652,4 +644,25 @@ class Content extends Component {
   }
 }
 
-export default Content;
+const mapStateToProps = state => {
+  return {
+    attr: state.attributes
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAttributeIncrease: attrName =>
+      dispatch({
+        type: actionTypes.INCREASE_ATTRIBUTE,
+        attributeName: attrName
+      }),
+    onAttributeDecrease: attrName =>
+      dispatch({
+        type: actionTypes.DECREASE_ATTRIBUTE,
+        attributeName: attrName
+      })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

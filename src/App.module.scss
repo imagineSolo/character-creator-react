@@ -107,10 +107,6 @@ $ribbonSize: 0.5em;
     top: $ribbonSize * -1;
     border-color: $tailSave $tailSave $tailSave darken($tailSave, 10%);
   }
-
-  &:hover {
-    right: 0;
-  }
 }
 
 .drawRibbonsNew {

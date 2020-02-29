@@ -20,7 +20,6 @@ class Content extends Component {
     nameSaved: "",
     backgroundSaved: "",
     avatar: blank,
-    attributesPool: 5,
     skills: {
       arcana: false,
       athletics: false,
@@ -350,177 +349,177 @@ class Content extends Component {
     });
   };
 
-  handleIncreaseAttribute = attr => {
-    let updatedState = { ...this.state };
-    if (
-      attr === "strength" &&
-      updatedState.attributes.strength <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            strength: this.state.attributes.strength + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    } else if (
-      attr === "dexterity" &&
-      updatedState.attributes.dexterity <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            dexterity: this.state.attributes.dexterity + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    } else if (
-      attr === "toughness" &&
-      updatedState.attributes.toughness <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            toughness: this.state.attributes.toughness + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    } else if (
-      attr === "intelligence" &&
-      updatedState.attributes.intelligence <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            intelligence: this.state.attributes.intelligence + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    } else if (
-      attr === "willpower" &&
-      updatedState.attributes.willpower <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            willpower: this.state.attributes.willpower + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    } else if (
-      attr === "charisma" &&
-      updatedState.attributes.charisma <= 19 &&
-      updatedState.attributesPool >= 1
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            charisma: this.state.attributes.charisma + 1
-          },
-          attributesPool: prevState.attributesPool - 1
-        };
-      });
-    }
-  };
+  // handleIncreaseAttribute = attr => {
+  //   let updatedState = { ...this.state };
+  //   if (
+  //     attr === "strength" &&
+  //     updatedState.attributes.strength <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           strength: this.state.attributes.strength + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "dexterity" &&
+  //     updatedState.attributes.dexterity <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           dexterity: this.state.attributes.dexterity + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "toughness" &&
+  //     updatedState.attributes.toughness <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           toughness: this.state.attributes.toughness + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "intelligence" &&
+  //     updatedState.attributes.intelligence <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           intelligence: this.state.attributes.intelligence + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "willpower" &&
+  //     updatedState.attributes.willpower <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           willpower: this.state.attributes.willpower + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "charisma" &&
+  //     updatedState.attributes.charisma <= 19 &&
+  //     updatedState.attributesPool >= 1
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           charisma: this.state.attributes.charisma + 1
+  //         },
+  //         attributesPool: prevState.attributesPool - 1
+  //       };
+  //     });
+  //   }
+  // };
 
-  handleDecreaseAttribute = attr => {
-    let updatedState = { ...this.state };
-    if (attr === "strength" && updatedState.attributes.strength >= 4) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            strength: this.state.attributes.strength - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    } else if (attr === "dexterity" && updatedState.attributes.dexterity >= 4) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            dexterity: this.state.attributes.dexterity - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    } else if (attr === "toughness" && updatedState.attributes.toughness >= 4) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            toughness: this.state.attributes.toughness - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    } else if (
-      attr === "intelligence" &&
-      updatedState.attributes.intelligence >= 4
-    ) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            intelligence: this.state.attributes.intelligence - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    } else if (attr === "willpower" && updatedState.attributes.willpower >= 4) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            willpower: this.state.attributes.willpower - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    } else if (attr === "charisma" && updatedState.attributes.charisma >= 4) {
-      this.setState(prevState => {
-        return {
-          updatedState,
-          attributes: {
-            ...this.state.attributes,
-            charisma: this.state.attributes.charisma - 1
-          },
-          attributesPool: prevState.attributesPool + 1
-        };
-      });
-    }
-  };
+  // handleDecreaseAttribute = attr => {
+  //   let updatedState = { ...this.state };
+  //   if (attr === "strength" && updatedState.attributes.strength >= 4) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           strength: this.state.attributes.strength - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   } else if (attr === "dexterity" && updatedState.attributes.dexterity >= 4) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           dexterity: this.state.attributes.dexterity - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   } else if (attr === "toughness" && updatedState.attributes.toughness >= 4) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           toughness: this.state.attributes.toughness - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   } else if (
+  //     attr === "intelligence" &&
+  //     updatedState.attributes.intelligence >= 4
+  //   ) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           intelligence: this.state.attributes.intelligence - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   } else if (attr === "willpower" && updatedState.attributes.willpower >= 4) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           willpower: this.state.attributes.willpower - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   } else if (attr === "charisma" && updatedState.attributes.charisma >= 4) {
+  //     this.setState(prevState => {
+  //       return {
+  //         updatedState,
+  //         attributes: {
+  //           ...this.state.attributes,
+  //           charisma: this.state.attributes.charisma - 1
+  //         },
+  //         attributesPool: prevState.attributesPool + 1
+  //       };
+  //     });
+  //   }
+  // };
 
   applyChangesAttributes = () => {
-    if (this.state.attributesPool <= 0) {
+    if (this.props.attrPool <= 0) {
       this.setState({
         ...this.state,
         active: "skills"
@@ -597,7 +596,7 @@ class Content extends Component {
               race={this.state.race}
               selectPortrait={this.handlePortraitSelect}
               attributes={this.props.attr}
-              pool={this.state.attributesPool}
+              pool={this.props.attrPool}
               increment={this.props.onAttributeIncrease}
               decrement={this.props.onAttributeDecrease}
               skills={this.state.skills}
@@ -646,7 +645,8 @@ class Content extends Component {
 
 const mapStateToProps = state => {
   return {
-    attr: state.attributes
+    attr: state.attributes,
+    attrPool: state.attributesPool
   };
 };
 

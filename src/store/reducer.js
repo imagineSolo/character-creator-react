@@ -13,23 +13,37 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case actionTypes.INCREASE_ATTRIBUTE:
-      return {
-        ...state,
-        attributes: {
-          ...state.attributes,
-          [action.attributeName]: state.attributes[action.attributeName] + 1
-        }
-      };
+      if (
+        state.attributes[action.attributeName] <= 19 &&
+        state.attributesPool >= 1
+      ) {
+        return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            [action.attributeName]: state.attributes[action.attributeName] + 1
+          },
+          attributesPool: state.attributesPool - 1
+        };
+      } else {
+        return state;
+      }
     case actionTypes.DECREASE_ATTRIBUTE:
-      return {
-        ...state,
-        attributes: {
-          ...state.attributes,
-          [action.attributeName]: state.attributes[action.attributeName] - 1
-        }
-      };
+      if (state.attributes[action.attributeName] >= 4) {
+        return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            [action.attributeName]: state.attributes[action.attributeName] - 1
+          },
+          attributesPool: state.attributesPool + 1
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }

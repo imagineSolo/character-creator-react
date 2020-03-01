@@ -9,7 +9,7 @@ class Story extends Component {
   };
 
   handleChange = e => {
-    const baseLetters = 800;
+    const baseLetters = this.state.letters;
     this.setState({
       ...this.state,
       input: e.target.value,
@@ -50,7 +50,7 @@ class Story extends Component {
             className={styles.Submit}
             type="submit"
             value="Submit & Finish!"
-          ></input>
+          />
         </form>
         <Undo undo={this.props.undo} />
       </div>

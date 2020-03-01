@@ -1,26 +1,43 @@
 import React, { Component } from "react";
 import styles from "./CharSheet.module.scss";
 
+const info = ["Gender", "Race", "Class", "Background"];
+const attributes = [
+  "Strength",
+  "Dexterity",
+  "Toughness",
+  "Intelligence",
+  "Willpower",
+  "Charisma"
+];
+const skills = [
+  "Arcana",
+  "Athletics",
+  "Crafting",
+  "Deception",
+  "History",
+  "Intimidation",
+  "Investigation",
+  "Medicine",
+  "Nature",
+  "Perception",
+  "Performance",
+  "Persuasion",
+  "Religion",
+  "Stealth",
+  "Survival",
+  "Trickery"
+];
+
 class CharSheet extends Component {
   state = {
     draw: false
   };
 
   drawOut = () => {
-    switch (this.state.draw) {
-      case false:
-        this.setState({
-          draw: true
-        });
-        break;
-      case true:
-        this.setState({
-          draw: false
-        });
-        break;
-      default:
-        console.log("default");
-    }
+    this.setState({
+      draw: !this.state.draw
+    });
   };
 
   render() {
@@ -33,75 +50,39 @@ class CharSheet extends Component {
       display: "none"
     };
 
-    const info = ["Gender", "Race", "Class", "Background"];
-    const attributes = [
-      "Strength",
-      "Dexterity",
-      "Toughness",
-      "Intelligence",
-      "Willpower",
-      "Charisma"
-    ];
-    const skills = [
-      "Arcana",
-      "Athletics",
-      "Crafting",
-      "Deception",
-      "History",
-      "Intimidation",
-      "Investigation",
-      "Medicine",
-      "Nature",
-      "Perception",
-      "Performance",
-      "Persuasion",
-      "Religion",
-      "Stealth",
-      "Survival",
-      "Trickery"
-    ];
+    const mappedInfo = info.map((info, index) => (
+      <div key={index}>
+        <p>{info}:</p>
+        <span className={styles.Choice}>{this.props[info.toLowerCase()]}</span>
+      </div>
+    ));
 
-    const mappedInfo = info.map((info, index) => {
-      return (
-        <div key={index}>
-          <p>{info}:</p>
-          <span className={styles.Choice}>
-            {this.props[info.toLowerCase()]}
-          </span>
-        </div>
-      );
-    });
+    const mappedAttributes = attributes.map((attr, index) => (
+      <div key={index}>
+        {attr}:
+        <span className={styles.Choice}>
+          {this.props.attributes[attr.toLowerCase()]}
+        </span>
+      </div>
+    ));
 
-    const mappedAttributes = attributes.map((attr, index) => {
-      return (
-        <div key={index}>
-          {attr}:
-          <span className={styles.Choice}>
-            {this.props.attributes[attr.toLowerCase()]}
-          </span>
-        </div>
-      );
-    });
-
-    const mappedSkills = skills.map((skill, index) => {
-      return (
-        <label key={index}>
-          <input
-            readOnly
-            type="checkbox"
-            value={skill}
-            name="skill"
-            checked={this.props.skills[skill.toLowerCase()]}
-          />
-          {skill}
-        </label>
-      );
-    });
+    const mappedSkills = skills.map((skill, index) => (
+      <label key={index}>
+        <input
+          readOnly
+          type="checkbox"
+          value={skill}
+          name="skill"
+          checked={this.props.skills[skill.toLowerCase()]}
+        />
+        {skill}
+      </label>
+    ));
 
     const traits = this.props.traits;
-    const traitList = traits.map((trait, index) => {
-      return <li key={index}>{trait}</li>;
-    });
+    const traitList = traits.map((trait, index) => (
+      <li key={index}>{trait}</li>
+    ));
 
     return (
       <section
@@ -117,7 +98,7 @@ class CharSheet extends Component {
           title="Show more"
           style={this.props.active === "summary" ? draw : null}
         >
-          <i className={"fas fa-scroll"}></i>
+          <i className={"fas fa-scroll"} />
         </button>
         <div className={styles.CharHeader}>
           <h3 className={styles.CharTitle}>Character Sheet</h3>

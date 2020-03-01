@@ -1,46 +1,49 @@
 import React, { Component } from "react";
 import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Avatar.module.scss";
-import HF_01 from "../../../images/Human/Female/HF_01.png";
-import HF_02 from "../../../images/Human/Female/HF_02.png";
-import HF_03 from "../../../images/Human/Female/HF_03.png";
-import HF_04 from "../../../images/Human/Female/HF_04.png";
-import HM_01 from "../../../images/Human/Male/HM_01.png";
-import HM_02 from "../../../images/Human/Male/HM_02.png";
-import HM_03 from "../../../images/Human/Male/HM_03.png";
-import HM_04 from "../../../images/Human/Male/HM_04.png";
-import DF_01 from "../../../images/Dwarf/Female/DF_01.png";
-import DF_02 from "../../../images/Dwarf/Female/DF_02.png";
-import DF_03 from "../../../images/Dwarf/Female/DF_03.png";
-import DF_04 from "../../../images/Dwarf/Female/DF_04.png";
-import DM_01 from "../../../images/Dwarf/Male/DM_01.png";
-import DM_02 from "../../../images/Dwarf/Male/DM_02.png";
-import DM_03 from "../../../images/Dwarf/Male/DM_03.png";
-import DM_04 from "../../../images/Dwarf/Male/DM_04.png";
-import EF_01 from "../../../images/Elf/Female/EF_01.png";
-import EF_02 from "../../../images/Elf/Female/EF_02.png";
-import EF_03 from "../../../images/Elf/Female/EF_03.png";
-import EF_04 from "../../../images/Elf/Female/EF_04.png";
-import EM_01 from "../../../images/Elf/Male/EM_01.png";
-import EM_02 from "../../../images/Elf/Male/EM_02.png";
-import EM_03 from "../../../images/Elf/Male/EM_03.png";
-import EM_04 from "../../../images/Elf/Male/EM_04.png";
-import HLF_01 from "../../../images/Halfling/Female/HLF_01.png";
-import HLF_02 from "../../../images/Halfling/Female/HLF_02.png";
-import HLF_03 from "../../../images/Halfling/Female/HLF_03.png";
-import HLF_04 from "../../../images/Halfling/Female/HLF_04.png";
-import HLM_01 from "../../../images/Halfling/Male/HLM_01.png";
-import HLM_02 from "../../../images/Halfling/Male/HLM_02.png";
-import HLM_03 from "../../../images/Halfling/Male/HLM_03.png";
-import HLM_04 from "../../../images/Halfling/Male/HLM_04.png";
-import TF_01 from "../../../images/Tiefling/Female/TF_01.png";
-import TF_02 from "../../../images/Tiefling/Female/TF_02.png";
-import TF_03 from "../../../images/Tiefling/Female/TF_03.png";
-import TF_04 from "../../../images/Tiefling/Female/TF_04.png";
-import TM_01 from "../../../images/Tiefling/Male/TM_01.png";
-import TM_02 from "../../../images/Tiefling/Male/TM_02.png";
-import TM_03 from "../../../images/Tiefling/Male/TM_03.png";
-import TM_04 from "../../../images/Tiefling/Male/TM_04.png";
+
+const images = '../../../images';
+
+import HF_01 from `${images}/Human/Female/HF_01.png`;
+import HF_02 from `${images}/Human/Female/HF_02.png`;
+import HF_03 from `${images}/Human/Female/HF_03.png`;
+import HF_04 from `${images}/Human/Female/HF_04.png`;
+import HM_01 from `${images}/Human/Male/HM_01.png`;
+import HM_02 from `${images}/Human/Male/HM_02.png`;
+import HM_03 from `${images}/Human/Male/HM_03.png`;
+import HM_04 from `${images}/Human/Male/HM_04.png`;
+import DF_01 from `${images}/Dwarf/Female/DF_01.png`;
+import DF_02 from `${images}/Dwarf/Female/DF_02.png`;
+import DF_03 from `${images}/Dwarf/Female/DF_03.png`;
+import DF_04 from `${images}/Dwarf/Female/DF_04.png`;
+import DM_01 from `${images}/Dwarf/Male/DM_01.png`;
+import DM_02 from `${images}/Dwarf/Male/DM_02.png`;
+import DM_03 from `${images}/Dwarf/Male/DM_03.png`;
+import DM_04 from `${images}/Dwarf/Male/DM_04.png`;
+import EF_01 from `${images}/Elf/Female/EF_01.png`;
+import EF_02 from `${images}/Elf/Female/EF_02.png`;
+import EF_03 from `${images}/Elf/Female/EF_03.png`;
+import EF_04 from `${images}/Elf/Female/EF_04.png`;
+import EM_01 from `${images}/Elf/Male/EM_01.png`;
+import EM_02 from `${images}/Elf/Male/EM_02.png`;
+import EM_03 from `${images}/Elf/Male/EM_03.png`;
+import EM_04 from `${images}/Elf/Male/EM_04.png`;
+import HLF_01 from `${images}/Halfling/Female/HLF_01.png`;
+import HLF_02 from `${images}/Halfling/Female/HLF_02.png`;
+import HLF_03 from `${images}/Halfling/Female/HLF_03.png`;
+import HLF_04 from `${images}/Halfling/Female/HLF_04.png`;
+import HLM_01 from `${images}/Halfling/Male/HLM_01.png`;
+import HLM_02 from `${images}/Halfling/Male/HLM_02.png`;
+import HLM_03 from `${images}/Halfling/Male/HLM_03.png`;
+import HLM_04 from `${images}/Halfling/Male/HLM_04.png`;
+import TF_01 from `${images}/Tiefling/Female/TF_01.png`;
+import TF_02 from `${images}/Tiefling/Female/TF_02.png`;
+import TF_03 from `${images}/Tiefling/Female/TF_03.png`;
+import TF_04 from `${images}/Tiefling/Female/TF_04.png`;
+import TM_01 from `${images}/Tiefling/Male/TM_01.png`;
+import TM_02 from `${images}/Tiefling/Male/TM_02.png`;
+import TM_03 from `${images}/Tiefling/Male/TM_03.png`;
+import TM_04 from `${images}/Tiefling/Male/TM_04.png`;
 
 class Avatar extends Component {
   state = {
@@ -89,58 +92,59 @@ class Avatar extends Component {
     filtered: []
   };
 
-  loadPortraits = () => {
+  filterPortraits = (type) => {
     let portraits = this.state.portraits;
     let filteredPortraits = portraits;
+    filteredPortraits = portraits.filter(img => img.indexOf(type) > -1);
+  }
+
+  loadPortraits = () => {
+    let filteredPortraits = ''
     switch (this.props.gender) {
       case "Female":
         switch (this.props.race) {
           case "Human":
-            filteredPortraits = portraits.filter(img => img.indexOf("HF") > -1);
-            break;
+            filteredPortraits.filterPortraits('HF');
+            return filteredPortraits;
           case "Dwarf":
-            filteredPortraits = portraits.filter(img => img.indexOf("DF") > -1);
-            break;
+            filteredPortraits.filterPortraits('DF');
+            return filteredPortraits;
           case "Elf":
-            filteredPortraits = portraits.filter(img => img.indexOf("EF") > -1);
-            break;
+            filteredPortraits.filterPortraits('EF');
+            return filteredPortraits;
           case "Halfling":
-            filteredPortraits = portraits.filter(
-              img => img.indexOf("HLF") > -1
-            );
-            break;
+            filteredPortraits.filterPortraits('HLF');
+            return filteredPortraits;
           case "Tiefling":
-            filteredPortraits = portraits.filter(img => img.indexOf("TF") > -1);
-            break;
+            filteredPortraits.filterPortraits('TF');
+            return filteredPortraits;
           default:
-            console.log("default");
+            return;
         }
         break;
       case "Male":
         switch (this.props.race) {
           case "Human":
-            filteredPortraits = portraits.filter(img => img.indexOf("HM") > -1);
-            break;
+            filteredPortraits.filterPortraits("HM")
+              return filteredPortraits;
           case "Dwarf":
-            filteredPortraits = portraits.filter(img => img.indexOf("DM") > -1);
-            break;
+            filteredPortraits.filterPortraits("DM")
+              return filteredPortraits;
           case "Elf":
-            filteredPortraits = portraits.filter(img => img.indexOf("EM") > -1);
-            break;
+            filteredPortraits.filterPortraits("EM")
+              return filteredPortraits;
           case "Halfling":
-            filteredPortraits = portraits.filter(
-              img => img.indexOf("HLM") > -1
-            );
-            break;
+            filteredPortraits.filterPortraits("HLM")
+              return filteredPortraits;
           case "Tiefling":
-            filteredPortraits = portraits.filter(img => img.indexOf("TM") > -1);
-            break;
+            filteredPortraits.filterPortraits("TM");
+            return filteredPortraits;
           default:
-            console.log("default");
+            return;
         }
         break;
       default:
-        console.log("default");
+        return;
     }
     this.setState({
       filtered: filteredPortraits
@@ -152,8 +156,7 @@ class Avatar extends Component {
   }
 
   render() {
-    const mappedPortraits = this.state.filtered.map((el, index) => {
-      return (
+    const mappedPortraits = this.state.filtered.map((el, index) => 
         <div key={index}>
           <img
             src={el}
@@ -163,7 +166,6 @@ class Avatar extends Component {
           />
         </div>
       );
-    });
 
     return (
       <div className={styles.Avatar}>

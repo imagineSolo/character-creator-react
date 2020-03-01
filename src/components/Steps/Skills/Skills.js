@@ -28,7 +28,7 @@ class Skills extends Component {
   };
 
   handleSkillsSubmit = key => {
-    if (this.state.skills[key] === true) {
+    if (this.state.skills[key]) {
       this.setState({
         ...this.state,
         skills: {
@@ -37,7 +37,7 @@ class Skills extends Component {
         },
         skillsPool: this.state.skillsPool + 1
       });
-    } else if (this.state.skills[key] === false && this.state.skillsPool > 0) {
+    } else if (!this.state.skills[key] && this.state.skillsPool > 0) {
       this.setState({
         ...this.state,
         skills: {
@@ -54,15 +54,13 @@ class Skills extends Component {
     const skills = Object.entries(this.props.skills);
 
     const mappedSkills = skills.map(([key, value]) => {
-      return value === false ? (
+      return !value ? (
         <label key={key} className={styles.SkillsLabel}>
           <input
             type="checkbox"
             value={key}
             name="skill"
-            disabled={
-              this.state.checked >= this.props.skillsPool ? true : false
-            }
+            disabled={this.state.checked >= this.props.skillsPool}
             onChange={() => this.handleSkillsSubmit(key)}
           />
           {key}

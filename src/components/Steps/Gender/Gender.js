@@ -12,12 +12,12 @@ const gender = props => {
             className={`fas fa-venus female + ${styles.GenderButton}`}
             title="Female"
             onClick={props.female}
-          ></button>
+          />
           <button
             className={`fas fa-mars male + ${styles.GenderButton}`}
             title="Male"
             onClick={props.male}
-          ></button>
+          />
         </div>
         <ButtonUndo undo={props.undo} />
         <br />

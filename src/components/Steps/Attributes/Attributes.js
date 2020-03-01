@@ -13,28 +13,26 @@ const attributes = props => {
     "Charisma"
   ];
 
-  const mappedAttributes = attributes.map(attr => {
-    return (
-      <div key={attr} className={styles.AttributeControl}>
-        <p>{attr}</p>
-        <div className={styles.Button}>
-          {props.attributes[attr.toLowerCase()] >= 20 ? null : (
-            <button onClick={() => props.increment(attr.toLowerCase())}>
-              <span>+</span>
-            </button>
-          )}
-        </div>
-        <span>{props.attributes[attr.toLowerCase()]}</span>
-        <div className={styles.Button}>
-          {props.attributes[attr] >= 3 ? null : (
-            <button onClick={() => props.decrement(attr.toLowerCase())}>
-              <span>-</span>
-            </button>
-          )}
-        </div>
+  const mappedAttributes = attributes.map(attr => (
+    <div key={attr} className={styles.AttributeControl}>
+      <p>{attr}</p>
+      <div className={styles.Button}>
+        {props.attributes[attr.toLowerCase()] >= 20 ? null : (
+          <button onClick={() => props.increment(attr.toLowerCase())}>
+            <span>+</span>
+          </button>
+        )}
       </div>
-    );
-  });
+      <span>{props.attributes[attr.toLowerCase()]}</span>
+      <div className={styles.Button}>
+        {props.attributes[attr] >= 3 ? null : (
+          <button onClick={() => props.decrement(attr.toLowerCase())}>
+            <span>-</span>
+          </button>
+        )}
+      </div>
+    </div>
+  ));
 
   return (
     <div className={styles.Attributes}>

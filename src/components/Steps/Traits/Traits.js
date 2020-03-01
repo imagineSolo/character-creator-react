@@ -9,6 +9,7 @@ class Traits extends Component {
     active: "",
     traits: [],
     random: {
+      // ***
       physical: [
         "Has a nervous twitch",
         "Smells funny",
@@ -62,17 +63,15 @@ class Traits extends Component {
 
   handleAddTrait = e => {
     e.preventDefault();
-    const traits = this.state.traits;
+    const traits = [...this.state.traits];
+    if (this.state.traits.length <= 2) {
+      traits.push(this.state.input);
+    }
     this.setState({
       active: "custom",
       input: "",
       traits
     });
-    if (this.state.traits.length <= 2) {
-      traits.push(this.state.input);
-    } else {
-      console.log("Enough");
-    }
   };
 
   handleRandomTraits = () => {
@@ -114,27 +113,23 @@ class Traits extends Component {
   };
 
   render() {
-    const customTraits = this.state.traits.map((trait, index) => {
-      return (
-        <li key={index} className={styles.Item}>
-          <span>{trait}</span>
-          <button
-            className={styles.Delete}
-            onClick={() => this.deleteTrait(trait.index)}
-          >
-            [x]
-          </button>
-        </li>
-      );
-    });
+    const customTraits = this.state.traits.map((trait, index) => (
+      <li key={index} className={styles.Item}>
+        <span>{trait}</span>
+        <button
+          className={styles.Delete}
+          onClick={() => this.deleteTrait(trait.index)}
+        >
+          [x]
+        </button>
+      </li>
+    ));
 
-    const randomTraits = this.state.random.traits.map((trait, index) => {
-      return (
-        <li key={index} className={styles.Item}>
-          <span>{trait}</span>
-        </li>
-      );
-    });
+    const randomTraits = this.state.random.traits.map((trait, index) => (
+      <li key={index} className={styles.Item}>
+        <span>{trait}</span>
+      </li>
+    ));
 
     return (
       <div className={styles.Content}>

@@ -2,6 +2,27 @@ import React from "react";
 import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Background.module.scss";
 
+const backgrounds = [
+  { name: "Commoner", skills: "Athletics, Crafting" },
+  { name: "Courtier", skills: "Deception, Persuasion" },
+  { name: "Criminal", skills: "Intimidation, Trickery" },
+  { name: "Entertainer", skills: "Athletics, Performance" },
+  { name: "Investigator", skills: "Investigation. Perception" },
+  { name: "Outlander", skills: "Nature, Survival" },
+  { name: "Sage", skills: "Arcana, History" },
+  { name: "Soldier", skills: "Athletics, Intimidation" }
+];
+
+const mappedOptions = backgrounds.map(bgd => (
+  <option value={bgd.name}>{bgd.name}</option>
+));
+
+const mappedSummary = backgrounds.map(bgd => (
+  <p>
+    `{bgd.name}: {bgd.skills}`
+  </p>
+));
+
 const background = props => {
   return (
     <div className={styles.Content}>
@@ -28,14 +49,7 @@ const background = props => {
           <option value="select" disabled>
             --Select--
           </option>
-          <option value="Commoner">Commoner</option>
-          <option value="Courtier">Courtier</option>
-          <option value="Criminal">Criminal</option>
-          <option value="Entertainer">Entertainer</option>
-          <option value="Investigator">Investigator</option>
-          <option value="Outlander">Outlander</option>
-          <option value="Sage">Sage</option>
-          <option value="Soldier">Soldier</option>
+          {mappedOptions}
         </select>
         <div className={styles.Buttons}>
           <ButtonUndo undo={props.undo} />
@@ -48,14 +62,7 @@ const background = props => {
       </form>
       <div className={styles.BackgroundDescription}>
         <h5>Background choice:</h5>
-        <p>Commoner: Athletics, Crafting</p>
-        <p>Courtier: Deception, Persuasion</p>
-        <p>Criminal: Intimidation, Trickery</p>
-        <p>Entertainer: Athletics, Performance</p>
-        <p>Investigator: Investigation. Perception</p>
-        <p>Outlander: Nature, Survival</p>
-        <p>Sage: Arcana, History</p>
-        <p>Soldier: Athletics, Intimidation</p>
+        {mappedSummary}
       </div>
     </div>
   );

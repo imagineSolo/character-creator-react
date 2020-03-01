@@ -19,7 +19,7 @@ const mappedOptions = backgrounds.map(bgd => (
 
 const mappedSummary = backgrounds.map(bgd => (
   <p>
-    `{bgd.name}: {bgd.skills}`
+    `${bgd.name}: ${bgd.skills}`
   </p>
 ));
 

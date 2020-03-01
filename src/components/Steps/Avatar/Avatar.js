@@ -93,51 +93,54 @@ class Avatar extends Component {
   filterPortraits = type => {
     let filteredPortraits = this.state.portraits;
     filteredPortraits.filter(img => img.indexOf(type) > -1);
+    return filteredPortraits;
   };
 
   loadPortraits = () => {
-    let filteredPortraits = "";
+    let filteredPortraits = this.state.filtered;
     switch (this.props.gender) {
       case "Female":
         switch (this.props.race) {
           case "Human":
             filteredPortraits.filterPortraits("HF");
-            return filteredPortraits;
+            break;
           case "Dwarf":
             filteredPortraits.filterPortraits("DF");
-            return filteredPortraits;
+            break;
           case "Elf":
             filteredPortraits.filterPortraits("EF");
-            return filteredPortraits;
+            break;
           case "Halfling":
             filteredPortraits.filterPortraits("HLF");
-            return filteredPortraits;
+            break;
           case "Tiefling":
             filteredPortraits.filterPortraits("TF");
-            return filteredPortraits;
+            break;
           default:
             return;
         }
+        break;
       case "Male":
         switch (this.props.race) {
           case "Human":
             filteredPortraits.filterPortraits("HM");
-            return filteredPortraits;
+            break;
           case "Dwarf":
             filteredPortraits.filterPortraits("DM");
-            return filteredPortraits;
+            break;
           case "Elf":
             filteredPortraits.filterPortraits("EM");
-            return filteredPortraits;
+            break;
           case "Halfling":
             filteredPortraits.filterPortraits("HLM");
-            return filteredPortraits;
+            break;
           case "Tiefling":
             filteredPortraits.filterPortraits("TM");
-            return filteredPortraits;
+            break;
           default:
             return;
         }
+        break;
       default:
     }
     this.setState({
@@ -151,14 +154,10 @@ class Avatar extends Component {
   }
 
   render() {
-    const mappedPortraits = this.state.filtered.map((el, index) => (
+    const mappedPortraits = this.state.filtered;
+    mappedPortraits.map((el, index) => (
       <div key={index}>
-        <img
-          src={el}
-          key={index}
-          alt="Portrait"
-          onClick={this.props.selectPortrait}
-        />
+        <img src={el} key={index} alt="Portrait" onClick={this.props.selectPortrait} />
       </div>
     ));
 

@@ -473,7 +473,7 @@ class Content extends Component {
   // };
 
   applyChangesAttributes = () => {
-    if (this.state.attributesPool <= 0) {
+    if (this.props.attrPool <= 0) {
       this.setState({
         ...this.state,
         active: "skills"

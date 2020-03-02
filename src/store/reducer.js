@@ -13,13 +13,9 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.INCREASE_ATTRIBUTE:
-      if (
-        state.attributes[action.attributeName] <= 19 &&
-        state.attributesPool >= 1
-      ) {
+      if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
         return {
           ...state,
           attributes: {

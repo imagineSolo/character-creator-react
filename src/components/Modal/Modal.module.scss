@@ -1,0 +1,49 @@
+$color: #e4e285;
+$tail: darken($color, 5%);
+$size: 0.5em;
+
+.Modal {
+  // display: inline-block;
+  display: none;
+  font-family: inherit;
+  font-size: calc(4px + 2vmin);
+  font-weight: 900;
+  background: $color;
+  color: rgb(0, 0, 0);
+  padding: $size 1em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-shadow: 1px 1px 0px $tail;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transform: rotate(-12deg) skew(-20deg, 10deg);
+  transition: ease-in-out 0.5s;
+
+  &:before,
+  &:after {
+    content: "";
+    width: 0;
+    height: 2em;
+    display: block;
+    background: #4993da;
+    position: absolute;
+    border-style: solid;
+    border-width: $size;
+    z-index: -1;
+    transform: translateZ(-1em);
+  }
+
+  &:before {
+    left: $size * -1;
+    top: $size;
+    border-color: $tail darken($tail, 10%) $tail $tail;
+  }
+
+  &:after {
+    right: $size * -1;
+    top: $size * -1;
+    border-color: $tail $tail $tail darken($tail, 10%);
+  }
+}

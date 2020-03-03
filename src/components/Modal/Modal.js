@@ -10,7 +10,7 @@ const modal = props => (
       style={{
         transform: props.modal.show ? "translateY(0)" : "translateY(-100vh)",
         opacity: props.modal.show ? "1" : "0",
-        zIndex: props.modal.show ? "500" : "-1"
+        zIndex: props.modal.show ? "250" : "-1"
       }}
     >
       {props.modal.message}

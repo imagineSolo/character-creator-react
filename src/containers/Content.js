@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
 
 import Modal from "../components/Modal/Modal";
+// import Backdrop from "../components/Backdrop/Backdrop";
 import Header from "./Header";
 import Nav from "./Nav";
 import CharSheet from "./CharSheet";
@@ -105,6 +106,12 @@ class Content extends Component {
       ...this.state,
       active: updatedState.active,
       updatedState
+    });
+  };
+
+  modalClose = () => {
+    this.setState({
+      modal: { show: false }
     });
   };
 
@@ -326,152 +333,6 @@ class Content extends Component {
     });
   };
 
-  // handleIncreaseAttribute = attr => {
-  //   let updatedState = { ...this.state };
-  //   if (attr === "strength" && updatedState.attributes.strength <= 19 && updatedState.attributesPool >= 1) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           strength: this.state.attributes.strength + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   } else if (attr === "dexterity" && updatedState.attributes.dexterity <= 19 && updatedState.attributesPool >= 1) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           dexterity: this.state.attributes.dexterity + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   } else if (attr === "toughness" && updatedState.attributes.toughness <= 19 && updatedState.attributesPool >= 1) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           toughness: this.state.attributes.toughness + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   } else if (
-  //     attr === "intelligence" &&
-  //     updatedState.attributes.intelligence <= 19 &&
-  //     updatedState.attributesPool >= 1
-  //   ) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           intelligence: this.state.attributes.intelligence + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   } else if (attr === "willpower" && updatedState.attributes.willpower <= 19 && updatedState.attributesPool >= 1) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           willpower: this.state.attributes.willpower + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   } else if (attr === "charisma" && updatedState.attributes.charisma <= 19 && updatedState.attributesPool >= 1) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           charisma: this.state.attributes.charisma + 1
-  //         },
-  //         attributesPool: prevState.attributesPool - 1
-  //       };
-  //     });
-  //   }
-  // };
-
-  // handleDecreaseAttribute = attr => {
-  //   let updatedState = { ...this.state };
-  //   if (attr === "strength" && updatedState.attributes.strength >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           strength: this.state.attributes.strength - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   } else if (attr === "dexterity" && updatedState.attributes.dexterity >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           dexterity: this.state.attributes.dexterity - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   } else if (attr === "toughness" && updatedState.attributes.toughness >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           toughness: this.state.attributes.toughness - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   } else if (attr === "intelligence" && updatedState.attributes.intelligence >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           intelligence: this.state.attributes.intelligence - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   } else if (attr === "willpower" && updatedState.attributes.willpower >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           willpower: this.state.attributes.willpower - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   } else if (attr === "charisma" && updatedState.attributes.charisma >= 4) {
-  //     this.setState(prevState => {
-  //       return {
-  //         updatedState,
-  //         attributes: {
-  //           ...this.state.attributes,
-  //           charisma: this.state.attributes.charisma - 1
-  //         },
-  //         attributesPool: prevState.attributesPool + 1
-  //       };
-  //     });
-  //   }
-  // };
-
   applyChangesAttributes = () => {
     if (this.props.attrPool <= 0) {
       this.setState({
@@ -548,7 +409,7 @@ class Content extends Component {
             <SavedChars />
           </Route>
           <Route path="/" exact>
-            <Modal modal={this.state.modal} />
+            <Modal modal={this.state.modal} clicked={this.modalClose} />
             <Steps
               active={this.state.active}
               undo={this.handleBack}

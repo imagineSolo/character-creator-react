@@ -9,7 +9,8 @@ class Story extends Component {
   };
 
   handleChange = e => {
-    const baseLetters = this.state.letters;
+    const baseLetters = 800;
+    console.log(baseLetters, e.target.value.length);
     this.setState({
       ...this.state,
       input: e.target.value,
@@ -24,16 +25,12 @@ class Story extends Component {
       <div className={styles.Content}>
         <h3 className={styles.Header}>Backstory</h3>
         <p>
-          This is the final step. Write a short backstory for your character.
-          Where was he born? Who were his parents? What was his childhood and
-          adulthood? Why he chose to become an adventurer?
+          This is the final step. Write a short backstory for your character. Where was he born? Who were his parents?
+          What was his childhood and adulthood? Why he chose to become an adventurer?
           <br />
           After you're done, click Submit and end the character creation.
         </p>
-        <form
-          className={styles.StoryForm}
-          onSubmit={e => this.props.submit(e, this.state.input)}
-        >
+        <form className={styles.StoryForm} onSubmit={e => this.props.submit(e, this.state.input)}>
           <textarea
             className={styles.TextInput}
             value={this.state.input}
@@ -42,15 +39,9 @@ class Story extends Component {
             onChange={this.handleChange}
           />
           <div className={styles.Remaining}>
-            <span style={this.state.letters <= 50 ? red : null}>
-              Characters remaining: {this.state.letters}
-            </span>
+            <span style={this.state.letters <= 50 ? red : null}>Characters remaining: {this.state.letters}</span>
           </div>
-          <input
-            className={styles.Submit}
-            type="submit"
-            value="Submit & Finish!"
-          />
+          <input className={styles.Submit} type="submit" value="Submit & Finish!" />
         </form>
         <Undo undo={this.props.undo} />
       </div>

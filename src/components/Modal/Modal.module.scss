@@ -1,10 +1,10 @@
-$color: #e4e285;
+$color: #ffd900;
 $tail: darken($color, 5%);
 $size: 0.5em;
 
 .Modal {
-  // display: inline-block;
-  display: none;
+  display: inline-block;
+  position: fixed;
   font-family: inherit;
   font-size: calc(4px + 2vmin);
   font-weight: 900;
@@ -12,14 +12,13 @@ $size: 0.5em;
   color: rgb(0, 0, 0);
   padding: $size 1em;
   letter-spacing: 0.1em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 20%;
   text-shadow: 1px 1px 0px $tail;
   text-transform: uppercase;
   transform-style: preserve-3d;
   transform: rotate(-12deg) skew(-20deg, 10deg);
-  transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.2s;
 
   &:before,
   &:after {

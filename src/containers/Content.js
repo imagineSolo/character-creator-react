@@ -234,9 +234,9 @@ class Content extends Component {
     });
   };
 
-  handleBackgroundSubmit = (prof, e) => {
+  handleBackgroundSubmit = (bgd, e) => {
     e.preventDefault();
-    if (prof === "") {
+    if (bgd === "") {
       this.setState({
         ...this.state,
         modal: {
@@ -247,70 +247,63 @@ class Content extends Component {
       });
     } else {
       let updatedState = { ...this.state };
-      switch (prof) {
+      let updatedSkills = updatedState.skills;
+      switch (bgd) {
         case "Commoner":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
-          updatedState.skills.athletics = true;
-          updatedState.skills.crafting = true;
+          updatedSkills.athletics = true;
+          updatedSkills.crafting = true;
           break;
         case "Courtier":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
-          updatedState.skills.deception = true;
-          updatedState.skills.persuasion = true;
+          updatedSkills.deception = true;
+          updatedSkills.persuasion = true;
           break;
         case "Criminal":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
           if (this.state.class === "Warrior") {
             updatedState.skillsPool = updatedState.skillsPool + 1;
           } else {
-            updatedState.skills.intimidation = true;
+            updatedSkills.intimidation = true;
           }
-          updatedState.skills.trickery = true;
+          updatedSkills.trickery = true;
           break;
         case "Entertainer":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
-          updatedState.skills.athletics = true;
-          updatedState.skills.performance = true;
+          updatedSkills.athletics = true;
+          updatedSkills.performance = true;
           break;
         case "Investigator":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
-          updatedState.skills.investigation = true;
-          updatedState.skills.perception = true;
+          updatedSkills.investigation = true;
+          updatedSkills.perception = true;
           break;
         case "Outlander":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
           if (this.state.class === "Ranger") {
             updatedState.skillsPool = updatedState.skillsPool + 1;
           } else {
-            updatedState.skills.nature = true;
+            updatedSkills.nature = true;
           }
-          updatedState.skills.survival = true;
+          updatedSkills.survival = true;
           break;
         case "Sage":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
           if (this.state.class === "Wizard") {
             updatedState.skillsPool = updatedState.skillsPool + 1;
           } else {
-            updatedState.skills.arcana = true;
+            updatedSkills.arcana = true;
           }
-          updatedState.skills.history = true;
+          updatedSkills.history = true;
           break;
         case "Soldier":
           updatedState.active = "avatar";
-          updatedState.backgroundSaved = prof;
           if (this.state.class === "Warrior") {
             updatedState.skillsPool = updatedState.skillsPool + 1;
           } else {
-            updatedState.skills.intimidation = true;
+            updatedSkills.intimidation = true;
           }
-          updatedState.skills.athletics = true;
+          updatedSkills.athletics = true;
           break;
         default:
           return;
@@ -318,7 +311,8 @@ class Content extends Component {
       this.setState({
         ...this.state,
         active: "avatar",
-        backgroundSaved: prof,
+        backgroundSaved: bgd,
+        skills: updatedSkills,
         skillsPool: updatedState.skillsPool,
         updatedState
       });

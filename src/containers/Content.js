@@ -133,40 +133,41 @@ class Content extends Component {
 
   handleRaceSelect = e => {
     let updatedState = { ...this.state };
+    let updatedAttributes = updatedState.attributes;
     switch (e.target.id) {
       case "Human":
         updatedState.active = "class";
         updatedState.race = e.target.id;
         updatedState.attributesPool = updatedState.attributesPool + 2;
-        this.props.attr["willpower"]--;
+        updatedAttributes = updatedAttributes - 1;
         break;
       case "Elf":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        this.props.attr["dexterity"]++;
-        this.props.attr["intelligence"]++;
-        this.props.attr["toughness"]--;
+        updatedAttributes["dexterity"]++;
+        updatedAttributes["intelligence"]++;
+        updatedAttributes["toughness"]--;
         break;
       case "Dwarf":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        this.props.attr["dexterity"]--;
-        this.props.attr["strength"]++;
-        this.props.attr["toughness"]++;
+        updatedAttributes["dexterity"]--;
+        updatedAttributes["strength"]++;
+        updatedAttributes["toughness"]++;
         break;
       case "Halfling":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        this.props.attr["dexterity"]++;
-        this.props.attr["willpower"]++;
-        this.props.attr["strength"]--;
+        updatedAttributes["dexterity"]++;
+        updatedAttributes["willpower"]++;
+        updatedAttributes["strength"]--;
         break;
       case "Tiefling":
         updatedState.active = "class";
         updatedState.race = e.target.id;
-        this.props.attr["charisma"]++;
-        this.props.attr["intelligence"]++;
-        this.props.attr["willpower"]--;
+        updatedAttributes["charisma"]++;
+        updatedAttributes["intelligence"]++;
+        updatedAttributes["willpower"]--;
         break;
       default:
         return;
@@ -175,8 +176,8 @@ class Content extends Component {
       ...this.state,
       active: "class",
       race: e.target.id,
-      attributesPool: updatedState.attributesPool,
-      updatedState
+      updatedState,
+      updatedAttributes
     });
   };
 
@@ -415,7 +416,7 @@ class Content extends Component {
               submitName={this.handleNameSubmit}
               submitBackground={this.handleBackgroundSubmit}
               gender={this.state.gender}
-              race={this.state.race}
+              race={this.props.race}
               selectPortrait={this.handlePortraitSelect}
               attributes={this.props.attr}
               pool={this.props.attrPool}
@@ -458,6 +459,7 @@ class Content extends Component {
 
 const mapStateToProps = state => {
   return {
+    race: state.race,
     attr: state.attributes,
     attrPool: state.attributesPool
   };
@@ -474,6 +476,11 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.DECREASE_ATTRIBUTE,
         attributeName: attrName
+      }),
+    onRaceSelect: race =>
+      dispatch({
+        type: actionTypes.SELECT_RACE,
+        race: race
       })
   };
 };

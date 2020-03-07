@@ -39,43 +39,27 @@ class Steps extends Component {
       <>
         {this.props.active === "start" && (
           <section className={styles.Content}>
-            <h2 className={styles.Header}>
-              Welcome to Fantasy Character Creator!
-            </h2>
+            <h2 className={styles.Header}>Welcome to Fantasy Character Creator!</h2>
             <p className={styles.Description}>
-              Create your own fantasy character by making step-by-step
-              decisions. Once you start, each choice will be summarized in your
-              character sheet on the right. You can save your finished
-              characters and view them in Saved Characters panel.
+              Create your own fantasy character by making step-by-step decisions. Once you start, each choice will be
+              summarized in your character sheet on the right. You can save your finished characters and view them in
+              Saved Characters panel.
               <br />
               Enjoy & have fun!
             </p>
-            <button
-              className={styles.Start}
-              onClick={() => this.props.passAppState("gender")}
-            >
+            <button className={styles.Start} onClick={() => this.props.passAppState("gender")}>
               Start
             </button>
           </section>
         )}
         {this.props.active === "gender" && (
-          <Gender
-            female={this.props.female}
-            male={this.props.male}
-            undo={() => this.props.undo(this.props.active)}
-          />
+          <Gender select={this.props.selectGender} undo={() => this.props.undo(this.props.active)} />
         )}
         {this.props.active === "race" && (
-          <Races
-            select={this.props.selectRace}
-            undo={() => this.props.undo(this.props.active)}
-          />
+          <Races select={this.props.selectRace} undo={() => this.props.undo(this.props.active)} />
         )}
         {this.props.active === "class" && (
-          <Classes
-            select={this.props.selectClass}
-            undo={() => this.props.undo(this.props.active)}
-          />
+          <Classes select={this.props.selectClass} undo={() => this.props.undo(this.props.active)} />
         )}
         {this.props.active === "name" && (
           <Name
@@ -120,16 +104,10 @@ class Steps extends Component {
           />
         )}
         {this.props.active === "traits" && (
-          <Traits
-            submit={this.props.applyTraits}
-            undo={() => this.props.undo(this.props.active)}
-          />
+          <Traits submit={this.props.applyTraits} undo={() => this.props.undo(this.props.active)} />
         )}
         {this.props.active === "story" && (
-          <Story
-            submit={this.props.applyStory}
-            undo={() => this.props.undo(this.props.active)}
-          />
+          <Story submit={this.props.applyStory} undo={() => this.props.undo(this.props.active)} />
         )}
       </>
     );

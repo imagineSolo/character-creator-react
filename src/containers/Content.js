@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
 
 import Modal from "../components/Modal/Modal";
-// import Backdrop from "../components/Backdrop/Backdrop";
 import Header from "./Header";
 import Nav from "./Nav";
 import CharSheet from "./CharSheet";
@@ -112,72 +111,6 @@ class Content extends Component {
   modalClose = () => {
     this.setState({
       modal: { show: false }
-    });
-  };
-
-  handleGenderFemale = () => {
-    this.setState({
-      ...this.state,
-      active: "race",
-      gender: "Female"
-    });
-  };
-
-  handleGenderMale = () => {
-    this.setState({
-      ...this.state,
-      active: "race",
-      gender: "Male"
-    });
-  };
-
-  handleRaceSelect = e => {
-    let updatedState = { ...this.state };
-    let updatedAttributes = updatedState.attributes;
-    switch (e.target.id) {
-      case "Human":
-        updatedState.active = "class";
-        updatedState.race = e.target.id;
-        updatedState.attributesPool = updatedState.attributesPool + 2;
-        updatedAttributes = updatedAttributes - 1;
-        break;
-      case "Elf":
-        updatedState.active = "class";
-        updatedState.race = e.target.id;
-        updatedAttributes["dexterity"]++;
-        updatedAttributes["intelligence"]++;
-        updatedAttributes["toughness"]--;
-        break;
-      case "Dwarf":
-        updatedState.active = "class";
-        updatedState.race = e.target.id;
-        updatedAttributes["dexterity"]--;
-        updatedAttributes["strength"]++;
-        updatedAttributes["toughness"]++;
-        break;
-      case "Halfling":
-        updatedState.active = "class";
-        updatedState.race = e.target.id;
-        updatedAttributes["dexterity"]++;
-        updatedAttributes["willpower"]++;
-        updatedAttributes["strength"]--;
-        break;
-      case "Tiefling":
-        updatedState.active = "class";
-        updatedState.race = e.target.id;
-        updatedAttributes["charisma"]++;
-        updatedAttributes["intelligence"]++;
-        updatedAttributes["willpower"]--;
-        break;
-      default:
-        return;
-    }
-    this.setState({
-      ...this.state,
-      active: "class",
-      race: e.target.id,
-      updatedState,
-      updatedAttributes
     });
   };
 
@@ -409,9 +342,8 @@ class Content extends Component {
               active={this.state.active}
               undo={this.handleBack}
               passAppState={this.passAppState}
-              female={this.handleGenderFemale}
-              male={this.handleGenderMale}
-              selectRace={this.handleRaceSelect}
+              selectGender={this.props.onGenderSelect}
+              selectRace={this.props.onRaceSelect}
               selectClass={this.handleClassSelect}
               submitName={this.handleNameSubmit}
               submitBackground={this.handleBackgroundSubmit}
@@ -434,9 +366,9 @@ class Content extends Component {
         </Switch>
 
         <CharSheet
-          active={this.state.active}
-          gender={this.state.gender}
-          race={this.state.race}
+          active={this.props.active}
+          gender={this.props.gender}
+          race={this.props.race}
           class={this.state.class}
           name={this.state.nameSaved}
           avatar={this.state.avatar}
@@ -459,6 +391,7 @@ class Content extends Component {
 
 const mapStateToProps = state => {
   return {
+    gender: state.gender,
     race: state.race,
     attr: state.attributes,
     attrPool: state.attributesPool
@@ -467,6 +400,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onGenderSelect: gender => {
+      dispatch({
+        type: actionTypes.SELECT_GENDER,
+        gender: gender
+      });
+    },
+    onRaceSelect: race =>
+      dispatch({
+        type: actionTypes.SELECT_RACE,
+        race: race
+      }),
     onAttributeIncrease: attrName =>
       dispatch({
         type: actionTypes.INCREASE_ATTRIBUTE,
@@ -476,11 +420,6 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.DECREASE_ATTRIBUTE,
         attributeName: attrName
-      }),
-    onRaceSelect: race =>
-      dispatch({
-        type: actionTypes.SELECT_RACE,
-        race: race
       })
   };
 };

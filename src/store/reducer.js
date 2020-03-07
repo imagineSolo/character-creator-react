@@ -1,6 +1,14 @@
 import * as actionTypes from "./actions";
+import blank from "../images/blank_01.png";
 
 const initialState = {
+  active: "start",
+  gender: "",
+  race: "",
+  class: "",
+  nameSaved: "",
+  backgroundSaved: "",
+  avatar: blank,
   attributes: {
     strength: 10,
     dexterity: 10,
@@ -14,6 +22,85 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SELECT_GENDER:
+      if (action.gender === "female") {
+        return {
+          ...state,
+          active: "race",
+          gender: "Female"
+        };
+      } else if (action.gender === "male") {
+        return {
+          ...state,
+          active: "race",
+          gender: "Male"
+        };
+      }
+      break;
+    case actionTypes.SELECT_RACE:
+      switch (action.race) {
+        case "Human":
+          return {
+            ...state,
+            active: "class",
+            race: action.race,
+            attributes: {
+              ...state.attributes,
+              willpower: state.attributes.willpower - 1
+            },
+            attributesPool: state.attributesPool + 1
+          };
+        case "Elf":
+          return {
+            ...state,
+            active: "class",
+            race: action.race,
+            attributes: {
+              ...state.attributes,
+              dexterity: state.attributes.dexterity + 1,
+              intelligence: state.attributes.intelligence + 1,
+              toughness: state.attributes.toughness - 1
+            }
+          };
+        case "Dwarf":
+          return {
+            ...state,
+            active: "class",
+            race: action.race,
+            attributes: {
+              ...state.attributes,
+              dexterity: state.attributes.dexterity - 1,
+              strength: state.attributes.strength + 1,
+              toughness: state.attributes.toughness + 1
+            }
+          };
+        case "Halfling":
+          return {
+            ...state,
+            active: "class",
+            race: action.race,
+            attributes: {
+              ...state.attributes,
+              dexterity: state.attributes.dexterity + 1,
+              strength: state.attributes.strength - 1,
+              willpower: state.attributes.willpower + 1
+            }
+          };
+        case "Tiefling":
+          return {
+            ...state,
+            active: "class",
+            race: action.race,
+            attributes: {
+              ...state.attributes,
+              charisma: state.attributes.charisma + 1,
+              intelligence: state.attributes.intelligence + 1,
+              willpower: state.attributes.willpower - 1
+            }
+          };
+        default:
+          return state;
+      }
     case actionTypes.INCREASE_ATTRIBUTE:
       if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
         return {
@@ -40,55 +127,6 @@ const reducer = (state = initialState, action) => {
       } else {
         return state;
       }
-    case actionTypes.SELECT_RACE:
-      let updatedState = { ...this.state };
-      let updatedAttributes = updatedState.attributes;
-      switch (action.race) {
-        case "Human":
-          updatedState.active = "class";
-          updatedState.race = action.race;
-          updatedState.attributesPool = updatedState.attributesPool + 2;
-          updatedAttributes = updatedAttributes.willpower - 1;
-          break;
-        case "Elf":
-          updatedState.active = "class";
-          updatedState.race = action.race;
-          updatedAttributes = updatedAttributes.dexterity + 1;
-          updatedAttributes = updatedAttributes.intelligence + 1;
-          updatedAttributes = updatedAttributes.toughness - 1;
-          break;
-        case "Dwarf":
-          updatedState.active = "class";
-          updatedState.race = action.race;
-          updatedAttributes = updatedAttributes.dexterity - 1;
-          updatedAttributes = updatedAttributes.strength + 1;
-          updatedAttributes = updatedAttributes.toughness + 1;
-          break;
-        case "Halfling":
-          updatedState.active = "class";
-          updatedState.race = action.race;
-          updatedAttributes = updatedAttributes.dexterity + 1;
-          updatedAttributes = updatedAttributes.willpower + 1;
-          updatedAttributes = updatedAttributes.strength - 1;
-          break;
-        case "Tiefling":
-          updatedState.active = "class";
-          updatedState.race = action.race;
-          updatedAttributes = updatedAttributes.charisma + 1;
-          updatedAttributes = updatedAttributes.intelligence + 1;
-          updatedAttributes = updatedAttributes.willpower - 1;
-          break;
-        default:
-          return;
-      }
-      this.setState({
-        ...this.state,
-        active: "class",
-        race: action.race,
-        attributes: updatedAttributes,
-        updatedState
-      });
-      break;
     default:
       return state;
   }

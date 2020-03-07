@@ -11,20 +11,19 @@ const gender = props => {
           <button
             className={`fas fa-venus female + ${styles.GenderButton}`}
             title="Female"
-            onClick={props.female}
+            id="female"
+            onClick={e => props.select(e.target.id)}
           />
           <button
             className={`fas fa-mars male + ${styles.GenderButton}`}
             title="Male"
-            onClick={props.male}
+            id="male"
+            onClick={e => props.select(e.target.id)}
           />
         </div>
         <ButtonUndo undo={props.undo} />
         <br />
-        <p>
-          Gender selection does not influence any of your character's
-          statistics.
-        </p>
+        <p>Gender selection does not influence any of your character's statistics.</p>
       </div>
     </section>
   );

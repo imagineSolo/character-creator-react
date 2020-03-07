@@ -47,7 +47,7 @@ class Race extends Component {
         className={styles.RaceChoice}
         key={race}
         id={race}
-        onClick={this.props.select}
+        onClick={e => this.props.select(e.target.id)}
         onPointerEnter={e => this.showDescription(e)}
       >
         {race}

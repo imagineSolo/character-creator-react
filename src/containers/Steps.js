@@ -69,7 +69,7 @@ class Steps extends Component {
             undo={() => this.props.undo(this.props.active)}
           />
         )}
-        {this.props.active === "backgroundSaved" && (
+        {this.props.active === "background" && (
           <Background
             change={this.handleBackgroundChange}
             submit={e => this.props.submitBackground(this.state.background, e)}
@@ -80,7 +80,7 @@ class Steps extends Component {
           <Avatar
             gender={this.props.gender}
             race={this.props.race}
-            selectPortrait={this.props.selectPortrait}
+            selectPortrait={el => this.props.selectPortrait(el)}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

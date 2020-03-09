@@ -19,7 +19,7 @@ class Content extends Component {
     race: "",
     class: "",
     nameSaved: "",
-    backgroundSaved: "",
+    background: "",
     avatar: blank,
     skills: {
       arcana: false,
@@ -48,12 +48,6 @@ class Content extends Component {
     }
   };
 
-  passAppState = clicked => {
-    this.setState({
-      active: clicked
-    });
-  };
-
   handleBack = state => {
     let updatedState = { ...this.state };
 
@@ -76,14 +70,14 @@ class Content extends Component {
       updatedState.class = "";
       updatedState.nameSaved = "";
     }
-    if (state === "backgroundSaved") {
+    if (state === "background") {
       updatedState.active = "name";
       updatedState.nameSaved = "";
-      updatedState.backgroundSaved = "";
+      updatedState.background = "";
     }
     if (state === "avatar") {
-      updatedState.active = "backgroundSaved";
-      updatedState.backgroundSaved = "";
+      updatedState.active = "background";
+      updatedState.background = "";
       updatedState.avatar = blank;
     }
     if (state === "attributes") {
@@ -111,153 +105,6 @@ class Content extends Component {
   modalClose = () => {
     this.setState({
       modal: { show: false }
-    });
-  };
-
-  handleClassSelect = e => {
-    let updatedState = { ...this.state };
-    switch (e.target.id) {
-      case "Warrior":
-        updatedState.active = "name";
-        updatedState.class = e.target.id;
-        this.props.attr["strength"]++;
-        this.props.attr["toughness"]++;
-        updatedState.skills.intimidation = true;
-        break;
-      case "Wizard":
-        updatedState.active = "name";
-        updatedState.class = e.target.id;
-        this.props.attr["intelligence"] = this.props.attr["intelligence"] + 2;
-        updatedState.skills.arcana = true;
-        break;
-      case "Rogue":
-        updatedState.active = "name";
-        updatedState.class = e.target.id;
-        this.props.attr["dexterity"] = this.props.attr["dexterity"] + 2;
-        updatedState.skills.stealth = true;
-        break;
-      case "Cleric":
-        updatedState.active = "name";
-        updatedState.class = e.target.id;
-        this.props.attr["willpower"] = this.props.attr["willpower"] + 2;
-        updatedState.skills.religion = true;
-        break;
-      case "Ranger":
-        updatedState.active = "name";
-        updatedState.class = e.target.id;
-        this.props.attr["dexterity"]++;
-        this.props.attr["toughness"]++;
-        updatedState.skills.nature = true;
-        break;
-      default:
-        return;
-    }
-    this.setState({
-      ...this.state,
-      active: "name",
-      class: e.target.id,
-      updatedState
-    });
-  };
-
-  handleNameSubmit = name => {
-    this.setState({
-      ...this.state,
-      active: "backgroundSaved",
-      nameSaved: name
-    });
-  };
-
-  handleBackgroundSubmit = (bgd, e) => {
-    e.preventDefault();
-    if (bgd === "") {
-      this.setState({
-        ...this.state,
-        modal: {
-          ...this.state.modal,
-          show: true,
-          message: "My friend, choose a background!"
-        }
-      });
-    } else {
-      let updatedState = { ...this.state };
-      let updatedSkills = updatedState.skills;
-      switch (bgd) {
-        case "Commoner":
-          updatedState.active = "avatar";
-          updatedSkills.athletics = true;
-          updatedSkills.crafting = true;
-          break;
-        case "Courtier":
-          updatedState.active = "avatar";
-          updatedSkills.deception = true;
-          updatedSkills.persuasion = true;
-          break;
-        case "Criminal":
-          updatedState.active = "avatar";
-          if (this.state.class === "Warrior") {
-            updatedState.skillsPool = updatedState.skillsPool + 1;
-          } else {
-            updatedSkills.intimidation = true;
-          }
-          updatedSkills.trickery = true;
-          break;
-        case "Entertainer":
-          updatedState.active = "avatar";
-          updatedSkills.athletics = true;
-          updatedSkills.performance = true;
-          break;
-        case "Investigator":
-          updatedState.active = "avatar";
-          updatedSkills.investigation = true;
-          updatedSkills.perception = true;
-          break;
-        case "Outlander":
-          updatedState.active = "avatar";
-          if (this.state.class === "Ranger") {
-            updatedState.skillsPool = updatedState.skillsPool + 1;
-          } else {
-            updatedSkills.nature = true;
-          }
-          updatedSkills.survival = true;
-          break;
-        case "Sage":
-          updatedState.active = "avatar";
-          if (this.state.class === "Wizard") {
-            updatedState.skillsPool = updatedState.skillsPool + 1;
-          } else {
-            updatedSkills.arcana = true;
-          }
-          updatedSkills.history = true;
-          break;
-        case "Soldier":
-          updatedState.active = "avatar";
-          if (this.state.class === "Warrior") {
-            updatedState.skillsPool = updatedState.skillsPool + 1;
-          } else {
-            updatedSkills.intimidation = true;
-          }
-          updatedSkills.athletics = true;
-          break;
-        default:
-          return;
-      }
-      this.setState({
-        ...this.state,
-        active: "avatar",
-        backgroundSaved: bgd,
-        skills: updatedSkills,
-        skillsPool: updatedState.skillsPool,
-        updatedState
-      });
-    }
-  };
-
-  handlePortraitSelect = e => {
-    this.setState({
-      ...this.state,
-      active: "attributes",
-      avatar: e.target.src
     });
   };
 
@@ -339,17 +186,17 @@ class Content extends Component {
           <Route path="/" exact>
             <Modal modal={this.state.modal} clicked={this.modalClose} />
             <Steps
-              active={this.state.active}
+              active={this.props.active}
               undo={this.handleBack}
-              passAppState={this.passAppState}
+              passAppState={this.props.onPassState}
               selectGender={this.props.onGenderSelect}
               selectRace={this.props.onRaceSelect}
-              selectClass={this.handleClassSelect}
-              submitName={this.handleNameSubmit}
-              submitBackground={this.handleBackgroundSubmit}
-              gender={this.state.gender}
+              selectClass={this.props.onClassSelect}
+              submitName={this.props.onNameSubmit}
+              submitBackground={this.props.onBackgroundSelect}
+              gender={this.props.gender}
               race={this.props.race}
-              selectPortrait={this.handlePortraitSelect}
+              selectPortrait={this.props.onAvatarSelect}
               attributes={this.props.attr}
               pool={this.props.attrPool}
               increment={this.props.onAttributeIncrease}
@@ -369,19 +216,19 @@ class Content extends Component {
           active={this.props.active}
           gender={this.props.gender}
           race={this.props.race}
-          class={this.state.class}
-          name={this.state.nameSaved}
-          avatar={this.state.avatar}
-          background={this.state.backgroundSaved}
+          class={this.props.class}
+          name={this.props.name}
+          avatar={this.props.avatar}
+          background={this.props.background}
           attributes={this.props.attr}
           skills={this.state.skills}
           traits={this.state.traits}
           story={this.state.story}
         />
-        <div className={[styles.RibbonNew, this.state.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
+        <div className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
           New Character
         </div>
-        <div className={[styles.RibbonSave, this.state.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}>
+        <div className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}>
           Save Character
         </div>
       </div>
@@ -391,8 +238,13 @@ class Content extends Component {
 
 const mapStateToProps = state => {
   return {
+    active: state.active,
     gender: state.gender,
     race: state.race,
+    class: state.class,
+    name: state.name,
+    background: state.background,
+    avatar: state.avatar,
     attr: state.attributes,
     attrPool: state.attributesPool
   };
@@ -400,16 +252,42 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onPassState: active => {
+      dispatch({
+        type: actionTypes.PASS_STATE,
+        active: active
+      });
+    },
     onGenderSelect: gender => {
       dispatch({
         type: actionTypes.SELECT_GENDER,
         gender: gender
       });
     },
-    onRaceSelect: race =>
+    onRaceSelect: races =>
       dispatch({
         type: actionTypes.SELECT_RACE,
-        race: race
+        race: races
+      }),
+    onClassSelect: classes =>
+      dispatch({
+        type: actionTypes.SELECT_CLASS,
+        class: classes
+      }),
+    onNameSubmit: name =>
+      dispatch({
+        type: actionTypes.SUBMIT_NAME,
+        name: name
+      }),
+    onBackgroundSelect: bgd =>
+      dispatch({
+        type: actionTypes.SELECT_BACKGROUND,
+        background: bgd
+      }),
+    onAvatarSelect: avatar =>
+      dispatch({
+        type: actionTypes.SELECT_AVATAR,
+        avatar: avatar
       }),
     onAttributeIncrease: attrName =>
       dispatch({

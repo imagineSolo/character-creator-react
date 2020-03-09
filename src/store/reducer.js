@@ -7,7 +7,7 @@ const initialState = {
   race: "",
   class: "",
   nameSaved: "",
-  backgroundSaved: "",
+  background: "",
   avatar: blank,
   attributes: {
     strength: 10,
@@ -17,11 +17,41 @@ const initialState = {
     willpower: 10,
     charisma: 10
   },
-  attributesPool: 5
+  attributesPool: 5,
+  skills: {
+    arcana: false,
+    athletics: false,
+    crafting: false,
+    deception: false,
+    history: false,
+    intimidation: false,
+    investigation: false,
+    medicine: false,
+    nature: false,
+    perception: false,
+    performance: false,
+    persuasion: false,
+    religion: false,
+    stealth: false,
+    survival: false,
+    trickery: false
+  },
+  skillsPool: 3,
+  traits: [],
+  story: "",
+  modal: {
+    show: false,
+    message: "Alert"
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.PASS_STATE:
+      return {
+        ...state,
+        active: action.active
+      };
     case actionTypes.SELECT_GENDER:
       if (action.gender === "female") {
         return {
@@ -101,6 +131,223 @@ const reducer = (state = initialState, action) => {
         default:
           return state;
       }
+    case actionTypes.SELECT_CLASS:
+      switch (action.class) {
+        case "Warrior":
+          return {
+            ...state,
+            active: "name",
+            class: action.class,
+            attributes: {
+              ...state.attributes,
+              strength: state.attributes.strength + 1,
+              toughness: state.attributes.toughness + 1
+            },
+            skills: {
+              ...state.skills,
+              intimidation: true
+            }
+          };
+        case "Wizard":
+          return {
+            ...state,
+            active: "name",
+            class: action.class,
+            attributes: {
+              ...state.attributes,
+              intelligence: state.attributes.intelligence + 2
+            },
+            skills: {
+              ...state.skills,
+              arcana: true
+            }
+          };
+        case "Rogue":
+          return {
+            ...state,
+            active: "name",
+            class: action.class,
+            attributes: {
+              ...state.attributes,
+              dexterity: state.attributes.dexterity + 2
+            },
+            skills: {
+              ...state.skills,
+              stealth: true
+            }
+          };
+        case "Cleric":
+          return {
+            ...state,
+            active: "name",
+            class: action.class,
+            attributes: {
+              ...state.attributes,
+              willpower: state.attributes.willpower + 2
+            },
+            skills: {
+              ...state.skills,
+              religion: true
+            }
+          };
+        case "Ranger":
+          return {
+            ...state,
+            active: "name",
+            class: action.class,
+            attributes: {
+              ...state.attributes,
+              dexterity: state.attributes.dexterity + 1,
+              toughness: state.attributes.toughness + 1
+            },
+            skills: {
+              ...state.skills,
+              nature: true
+            }
+          };
+        default:
+          return state;
+      }
+    case actionTypes.SUBMIT_NAME:
+      return {
+        ...state,
+        active: "background",
+        name: action.name
+      };
+    case actionTypes.SELECT_BACKGROUND:
+      if (action.background === "") {
+        return {
+          ...state,
+          modal: {
+            ...state.modal,
+            show: true,
+            message: "My friend, choose a background!"
+          }
+        };
+      } else {
+        switch (action.background) {
+          case "Commoner":
+            return {
+              ...state,
+              active: "avatar",
+              background: action.background,
+              skills: {
+                ...state.skills,
+                athletics: true,
+                crafting: true
+              }
+            };
+          case "Courtier":
+            return {
+              ...state,
+              active: "avatar",
+              background: action.background,
+              skills: {
+                ...state.skills,
+                deception: true,
+                persuasion: true
+              }
+            };
+          case "Criminal":
+            if (state.class === "Warrior") {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { athletics: true },
+                skillsPool: state.skillsPool + 1
+              };
+            } else {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { intimidation: true, trickery: true }
+              };
+            }
+          case "Entertainer":
+            return {
+              ...state,
+              active: "avatar",
+              background: action.background,
+              skills: {
+                ...state.skills,
+                athletics: true,
+                performance: true
+              }
+            };
+          case "Investigator":
+            return {
+              ...state,
+              active: "avatar",
+              background: action.background,
+              skills: {
+                ...state.skills,
+                investigation: true,
+                perception: true
+              }
+            };
+          case "Outlander":
+            if (state.class === "Ranger") {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { survival: true },
+                skillsPool: state.skillsPool + 1
+              };
+            } else {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { nature: true, survival: true }
+              };
+            }
+          case "Sage":
+            if (state.class === "Wizard") {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { history: true },
+                skillsPool: state.skillsPool + 1
+              };
+            } else {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { arcana: true, history: true }
+              };
+            }
+          case "Soldier":
+            if (state.class === "Warrior") {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { athletics: true },
+                skillsPool: state.skillsPool + 1
+              };
+            } else {
+              return {
+                ...state,
+                active: "avatar",
+                background: action.background,
+                skills: { ...state.skills, athletics: true, intimidation: true }
+              };
+            }
+          default:
+            return;
+        }
+      }
+    case actionTypes.SELECT_AVATAR:
+      return {
+        ...state,
+        active: "attributes",
+        avatar: action.avatar
+      };
     case actionTypes.INCREASE_ATTRIBUTE:
       if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
         return {

@@ -47,7 +47,7 @@ class Classes extends Component {
         className={styles.ClassChoice}
         key={charClass}
         id={charClass}
-        onClick={this.props.select}
+        onClick={e => this.props.select(e.target.id)}
         onPointerEnter={e => this.showDescription(e)}
       >
         {charClass}

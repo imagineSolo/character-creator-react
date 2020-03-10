@@ -352,6 +352,7 @@ const reducer = (state = initialState, action) => {
       if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
         return {
           ...state,
+          active: "attributes",
           attributes: {
             ...state.attributes,
             [action.attributeName]: state.attributes[action.attributeName] + 1
@@ -373,6 +374,22 @@ const reducer = (state = initialState, action) => {
         };
       } else {
         return state;
+      }
+    case actionTypes.APPLY_ATTRIBUTES:
+      if (state.attributesPool <= 0) {
+        return {
+          ...state,
+          active: "skills"
+        };
+      } else {
+        return {
+          ...state,
+          modal: {
+            ...state.modal,
+            show: true,
+            message: "You still have points left to spend!"
+          }
+        };
       }
     default:
       return state;

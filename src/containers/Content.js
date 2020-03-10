@@ -14,13 +14,7 @@ import styles from "../App.module.scss";
 
 class Content extends Component {
   state = {
-    active: "start",
-    gender: "",
-    race: "",
-    class: "",
-    nameSaved: "",
-    background: "",
-    avatar: blank,
+    active: this.props.active,
     skills: {
       arcana: false,
       athletics: false,
@@ -108,23 +102,6 @@ class Content extends Component {
     });
   };
 
-  applyChangesAttributes = () => {
-    if (this.props.attrPool <= 0) {
-      this.setState({
-        ...this.state,
-        active: "skills"
-      });
-    } else {
-      this.setState({
-        modal: {
-          ...this.state.modal,
-          show: true,
-          message: "You still have points left to spend!"
-        }
-      });
-    }
-  };
-
   applyChangesSkills = (skill, pool) => {
     const addedSkills = this.handleAddSkills(skill);
     if (pool <= 0) {
@@ -184,7 +161,7 @@ class Content extends Component {
             <SavedChars />
           </Route>
           <Route path="/" exact>
-            <Modal modal={this.state.modal} clicked={this.modalClose} />
+            <Modal modal={this.props.modal} clicked={this.modalClose} />
             <Steps
               active={this.props.active}
               undo={this.handleBack}
@@ -204,7 +181,7 @@ class Content extends Component {
               skills={this.state.skills}
               skillsPool={this.state.skillsPool}
               submitSkills={this.handleSkillsSubmit}
-              applyAttributes={this.applyChangesAttributes}
+              applyAttributes={this.props.onApplyAttributes}
               applySkills={this.applyChangesSkills}
               applyTraits={this.applyChangesTraits}
               applyStory={this.applyChangesStory}
@@ -246,7 +223,8 @@ const mapStateToProps = state => {
     background: state.background,
     avatar: state.avatar,
     attr: state.attributes,
-    attrPool: state.attributesPool
+    attrPool: state.attributesPool,
+    modal: state.modal
   };
 };
 
@@ -298,6 +276,11 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.DECREASE_ATTRIBUTE,
         attributeName: attrName
+      }),
+    onApplyAttributes: attr =>
+      dispatch({
+        type: actionTypes.APPLY_ATTRIBUTES,
+        attr: attr
       })
   };
 };

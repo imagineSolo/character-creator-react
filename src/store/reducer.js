@@ -52,6 +52,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         active: action.active
       };
+    case actionTypes.CLOSE_MODAL:
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          show: false
+        }
+      };
     case actionTypes.SELECT_GENDER:
       if (action.gender === "female") {
         return {
@@ -215,7 +223,9 @@ const reducer = (state = initialState, action) => {
         name: action.name
       };
     case actionTypes.SELECT_BACKGROUND:
-      if (action.background === "") {
+      console.log(action.event);
+      action.event.preventDefault();
+      if (!action.background) {
         return {
           ...state,
           modal: {

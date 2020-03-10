@@ -96,12 +96,6 @@ class Content extends Component {
     });
   };
 
-  modalClose = () => {
-    this.setState({
-      modal: { show: false }
-    });
-  };
-
   applyChangesSkills = (skill, pool) => {
     const addedSkills = this.handleAddSkills(skill);
     if (pool <= 0) {
@@ -161,7 +155,7 @@ class Content extends Component {
             <SavedChars />
           </Route>
           <Route path="/" exact>
-            <Modal modal={this.props.modal} clicked={this.modalClose} />
+            <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
             <Steps
               active={this.props.active}
               undo={this.handleBack}
@@ -198,7 +192,7 @@ class Content extends Component {
           avatar={this.props.avatar}
           background={this.props.background}
           attributes={this.props.attr}
-          skills={this.state.skills}
+          skills={this.props.skills}
           traits={this.state.traits}
           story={this.state.story}
         />
@@ -216,6 +210,7 @@ class Content extends Component {
 const mapStateToProps = state => {
   return {
     active: state.active,
+    modal: state.modal,
     gender: state.gender,
     race: state.race,
     class: state.class,
@@ -224,7 +219,7 @@ const mapStateToProps = state => {
     avatar: state.avatar,
     attr: state.attributes,
     attrPool: state.attributesPool,
-    modal: state.modal
+    skills: state.skills
   };
 };
 
@@ -236,6 +231,10 @@ const mapDispatchToProps = dispatch => {
         active: active
       });
     },
+    onModalClose: () =>
+      dispatch({
+        type: actionTypes.CLOSE_MODAL
+      }),
     onGenderSelect: gender => {
       dispatch({
         type: actionTypes.SELECT_GENDER,
@@ -257,10 +256,11 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.SUBMIT_NAME,
         name: name
       }),
-    onBackgroundSelect: bgd =>
+    onBackgroundSelect: (bgd, e) =>
       dispatch({
         type: actionTypes.SELECT_BACKGROUND,
-        background: bgd
+        background: bgd,
+        event: e
       }),
     onAvatarSelect: avatar =>
       dispatch({
@@ -277,10 +277,9 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.DECREASE_ATTRIBUTE,
         attributeName: attrName
       }),
-    onApplyAttributes: attr =>
+    onApplyAttributes: () =>
       dispatch({
-        type: actionTypes.APPLY_ATTRIBUTES,
-        attr: attr
+        type: actionTypes.APPLY_ATTRIBUTES
       })
   };
 };

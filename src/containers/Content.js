@@ -9,7 +9,6 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Steps from "./Steps";
 import SavedChars from "./SavedChars";
-import blank from "../images/blank_01.png";
 import styles from "../App.module.scss";
 
 class Content extends Component {
@@ -40,60 +39,6 @@ class Content extends Component {
       show: false,
       message: "Alert"
     }
-  };
-
-  handleBack = state => {
-    let updatedState = { ...this.state };
-
-    if (state === "gender") {
-      updatedState.active = "start";
-      updatedState.gender = "";
-    }
-    if (state === "race") {
-      updatedState.active = "gender";
-      updatedState.gender = "";
-      updatedState.race = "";
-    }
-    if (state === "class") {
-      updatedState.active = "race";
-      updatedState.race = "";
-      updatedState.class = "";
-    }
-    if (state === "name") {
-      updatedState.active = "class";
-      updatedState.class = "";
-      updatedState.nameSaved = "";
-    }
-    if (state === "background") {
-      updatedState.active = "name";
-      updatedState.nameSaved = "";
-      updatedState.background = "";
-    }
-    if (state === "avatar") {
-      updatedState.active = "background";
-      updatedState.background = "";
-      updatedState.avatar = blank;
-    }
-    if (state === "attributes") {
-      updatedState.active = "avatar";
-      updatedState.avatar = blank;
-    }
-    if (state === "skills") {
-      updatedState.active = "attributes";
-    }
-    if (state === "traits") {
-      updatedState.active = "skills";
-      updatedState.traits = [];
-    }
-    if (state === "story") {
-      updatedState.active = "traits";
-      updatedState.story = "";
-    }
-    this.setState({
-      ...this.state,
-      active: updatedState.active,
-      updatedState
-    });
   };
 
   applyChangesSkills = (skill, pool) => {
@@ -158,7 +103,7 @@ class Content extends Component {
             <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
             <Steps
               active={this.props.active}
-              undo={this.handleBack}
+              undo={this.props.onMoveBack}
               passAppState={this.props.onPassState}
               selectGender={this.props.onGenderSelect}
               selectRace={this.props.onRaceSelect}
@@ -172,8 +117,8 @@ class Content extends Component {
               pool={this.props.attrPool}
               increment={this.props.onAttributeIncrease}
               decrement={this.props.onAttributeDecrease}
-              skills={this.state.skills}
-              skillsPool={this.state.skillsPool}
+              skills={this.props.skills}
+              skillsPool={this.props.skillsPool}
               submitSkills={this.handleSkillsSubmit}
               applyAttributes={this.props.onApplyAttributes}
               applySkills={this.applyChangesSkills}
@@ -219,7 +164,8 @@ const mapStateToProps = state => {
     avatar: state.avatar,
     attr: state.attributes,
     attrPool: state.attributesPool,
-    skills: state.skills
+    skills: state.skills,
+    skillsPool: state.skillsPool
   };
 };
 
@@ -235,6 +181,11 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.CLOSE_MODAL
       }),
+    onMoveBack: () => {
+      dispatch({
+        type: actionTypes.MOVE_BACK
+      });
+    },
     onGenderSelect: gender => {
       dispatch({
         type: actionTypes.SELECT_GENDER,

@@ -1,5 +1,6 @@
 export const PASS_STATE = "PASS_STATE";
 export const CLOSE_MODAL = "CLOSE_MODAL";
+export const MOVE_BACK = "MOVE_BACK";
 export const SELECT_GENDER = "SELECT_GENDER";
 export const SELECT_RACE = "SELECT_RACE";
 export const SELECT_CLASS = "SELECT_CLASS";

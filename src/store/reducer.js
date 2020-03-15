@@ -477,6 +477,13 @@ const reducer = (state = initialState, action) => {
           }
         };
       }
+    case actionTypes.APPLY_TRAITS:
+      return {
+        ...state,
+        active: "story",
+        traits: action.traits
+      };
+
     default:
       return state;
   }

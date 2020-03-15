@@ -73,13 +73,6 @@ class Content extends Component {
     return newSkills;
   };
 
-  applyChangesTraits = traits => {
-    this.setState({
-      active: "story",
-      traits
-    });
-  };
-
   applyChangesStory = (e, story) => {
     e.preventDefault();
     this.setState({
@@ -122,7 +115,7 @@ class Content extends Component {
               submitSkills={this.handleSkillsSubmit}
               applyAttributes={this.props.onApplyAttributes}
               applySkills={this.applyChangesSkills}
-              applyTraits={this.applyChangesTraits}
+              applyTraits={this.props.onApplyTraits}
               applyStory={this.applyChangesStory}
             />
           </Route>
@@ -138,7 +131,7 @@ class Content extends Component {
           background={this.props.background}
           attributes={this.props.attr}
           skills={this.props.skills}
-          traits={this.state.traits}
+          traits={this.props.traits}
           story={this.state.story}
         />
         <div className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
@@ -165,7 +158,9 @@ const mapStateToProps = state => {
     attr: state.attributes,
     attrPool: state.attributesPool,
     skills: state.skills,
-    skillsPool: state.skillsPool
+    skillsPool: state.skillsPool,
+    traits: state.traits,
+    story: state.story
   };
 };
 
@@ -231,6 +226,11 @@ const mapDispatchToProps = dispatch => {
     onApplyAttributes: () =>
       dispatch({
         type: actionTypes.APPLY_ATTRIBUTES
+      }),
+    onApplyTraits: traits =>
+      dispatch({
+        type: actionTypes.APPLY_TRAITS,
+        traits: traits
       })
   };
 };

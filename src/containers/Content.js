@@ -73,14 +73,6 @@ class Content extends Component {
     return newSkills;
   };
 
-  applyChangesStory = (e, story) => {
-    e.preventDefault();
-    this.setState({
-      active: "summary",
-      story
-    });
-  };
-
   render() {
     return (
       <div className={styles.App}>
@@ -116,7 +108,7 @@ class Content extends Component {
               applyAttributes={this.props.onApplyAttributes}
               applySkills={this.applyChangesSkills}
               applyTraits={this.props.onApplyTraits}
-              applyStory={this.applyChangesStory}
+              applyStory={this.props.onApplyStory}
             />
           </Route>
         </Switch>
@@ -132,7 +124,7 @@ class Content extends Component {
           attributes={this.props.attr}
           skills={this.props.skills}
           traits={this.props.traits}
-          story={this.state.story}
+          story={this.props.story}
         />
         <div className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
           New Character
@@ -231,7 +223,14 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.APPLY_TRAITS,
         traits: traits
-      })
+      }),
+    onApplyStory: (e, story) => {
+      dispatch({
+        type: actionTypes.APPLY_STORY,
+        story: story,
+        event: e
+      });
+    }
   };
 };
 

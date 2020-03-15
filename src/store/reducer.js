@@ -483,7 +483,13 @@ const reducer = (state = initialState, action) => {
         active: "story",
         traits: action.traits
       };
-
+    case actionTypes.APPLY_STORY:
+      action.event.preventDefault();
+      return {
+        ...state,
+        active: "summary",
+        story: action.story
+      };
     default:
       return state;
   }

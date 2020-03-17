@@ -14,63 +14,10 @@ import styles from "../App.module.scss";
 class Content extends Component {
   state = {
     active: this.props.active,
-    skills: {
-      arcana: false,
-      athletics: false,
-      crafting: false,
-      deception: false,
-      history: false,
-      intimidation: false,
-      investigation: false,
-      medicine: false,
-      nature: false,
-      perception: false,
-      performance: false,
-      persuasion: false,
-      religion: false,
-      stealth: false,
-      survival: false,
-      trickery: false
-    },
-    skillsPool: 3,
-    traits: [],
-    story: "",
     modal: {
       show: false,
       message: "Alert"
     }
-  };
-
-  applyChangesSkills = (skill, pool) => {
-    const addedSkills = this.handleAddSkills(skill);
-    if (pool <= 0) {
-      this.setState({
-        ...this.state,
-        active: "traits",
-        skills: {
-          ...this.state.skills,
-          ...addedSkills
-        }
-      });
-    } else {
-      this.setState({
-        modal: {
-          ...this.state.modal,
-          show: true,
-          message: "You have skill points left to spend!"
-        }
-      });
-    }
-  };
-
-  handleAddSkills = skills => {
-    let newSkills = {};
-    for (let key in skills) {
-      if (skills[key]) {
-        newSkills[key] = true;
-      }
-    }
-    return newSkills;
   };
 
   render() {
@@ -106,7 +53,7 @@ class Content extends Component {
               skillsPool={this.props.skillsPool}
               submitSkills={this.handleSkillsSubmit}
               applyAttributes={this.props.onApplyAttributes}
-              applySkills={this.applyChangesSkills}
+              applySkills={this.props.onApplySkills}
               applyTraits={this.props.onApplyTraits}
               applyStory={this.props.onApplyStory}
             />
@@ -218,6 +165,12 @@ const mapDispatchToProps = dispatch => {
     onApplyAttributes: () =>
       dispatch({
         type: actionTypes.APPLY_ATTRIBUTES
+      }),
+    onApplySkills: (skills, pool) =>
+      dispatch({
+        type: actionTypes.APPLY_SKILLS,
+        skills: skills,
+        skillsPool: pool
       }),
     onApplyTraits: traits =>
       dispatch({

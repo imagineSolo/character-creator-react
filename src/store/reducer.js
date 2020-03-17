@@ -477,6 +477,38 @@ const reducer = (state = initialState, action) => {
           }
         };
       }
+    case actionTypes.APPLY_SKILLS:
+      const handleAddSkills = skills => {
+        let newSkills = {};
+        for (let key in skills) {
+          if (skills[key]) {
+            newSkills[key] = true;
+          }
+        }
+        return newSkills;
+      };
+
+      const addedSkills = handleAddSkills(action.skills);
+
+      if (action.skillsPool <= 0) {
+        return {
+          ...state,
+          active: "traits",
+          skills: {
+            ...state.skills,
+            ...addedSkills
+          }
+        };
+      } else {
+        return {
+          ...state,
+          modal: {
+            ...state.modal,
+            show: true,
+            message: "You have skill points left to spend!"
+          }
+        };
+      }
     case actionTypes.APPLY_TRAITS:
       return {
         ...state,

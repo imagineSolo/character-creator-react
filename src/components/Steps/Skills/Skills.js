@@ -71,21 +71,14 @@ class Skills extends Component {
     return (
       <div className={styles.Content}>
         <h3>Add additional skills:</h3>
-        <p>
-          Select three additional skills of your choice to shape up your
-          character.
-        </p>
+        <p>Select three additional skills of your choice to shape up your character.</p>
         <form className={styles.SkillsForm}>{mappedSkills}</form>
         <p>
           Points left: <span>{this.state.skillsPool}</span>
         </p>
         <div className={styles.Buttons}>
           <Undo undo={this.props.undo} />
-          <Apply
-            apply={() =>
-              this.props.submit(this.state.skills, this.state.skillsPool)
-            }
-          />
+          <Apply apply={() => this.props.submit(this.state.skills, this.state.skillsPool)} />
         </div>
       </div>
     );

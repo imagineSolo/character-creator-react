@@ -299,7 +299,6 @@ const reducer = (state = initialState, action) => {
         name: action.name
       };
     case actionTypes.SELECT_BACKGROUND:
-      console.log(action.event);
       action.event.preventDefault();
       if (!action.background) {
         return {

@@ -10,18 +10,22 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Steps from "./Steps";
 import SavedChars from "./SavedChars";
+import Spinner from "../components/Spinner/Spinner";
+// import ErrorHandler from "../containers/ErrorHandler";
 import styles from "../App.module.scss";
 
 class Content extends Component {
   state = {
     active: this.props.active,
     modal: {
-      show: false,
+      show: this.props.modal.show,
       message: "Alert"
-    }
+    },
+    loading: false
   };
 
   handleSaveCharacter = () => {
+    this.setState({ loading: true });
     const character = {
       gender: this.props.gender,
       race: this.props.race,
@@ -36,11 +40,15 @@ class Content extends Component {
     };
     axios
       .post("/characters.json", character)
-      .then(response => console.log(response))
+      .then(response => this.setState({ loading: false }))
       .catch(error => console.log(error));
   };
 
   render() {
+    let savedChars = <SavedChars />;
+    if (this.state.loading) {
+      savedChars = <Spinner />;
+    }
     return (
       <div className={styles.App}>
         <div className={styles.Menu}>
@@ -49,7 +57,7 @@ class Content extends Component {
         </div>
         <Switch>
           <Route path="/saved" exact>
-            <SavedChars />
+            {savedChars}
           </Route>
           <Route path="/" exact>
             <Modal modal={this.props.modal} clicked={this.props.onModalClose} />

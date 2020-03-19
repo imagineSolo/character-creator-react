@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
+import axios from "../axios-characters";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -18,6 +19,25 @@ class Content extends Component {
       show: false,
       message: "Alert"
     }
+  };
+
+  handleSaveCharacter = () => {
+    const character = {
+      gender: this.props.gender,
+      race: this.props.race,
+      class: this.props.class,
+      name: this.props.name,
+      background: this.props.background,
+      avatar: this.props.avatar,
+      attributes: this.props.attr,
+      skills: this.props.skills,
+      traits: this.props.traits,
+      story: this.props.story
+    };
+    axios
+      .post("/characters.json", character)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -76,7 +96,10 @@ class Content extends Component {
         <div className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
           New Character
         </div>
-        <div className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}>
+        <div
+          className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
+          onClick={this.handleSaveCharacter}
+        >
           Save Character
         </div>
       </div>

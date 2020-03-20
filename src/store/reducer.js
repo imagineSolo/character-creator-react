@@ -339,7 +339,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { athletics: true },
+                skills: { ...state.skills, athletics: true },
                 skillsPool: state.skillsPool + 1
               };
             } else {
@@ -347,7 +347,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { intimidation: true, trickery: true }
+                skills: { ...state.skills, intimidation: true, trickery: true }
               };
             }
           case "Entertainer":
@@ -378,7 +378,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { survival: true },
+                skills: {
+                  ...state.skills,
+                  survival: true
+                },
                 skillsPool: state.skillsPool + 1
               };
             } else {
@@ -386,7 +389,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { nature: true, survival: true }
+                skills: { ...state.skills, nature: true, survival: true }
               };
             }
           case "Sage":
@@ -395,7 +398,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { history: true },
+                skills: { ...state.skills, history: true },
                 skillsPool: state.skillsPool + 1
               };
             } else {
@@ -403,7 +406,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { arcana: true, history: true }
+                skills: { ...state.skills, arcana: true, history: true }
               };
             }
           case "Soldier":
@@ -412,7 +415,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 active: "avatar",
                 background: action.background,
-                skills: { athletics: true },
+                skills: { ...state.skills, athletics: true },
                 skillsPool: state.skillsPool + 1
               };
             } else {
@@ -437,7 +440,6 @@ const reducer = (state = initialState, action) => {
       if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
         return {
           ...state,
-          active: "attributes",
           attributes: {
             ...state.attributes,
             [action.attributeName]: state.attributes[action.attributeName] + 1

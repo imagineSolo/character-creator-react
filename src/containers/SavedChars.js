@@ -12,9 +12,9 @@ class SavedChars extends Component {
     axios
       .get("https://character-creator-react.firebaseio.com/characters.json")
       .then(response => {
-        for (let key in response.characters) {
-          console.log(response, response.characters);
-          data.push(response.characters[key]);
+        for (let key in response.data) {
+          console.log(response.data);
+          data.push(response.data[key]);
         }
         this.setState({ characters: data });
       })
@@ -23,15 +23,14 @@ class SavedChars extends Component {
 
   render() {
     console.log(this.state.characters);
-    // const characters = this.state.characters;
-    // characters.map(char => {
-    //   console.log(char.name);
-    //   return <div>{char.name}</div>;
-    // });
+
+    const characters = this.state.characters.map(char => {
+      return <div>{char.name}</div>;
+    });
     return (
       <section className={styles.Content}>
         <h2>Saved Characters</h2>
-        {/* {characters} */}
+        {characters}
       </section>
     );
   }

@@ -1,0 +1,41 @@
+.Content {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 67vw;
+  height: 92vh;
+  max-height: 92vh;
+  padding: 2vw;
+
+  .CharList {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    border: 1px solid white;
+    overflow-y: scroll;
+    -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);
+
+    .Character {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 18%;
+      max-height: 50%;
+      margin: 0.5vw;
+      border: 1px solid white;
+
+      img {
+        width: 70%;
+      }
+    }
+  }
+
+
+
+}

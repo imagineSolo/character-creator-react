@@ -10,7 +10,6 @@ class Story extends Component {
 
   handleChange = e => {
     const baseLetters = 800;
-    console.log(baseLetters, e.target.value.length);
     this.setState({
       ...this.state,
       input: e.target.value,

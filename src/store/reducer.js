@@ -1,12 +1,13 @@
 import * as actionTypes from "./actions";
 import blank from "../images/blank_01.png";
+import axios from "../axios-characters";
 
 const initialState = {
   active: "start",
   gender: "",
   race: "",
   class: "",
-  nameSaved: "",
+  name: "",
   background: "",
   avatar: blank,
   attributes: {
@@ -547,6 +548,68 @@ const reducer = (state = initialState, action) => {
         ...state,
         active: "summary",
         story: action.story
+      };
+    case actionTypes.NEW_CHARACTER:
+      return {
+        ...state,
+        active: "start",
+        gender: "",
+        race: "",
+        class: "",
+        name: "",
+        background: "",
+        avatar: blank,
+        attributes: {
+          strength: 10,
+          dexterity: 10,
+          toughness: 10,
+          intelligence: 10,
+          willpower: 10,
+          charisma: 10
+        },
+        attributesPool: 5,
+        skills: {
+          arcana: false,
+          athletics: false,
+          crafting: false,
+          deception: false,
+          history: false,
+          intimidation: false,
+          investigation: false,
+          medicine: false,
+          nature: false,
+          perception: false,
+          performance: false,
+          persuasion: false,
+          religion: false,
+          stealth: false,
+          survival: false,
+          trickery: false
+        },
+        skillsPool: 3,
+        traits: [],
+        story: ""
+      };
+    case actionTypes.SAVE_CHARACTER:
+      const character = {
+        gender: state.gender,
+        race: state.race,
+        class: state.class,
+        name: state.name,
+        background: state.background,
+        avatar: state.avatar,
+        attributes: state.attr,
+        skills: state.skills,
+        traits: state.traits,
+        story: state.story
+      };
+      axios
+        .post("/characters.json", character)
+        .then({ ...state, loading: false })
+        .catch(error => console.log(error));
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;

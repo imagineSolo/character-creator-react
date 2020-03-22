@@ -23,7 +23,7 @@ class SavedChars extends Component {
   render() {
     const characters = this.state.characters.map(char => {
       return (
-        <div className={styles.Character}>
+        <div className={styles.Character} key={char.name}>
           <img src={char.avatar} alt="Portrait" />
           <span>{char.name}</span>
         </div>

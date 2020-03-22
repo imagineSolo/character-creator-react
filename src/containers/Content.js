@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
-import axios from "../axios-characters";
+// import axios from "../axios-characters";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -20,29 +20,28 @@ class Content extends Component {
     modal: {
       show: this.props.modal.show,
       message: "Alert"
-    },
-    loading: false
+    }
   };
 
-  handleSaveCharacter = () => {
-    this.setState({ loading: true });
-    const character = {
-      gender: this.props.gender,
-      race: this.props.race,
-      class: this.props.class,
-      name: this.props.name,
-      background: this.props.background,
-      avatar: this.props.avatar,
-      attributes: this.props.attr,
-      skills: this.props.skills,
-      traits: this.props.traits,
-      story: this.props.story
-    };
-    axios
-      .post("/characters.json", character)
-      .then(response => this.setState({ loading: false }))
-      .catch(error => console.log(error));
-  };
+  // handleSaveCharacter = () => {
+  //   this.setState({ loading: true });
+  //   const character = {
+  //     gender: this.props.gender,
+  //     race: this.props.race,
+  //     class: this.props.class,
+  //     name: this.props.name,
+  //     background: this.props.background,
+  //     avatar: this.props.avatar,
+  //     attributes: this.props.attr,
+  //     skills: this.props.skills,
+  //     traits: this.props.traits,
+  //     story: this.props.story
+  //   };
+  //   axios
+  //     .post("/characters.json", character)
+  //     .then(response => this.setState({ loading: false }))
+  //     .catch(error => console.log(error));
+  // };
 
   render() {
     let savedChars = <SavedChars />;
@@ -101,12 +100,15 @@ class Content extends Component {
           traits={this.props.traits}
           story={this.props.story}
         />
-        <div className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}>
+        <div
+          className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}
+          onClick={this.props.onNewCharacter}
+        >
           New Character
         </div>
         <div
           className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
-          onClick={this.handleSaveCharacter}
+          onClick={this.props.onSaveCharacter}
         >
           Save Character
         </div>
@@ -213,6 +215,16 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.APPLY_STORY,
         story: story,
         event: e
+      });
+    },
+    onNewCharacter: () => {
+      dispatch({
+        type: actionTypes.NEW_CHARACTER
+      });
+    },
+    onSaveCharacter: () => {
+      dispatch({
+        type: actionTypes.SAVE_CHARACTER
       });
     }
   };

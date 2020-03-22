@@ -14,16 +14,12 @@ const name = props => {
           placeholder="My name is..."
           required
           minLength="2"
-          maxLength="18"
+          maxLength="25"
           autoFocus
           value={props.value}
           onChange={props.change}
         />
-        <input
-          className={styles.InputSubmit}
-          type="submit"
-          value="Submit Name"
-        />
+        <input className={styles.InputSubmit} type="submit" value="Submit Name" />
       </form>
       <img className={styles.Inkwell} src={inkwell} alt="Inkwell" />
       <ButtonUndo undo={props.undo} />

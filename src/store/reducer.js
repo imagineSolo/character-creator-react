@@ -43,7 +43,8 @@ const initialState = {
   modal: {
     show: false,
     message: "Alert"
-  }
+  },
+  loading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -605,11 +606,11 @@ const reducer = (state = initialState, action) => {
       };
       axios
         .post("/characters.json", character)
-        .then({ ...state, loading: false })
+        .then({ ...state, loading: true })
         .catch(error => console.log(error));
       return {
         ...state,
-        loading: true
+        loading: false
       };
     default:
       return state;

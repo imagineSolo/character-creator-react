@@ -9,6 +9,7 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Steps from "./Steps";
 import SavedChars from "./SavedChars";
+import Spinner from "../components/Spinner/Spinner";
 // import ErrorHandler from "../containers/ErrorHandler";
 import styles from "../App.module.scss";
 
@@ -28,6 +29,7 @@ class Content extends Component {
           <Header />
           <Nav />
         </div>
+        {this.props.loading ? <Spinner /> : null}
         <Switch>
           <Route path="/saved" exact>
             <SavedChars />
@@ -80,10 +82,11 @@ class Content extends Component {
         >
           <a href="/">New Character</a>
         </div>
-        <div className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}>
-          <a href="/saved" onClick={this.props.onSaveCharacter}>
-            Save Character
-          </a>
+        <div
+          className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
+          onClick={this.props.onSaveCharacter}
+        >
+          Save Character
         </div>
       </div>
     );
@@ -105,7 +108,8 @@ const mapStateToProps = state => {
     skills: state.skills,
     skillsPool: state.skillsPool,
     traits: state.traits,
-    story: state.story
+    story: state.story,
+    loading: state.loading
   };
 };
 

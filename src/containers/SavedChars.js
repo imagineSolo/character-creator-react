@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import styles from "./SavedChars.module.scss";
 import axios from "../axios-characters";
+import Spinner from "../components/Spinner/Spinner";
 
 class SavedChars extends Component {
   state = {
-    characters: []
+    characters: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -15,7 +17,7 @@ class SavedChars extends Component {
         for (let key in response.data) {
           data.push(response.data[key]);
         }
-        this.setState({ characters: data });
+        this.setState({ characters: data, loading: false });
       })
       .catch(error => console.log(error));
   }
@@ -32,7 +34,7 @@ class SavedChars extends Component {
     return (
       <section className={styles.Content}>
         <h2>Saved Characters</h2>
-        <div className={styles.CharList}>{characters}</div>
+        <div className={styles.CharList}>{this.state.loading ? <Spinner /> : characters}</div>
       </section>
     );
   }

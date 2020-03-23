@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
-// import axios from "../axios-characters";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -10,7 +9,6 @@ import Nav from "./Nav";
 import CharSheet from "./CharSheet";
 import Steps from "./Steps";
 import SavedChars from "./SavedChars";
-import Spinner from "../components/Spinner/Spinner";
 // import ErrorHandler from "../containers/ErrorHandler";
 import styles from "../App.module.scss";
 
@@ -23,31 +21,7 @@ class Content extends Component {
     }
   };
 
-  // handleSaveCharacter = () => {
-  //   this.setState({ loading: true });
-  //   const character = {
-  //     gender: this.props.gender,
-  //     race: this.props.race,
-  //     class: this.props.class,
-  //     name: this.props.name,
-  //     background: this.props.background,
-  //     avatar: this.props.avatar,
-  //     attributes: this.props.attr,
-  //     skills: this.props.skills,
-  //     traits: this.props.traits,
-  //     story: this.props.story
-  //   };
-  //   axios
-  //     .post("/characters.json", character)
-  //     .then(response => this.setState({ loading: false }))
-  //     .catch(error => console.log(error));
-  // };
-
   render() {
-    let savedChars = <SavedChars />;
-    if (this.state.loading) {
-      savedChars = <Spinner />;
-    }
     return (
       <div className={styles.App}>
         <div className={styles.Menu}>
@@ -56,7 +30,7 @@ class Content extends Component {
         </div>
         <Switch>
           <Route path="/saved" exact>
-            {savedChars}
+            <SavedChars />
           </Route>
           <Route path="/" exact>
             <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
@@ -104,13 +78,12 @@ class Content extends Component {
           className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}
           onClick={this.props.onNewCharacter}
         >
-          New Character
+          <a href="/">New Character</a>
         </div>
-        <div
-          className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
-          onClick={this.props.onSaveCharacter}
-        >
-          Save Character
+        <div className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}>
+          <a href="/saved" onClick={this.props.onSaveCharacter}>
+            Save Character
+          </a>
         </div>
       </div>
     );

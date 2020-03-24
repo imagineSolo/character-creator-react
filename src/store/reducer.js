@@ -612,6 +612,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false
       };
+    case actionTypes.DISPLAY_CHARACTER:
+      console.log("klik");
+      break;
     default:
       return state;
   }

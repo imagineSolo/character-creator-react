@@ -37,6 +37,11 @@ $ribbonSize: 0.5em;
   transform: rotate(-20deg) skew(-20deg, 10deg);
   transition: ease-in-out 2s;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:before,
   &:after {
     content: "";

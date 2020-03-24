@@ -32,7 +32,7 @@ class Content extends Component {
         {this.props.loading ? <Spinner /> : null}
         <Switch>
           <Route path="/saved" exact>
-            <SavedChars />
+            <SavedChars display={this.props.onCharacterDisplay} />
           </Route>
           <Route path="/" exact>
             <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
@@ -94,6 +94,7 @@ class Content extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     active: state.active,
     modal: state.modal,
@@ -202,6 +203,11 @@ const mapDispatchToProps = dispatch => {
     onSaveCharacter: () => {
       dispatch({
         type: actionTypes.SAVE_CHARACTER
+      });
+    },
+    onCharacterDisplay: () => {
+      dispatch({
+        type: actionTypes.DISPLAY_CHARACTER
       });
     }
   };

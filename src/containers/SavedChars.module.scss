@@ -15,6 +15,8 @@
     height: 100%;
     border: 1px solid black;
     overflow-y: scroll;
+    scrollbar-color: #1f1f1f #646464;
+    scrollbar-width: 10px;
     -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);
     box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.7);

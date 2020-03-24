@@ -1,21 +1,21 @@
 .Nav {
-  display: flex;
+  position: relative;
   z-index: 150;
   width: 50%;
   height: 8vh;
   background-color: rgb(65, 65, 65);
   overflow: hidden;
-  text-align: center;
-  align-items: flex-end;
-  justify-content: right;
   padding-right: 2vw;
   border-bottom: 1px solid black;
 
   ul {
-    display: inline-block;
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: end;
 
     li {
-      float: left;
+      display: flex;
       padding: 14px 16px;
       text-decoration: none;
       font-size: calc(7px + 2vmin);

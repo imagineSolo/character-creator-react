@@ -94,7 +94,6 @@ class Content extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     active: state.active,
     modal: state.modal,
@@ -205,9 +204,10 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.SAVE_CHARACTER
       });
     },
-    onCharacterDisplay: () => {
+    onCharacterDisplay: char => {
       dispatch({
-        type: actionTypes.DISPLAY_CHARACTER
+        type: actionTypes.DISPLAY_CHARACTER,
+        info: char
       });
     }
   };

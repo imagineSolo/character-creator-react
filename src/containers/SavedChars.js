@@ -23,9 +23,9 @@ class SavedChars extends Component {
   }
 
   render() {
-    const characters = this.state.characters.map(char => {
+    const characters = this.state.characters.map((char, i) => {
       return (
-        <div className={styles.Character} key={char.name} onClick={this.props.display}>
+        <div className={styles.Character} key={char.name} onClick={() => this.props.display(this.state.characters[i])}>
           <img src={char.avatar} alt="Portrait" />
           <span>{char.name}</span>
         </div>

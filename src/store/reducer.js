@@ -599,7 +599,7 @@ const reducer = (state = initialState, action) => {
         name: state.name,
         background: state.background,
         avatar: state.avatar,
-        attributes: state.attr,
+        attributes: state.attributes,
         skills: state.skills,
         traits: state.traits,
         story: state.story
@@ -613,8 +613,20 @@ const reducer = (state = initialState, action) => {
         loading: false
       };
     case actionTypes.DISPLAY_CHARACTER:
-      console.log("klik");
-      break;
+      console.log(action.info.attributes);
+      return {
+        ...state,
+        gender: action.info.gender,
+        race: action.info.race,
+        class: action.info.class,
+        name: action.info.name,
+        background: action.info.background,
+        avatar: action.info.avatar,
+        attributes: action.info.attributes,
+        skills: action.info.skills,
+        traits: action.info.traits,
+        story: action.info.story
+      };
     default:
       return state;
   }

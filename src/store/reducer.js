@@ -613,9 +613,9 @@ const reducer = (state = initialState, action) => {
         loading: false
       };
     case actionTypes.DISPLAY_CHARACTER:
-      console.log(action.info.attributes);
       return {
         ...state,
+        active: "finished",
         gender: action.info.gender,
         race: action.info.race,
         class: action.info.class,

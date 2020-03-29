@@ -77,7 +77,7 @@ class CharSheet extends Component {
           <button
             onClick={this.drawOut}
             className={styles.Draw}
-            title="Show more"
+            title="Expand/Reduce"
             style={this.props.active === "summary" ? draw : null}
           >
             <i className={"fas fa-scroll"} />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
 
@@ -23,6 +23,10 @@ class Content extends Component {
   };
 
   render() {
+    if (this.props.saving === true) {
+      return <Redirect to="/saved" />;
+    }
+
     return (
       <div className={styles.App}>
         <div className={styles.Menu}>
@@ -109,7 +113,8 @@ const mapStateToProps = state => {
     skillsPool: state.skillsPool,
     traits: state.traits,
     story: state.story,
-    loading: state.loading
+    loading: state.loading,
+    saving: state.saving
   };
 };
 

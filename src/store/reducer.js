@@ -44,7 +44,8 @@ const initialState = {
     show: false,
     message: "Alert"
   },
-  loading: false
+  loading: false,
+  saving: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -606,7 +607,8 @@ const reducer = (state = initialState, action) => {
       };
       axios
         .post("/characters.json", character)
-        .then({ ...state, loading: true })
+        .then(() => this.props.history.push("/saved"))
+        .then(() => ({ ...state, loading: true }))
         .catch(error => console.log(error));
       return {
         ...state,
@@ -615,7 +617,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DISPLAY_CHARACTER:
       return {
         ...state,
-        active: "finished",
+        active: "start",
         gender: action.info.gender,
         race: action.info.race,
         class: action.info.class,

@@ -47,6 +47,24 @@
         padding: 7px;
         text-shadow: 2px 2px 1px #000000;
       }
+
+      .Delete {
+        position: absolute;
+        top: 5%;
+        right: 7%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 0.6;
+        font-weight: 900;
+        border: 2px solid white;
+        border-radius: 25px;
+      }
+
+      .Delete:hover {
+        color: red;
+        border: 2px solid red;
+      }
     }
 
     .Character:hover {

@@ -9,7 +9,7 @@ class SavedChars extends Component {
     loading: true
   };
 
-  componentDidMount() {
+  handleLoadCharacters = () => {
     let data = [];
     axios
       .get("https://character-creator-react.firebaseio.com/characters.json")
@@ -20,14 +20,30 @@ class SavedChars extends Component {
         this.setState({ characters: data, loading: false });
       })
       .catch(error => console.log(error));
+  };
+
+  componentDidMount() {
+    this.handleLoadCharacters();
+  }
+
+  componentDidUpdate() {
+    this.handleLoadCharacters();
   }
 
   render() {
     const characters = this.state.characters.map((char, i) => {
       return (
-        <div className={styles.Character} key={char.name} onClick={() => this.props.display(this.state.characters[i])}>
+        <div
+          className={styles.Character}
+          key={char.name}
+          title="Select"
+          onClick={() => this.props.display(this.state.characters[i])}
+        >
           <img src={char.avatar} alt="Portrait" />
           <span>{char.name}</span>
+          <div className={styles.Delete} title="Delete" onClick={() => this.props.delete(this.state.characters[i])}>
+            x
+          </div>
         </div>
       );
     });

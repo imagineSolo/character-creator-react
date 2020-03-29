@@ -36,7 +36,7 @@ class Content extends Component {
         {this.props.loading ? <Spinner /> : null}
         <Switch>
           <Route path="/saved" exact>
-            <SavedChars display={this.props.onCharacterDisplay} />
+            <SavedChars display={this.props.onCharacterDisplay} delete={this.props.onCharacterDelete} />
           </Route>
           <Route path="/" exact>
             <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
@@ -213,6 +213,12 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.DISPLAY_CHARACTER,
         info: char
+      });
+    },
+    onCharacterDelete: char => {
+      dispatch({
+        type: actionTypes.DELETE_CHARACTER,
+        char: char
       });
     }
   };

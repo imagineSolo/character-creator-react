@@ -607,7 +607,7 @@ const reducer = (state = initialState, action) => {
       };
       axios
         .post("/characters.json", character)
-        .then(() => this.props.history.push("/saved"))
+        .then(() => this.props.history.pathname.push("/saved"))
         .then(() => ({ ...state, loading: true }))
         .catch(error => console.log(error));
       return {
@@ -628,6 +628,50 @@ const reducer = (state = initialState, action) => {
         skills: action.info.skills,
         traits: action.info.traits,
         story: action.info.story
+      };
+    case actionTypes.DELETE_CHARACTER:
+      console.log(action.char);
+      axios
+        .delete("/characters.json", action.char)
+        .then(() => ({ ...state, loading: true }))
+        .catch(error => console.log(error));
+      return {
+        ...state,
+        gender: "",
+        race: "",
+        class: "",
+        name: "",
+        background: "",
+        avatar: blank,
+        attributes: {
+          strength: 10,
+          dexterity: 10,
+          toughness: 10,
+          intelligence: 10,
+          willpower: 10,
+          charisma: 10
+        },
+        skills: {
+          arcana: false,
+          athletics: false,
+          crafting: false,
+          deception: false,
+          history: false,
+          intimidation: false,
+          investigation: false,
+          medicine: false,
+          nature: false,
+          perception: false,
+          performance: false,
+          persuasion: false,
+          religion: false,
+          stealth: false,
+          survival: false,
+          trickery: false
+        },
+        traits: [],
+        story: "",
+        loading: false
       };
     default:
       return state;

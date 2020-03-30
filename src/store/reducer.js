@@ -612,7 +612,9 @@ const reducer = (state = initialState, action) => {
         .catch(error => console.log(error));
       return {
         ...state,
-        loading: false
+        active: "saved",
+        loading: false,
+        saving: true
       };
     case actionTypes.DISPLAY_CHARACTER:
       return {
@@ -632,7 +634,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_CHARACTER:
       console.log(action.char);
       axios
-        .delete("/characters.json", action.char)
+        .delete("/characters/-M3gdsskMyNcbAmHtEM8.json")
         .then(() => ({ ...state, loading: true }))
         .catch(error => console.log(error));
       return {

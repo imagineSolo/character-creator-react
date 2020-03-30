@@ -15,8 +15,10 @@ class SavedChars extends Component {
       .get("https://character-creator-react.firebaseio.com/characters.json")
       .then(response => {
         for (let key in response.data) {
+          console.log(response.data[key]);
           data.push(response.data[key]);
         }
+        data.push(response.data);
         this.setState({ characters: data, loading: false });
       })
       .catch(error => console.log(error));
@@ -26,16 +28,16 @@ class SavedChars extends Component {
     this.handleLoadCharacters();
   }
 
-  componentDidUpdate() {
-    this.handleLoadCharacters();
-  }
+  // componentDidUpdate() {
+  //   this.handleLoadCharacters();
+  // }
 
   render() {
     const characters = this.state.characters.map((char, i) => {
       return (
         <div
           className={styles.Character}
-          key={char.name}
+          key={i}
           title="Select"
           onClick={() => this.props.display(this.state.characters[i])}
         >

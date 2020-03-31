@@ -15,10 +15,12 @@ class SavedChars extends Component {
       .get("https://character-creator-react.firebaseio.com/characters.json")
       .then(response => {
         for (let key in response.data) {
-          console.log(response.data[key]);
-          data.push(response.data[key]);
+          const char = {
+            ...response.data[key],
+            fbId: key
+          };
+          data.push(char);
         }
-        data.push(response.data);
         this.setState({ characters: data, loading: false });
       })
       .catch(error => console.log(error));
@@ -29,26 +31,31 @@ class SavedChars extends Component {
   }
 
   // componentDidUpdate() {
-  //   this.handleLoadCharacters();
+  //   if () {
+  //     this.handleLoadCharacters();
+  //   }
   // }
 
   render() {
-    const characters = this.state.characters.map((char, i) => {
-      return (
-        <div
-          className={styles.Character}
-          key={i}
-          title="Select"
-          onClick={() => this.props.display(this.state.characters[i])}
-        >
-          <img src={char.avatar} alt="Portrait" />
-          <span>{char.name}</span>
-          <div className={styles.Delete} title="Delete" onClick={() => this.props.delete(this.state.characters[i])}>
-            x
+    let characters = <p>No characters</p>;
+    if (this.state.characters.length) {
+      characters = this.state.characters.map((char, i) => {
+        return (
+          <div
+            className={styles.Character}
+            key={i}
+            title="Select"
+            onClick={() => this.props.display(this.state.characters[i])}
+          >
+            <img src={char.avatar} alt="Portrait" />
+            <span>{char.name}</span>
+            <div className={styles.Delete} title="Delete" onClick={() => this.props.delete(char.fbId)}>
+              x
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
     return (
       <section className={styles.Content}>
         <h2>Saved Characters</h2>

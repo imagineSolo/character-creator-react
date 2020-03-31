@@ -607,8 +607,8 @@ const reducer = (state = initialState, action) => {
       };
       axios
         .post("/characters.json", character)
-        .then(() => this.props.history.pathname.push("/saved"))
         .then(() => ({ ...state, loading: true }))
+        .then(() => this.props.history.pathname.push("/saved"))
         .catch(error => console.log(error));
       return {
         ...state,
@@ -632,9 +632,8 @@ const reducer = (state = initialState, action) => {
         story: action.info.story
       };
     case actionTypes.DELETE_CHARACTER:
-      console.log(action.char);
       axios
-        .delete("/characters/-M3gdsskMyNcbAmHtEM8.json")
+        .delete(`/characters/${action.char}.json`)
         .then(() => ({ ...state, loading: true }))
         .catch(error => console.log(error));
       return {

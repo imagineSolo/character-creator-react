@@ -6,7 +6,9 @@ import Spinner from "../components/Spinner/Spinner";
 class SavedChars extends Component {
   state = {
     characters: [],
-    loading: true
+    loading: true,
+    charLength: 0,
+    newLength: 0
   };
 
   handleLoadCharacters = () => {
@@ -21,7 +23,7 @@ class SavedChars extends Component {
           };
           data.push(char);
         }
-        this.setState({ characters: data, loading: false });
+        this.setState({ characters: data, loading: false, charLength: data.length });
       })
       .catch(error => console.log(error));
   };
@@ -30,11 +32,20 @@ class SavedChars extends Component {
     this.handleLoadCharacters();
   }
 
-  // componentDidUpdate() {
-  //   if () {
-  //     this.handleLoadCharacters();
-  //   }
-  // }
+  componentDidUpdate() {
+    if (this.state.charLength > this.state.newLength) {
+      console.log("update");
+
+      this.handleLoadCharacters();
+
+      this.setState(prevState => {
+        return {
+          ...this.state,
+          newLength: this.state.charLength
+        };
+      });
+    }
+  }
 
   render() {
     let characters = <p>No characters</p>;

@@ -7,7 +7,6 @@ class SavedChars extends Component {
   state = {
     characters: [],
     loading: true,
-    charLength: 0,
     newLength: 0
   };
 
@@ -23,26 +22,27 @@ class SavedChars extends Component {
           };
           data.push(char);
         }
-        this.setState({ characters: data, loading: false, charLength: data.length });
+        return data;
       })
       .catch(error => console.log(error));
   };
 
   componentDidMount() {
-    this.handleLoadCharacters();
+    this.handleLoadCharacters().then(data =>
+      this.setState({ characters: data, loading: false, newLength: this.state.characters.length })
+    );
   }
 
   componentDidUpdate() {
-    if (this.state.charLength > this.state.newLength) {
-      console.log("update");
+    console.log(this.state.characters.length, this.state.newLength);
+    if (this.state.characters.length < this.state.newLength) {
+      console.log("update:" + this.state.characters.length);
 
       this.handleLoadCharacters();
 
-      this.setState(prevState => {
-        return {
-          ...this.state,
-          newLength: this.state.charLength
-        };
+      this.setState({
+        ...this.state,
+        newLength: this.state.characters.length + 1
       });
     }
   }

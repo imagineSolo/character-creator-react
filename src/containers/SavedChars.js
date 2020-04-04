@@ -11,6 +11,7 @@ class SavedChars extends Component {
   };
 
   handleLoadCharacters = () => {
+    console.log("load");
     let data = [];
     axios
       .get("https://character-creator-react.firebaseio.com/characters.json")
@@ -27,10 +28,13 @@ class SavedChars extends Component {
       .catch(error => console.log(error));
   };
 
+  handleSetCharacters = data => {
+    console.log("set state");
+    this.setState({ characters: data, loading: false, newLength: this.state.characters.length });
+  };
+
   componentDidMount() {
-    this.handleLoadCharacters().then(data =>
-      this.setState({ characters: data, loading: false, newLength: this.state.characters.length })
-    );
+    this.handleLoadCharacters().then(data => this.handleSetCharacters(data));
   }
 
   componentDidUpdate() {

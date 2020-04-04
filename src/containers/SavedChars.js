@@ -7,34 +7,45 @@ class SavedChars extends Component {
   state = {
     characters: [],
     loading: true,
-    newLength: 0
+    newLength: 0,
   };
 
   handleLoadCharacters = () => {
-    console.log("load");
-    let data = [];
-    axios
-      .get("https://character-creator-react.firebaseio.com/characters.json")
-      .then(response => {
-        for (let key in response.data) {
-          const char = {
-            ...response.data[key],
-            fbId: key
-          };
-          data.push(char);
-        }
-        return data;
-      })
-      .catch(error => console.log(error));
+    return new Promise(function (resolve, reject) {
+      console.log("load");
+      let data = [];
+      axios
+        .get("https://character-creator-react.firebaseio.com/characters.json")
+        .then((response) => {
+          for (let key in response.data) {
+            const char = {
+              ...response.data[key],
+              fbId: key,
+            };
+            data.push(char);
+          }
+          return data;
+        })
+        .catch((error) => console.log(error));
+      if (data) {
+        resolve();
+      } else {
+        reject("Error: Something went wrong");
+      }
+    });
   };
 
-  handleSetCharacters = data => {
+  handleSetCharacters = (data) => {
     console.log("set state");
     this.setState({ characters: data, loading: false, newLength: this.state.characters.length });
   };
 
   componentDidMount() {
-    this.handleLoadCharacters().then(data => this.handleSetCharacters(data));
+    this.handleLoadCharacters()
+      .then((data) => this.handleSetCharacters(data))
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   componentDidUpdate() {
@@ -46,7 +57,7 @@ class SavedChars extends Component {
 
       this.setState({
         ...this.state,
-        newLength: this.state.characters.length + 1
+        newLength: this.state.characters.length + 1,
       });
     }
   }

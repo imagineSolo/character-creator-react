@@ -16,7 +16,7 @@ const initialState = {
     toughness: 10,
     intelligence: 10,
     willpower: 10,
-    charisma: 10
+    charisma: 10,
   },
   attributesPool: 5,
   skills: {
@@ -35,17 +35,17 @@ const initialState = {
     religion: false,
     stealth: false,
     survival: false,
-    trickery: false
+    trickery: false,
   },
   skillsPool: 3,
   traits: [],
   story: "",
   modal: {
     show: false,
-    message: "Alert"
+    message: "Alert",
   },
   loading: false,
-  saving: false
+  saving: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -53,22 +53,22 @@ const reducer = (state = initialState, action) => {
     case actionTypes.PASS_STATE:
       return {
         ...state,
-        active: action.active
+        active: action.active,
       };
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,
         modal: {
           ...state.modal,
-          show: false
-        }
+          show: false,
+        },
       };
     case actionTypes.MOVE_BACK:
       if (state.active === "gender") {
         return {
           ...state,
           active: "start",
-          gender: ""
+          gender: "",
         };
       }
       if (state.active === "race") {
@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           active: "gender",
           gender: "",
-          race: ""
+          race: "",
         };
       }
       if (state.active === "class") {
@@ -84,7 +84,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           active: "race",
           race: "",
-          class: ""
+          class: "",
         };
       }
       if (state.active === "name") {
@@ -92,7 +92,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           active: "class",
           name: "",
-          class: ""
+          class: "",
         };
       }
       if (state.active === "background") {
@@ -100,7 +100,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           active: "name",
           name: "",
-          background: ""
+          background: "",
         };
       }
       if (state.active === "avatar") {
@@ -108,34 +108,34 @@ const reducer = (state = initialState, action) => {
           ...state,
           active: "background",
           background: "",
-          avatar: blank
+          avatar: blank,
         };
       }
       if (state.active === "attributes") {
         return {
           ...state,
           active: "avatar",
-          avatar: blank
+          avatar: blank,
         };
       }
       if (state.active === "skills") {
         return {
           ...state,
-          active: "attributes"
+          active: "attributes",
         };
       }
       if (state.active === "traits") {
         return {
           ...state,
           active: "skills",
-          traits: []
+          traits: [],
         };
       }
       if (state.active === "story") {
         return {
           ...state,
           active: "traits",
-          story: []
+          story: [],
         };
       }
       break;
@@ -144,13 +144,13 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           active: "race",
-          gender: "Female"
+          gender: "Female",
         };
       } else if (action.gender === "male") {
         return {
           ...state,
           active: "race",
-          gender: "Male"
+          gender: "Male",
         };
       }
       break;
@@ -163,9 +163,9 @@ const reducer = (state = initialState, action) => {
             race: action.race,
             attributes: {
               ...state.attributes,
-              willpower: state.attributes.willpower - 1
+              willpower: state.attributes.willpower - 1,
             },
-            attributesPool: state.attributesPool + 1
+            attributesPool: state.attributesPool + 1,
           };
         case "Elf":
           return {
@@ -176,8 +176,8 @@ const reducer = (state = initialState, action) => {
               ...state.attributes,
               dexterity: state.attributes.dexterity + 1,
               intelligence: state.attributes.intelligence + 1,
-              toughness: state.attributes.toughness - 1
-            }
+              toughness: state.attributes.toughness - 1,
+            },
           };
         case "Dwarf":
           return {
@@ -188,8 +188,8 @@ const reducer = (state = initialState, action) => {
               ...state.attributes,
               dexterity: state.attributes.dexterity - 1,
               strength: state.attributes.strength + 1,
-              toughness: state.attributes.toughness + 1
-            }
+              toughness: state.attributes.toughness + 1,
+            },
           };
         case "Halfling":
           return {
@@ -200,8 +200,8 @@ const reducer = (state = initialState, action) => {
               ...state.attributes,
               dexterity: state.attributes.dexterity + 1,
               strength: state.attributes.strength - 1,
-              willpower: state.attributes.willpower + 1
-            }
+              willpower: state.attributes.willpower + 1,
+            },
           };
         case "Tiefling":
           return {
@@ -212,8 +212,8 @@ const reducer = (state = initialState, action) => {
               ...state.attributes,
               charisma: state.attributes.charisma + 1,
               intelligence: state.attributes.intelligence + 1,
-              willpower: state.attributes.willpower - 1
-            }
+              willpower: state.attributes.willpower - 1,
+            },
           };
         default:
           return state;
@@ -228,12 +228,12 @@ const reducer = (state = initialState, action) => {
             attributes: {
               ...state.attributes,
               strength: state.attributes.strength + 1,
-              toughness: state.attributes.toughness + 1
+              toughness: state.attributes.toughness + 1,
             },
             skills: {
               ...state.skills,
-              intimidation: true
-            }
+              intimidation: true,
+            },
           };
         case "Wizard":
           return {
@@ -242,12 +242,12 @@ const reducer = (state = initialState, action) => {
             class: action.class,
             attributes: {
               ...state.attributes,
-              intelligence: state.attributes.intelligence + 2
+              intelligence: state.attributes.intelligence + 2,
             },
             skills: {
               ...state.skills,
-              arcana: true
-            }
+              arcana: true,
+            },
           };
         case "Rogue":
           return {
@@ -256,12 +256,12 @@ const reducer = (state = initialState, action) => {
             class: action.class,
             attributes: {
               ...state.attributes,
-              dexterity: state.attributes.dexterity + 2
+              dexterity: state.attributes.dexterity + 2,
             },
             skills: {
               ...state.skills,
-              stealth: true
-            }
+              stealth: true,
+            },
           };
         case "Cleric":
           return {
@@ -270,12 +270,12 @@ const reducer = (state = initialState, action) => {
             class: action.class,
             attributes: {
               ...state.attributes,
-              willpower: state.attributes.willpower + 2
+              willpower: state.attributes.willpower + 2,
             },
             skills: {
               ...state.skills,
-              religion: true
-            }
+              religion: true,
+            },
           };
         case "Ranger":
           return {
@@ -285,12 +285,12 @@ const reducer = (state = initialState, action) => {
             attributes: {
               ...state.attributes,
               dexterity: state.attributes.dexterity + 1,
-              toughness: state.attributes.toughness + 1
+              toughness: state.attributes.toughness + 1,
             },
             skills: {
               ...state.skills,
-              nature: true
-            }
+              nature: true,
+            },
           };
         default:
           return state;
@@ -299,7 +299,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         active: "background",
-        name: action.name
+        name: action.name,
       };
     case actionTypes.SELECT_BACKGROUND:
       action.event.preventDefault();
@@ -309,8 +309,8 @@ const reducer = (state = initialState, action) => {
           modal: {
             ...state.modal,
             show: true,
-            message: "My friend, choose a background!"
-          }
+            message: "My friend, choose a background!",
+          },
         };
       } else {
         switch (action.background) {
@@ -322,8 +322,8 @@ const reducer = (state = initialState, action) => {
               skills: {
                 ...state.skills,
                 athletics: true,
-                crafting: true
-              }
+                crafting: true,
+              },
             };
           case "Courtier":
             return {
@@ -333,8 +333,8 @@ const reducer = (state = initialState, action) => {
               skills: {
                 ...state.skills,
                 deception: true,
-                persuasion: true
-              }
+                persuasion: true,
+              },
             };
           case "Criminal":
             if (state.class === "Warrior") {
@@ -344,9 +344,9 @@ const reducer = (state = initialState, action) => {
                 background: action.background,
                 skills: {
                   ...state.skills,
-                  athletics: true
+                  athletics: true,
                 },
-                skillsPool: state.skillsPool + 1
+                skillsPool: state.skillsPool + 1,
               };
             } else {
               return {
@@ -356,8 +356,8 @@ const reducer = (state = initialState, action) => {
                 skills: {
                   ...state.skills,
                   intimidation: true,
-                  trickery: true
-                }
+                  trickery: true,
+                },
               };
             }
           case "Entertainer":
@@ -368,8 +368,8 @@ const reducer = (state = initialState, action) => {
               skills: {
                 ...state.skills,
                 athletics: true,
-                performance: true
-              }
+                performance: true,
+              },
             };
           case "Investigator":
             return {
@@ -379,8 +379,8 @@ const reducer = (state = initialState, action) => {
               skills: {
                 ...state.skills,
                 investigation: true,
-                perception: true
-              }
+                perception: true,
+              },
             };
           case "Outlander":
             if (state.class === "Ranger") {
@@ -390,9 +390,9 @@ const reducer = (state = initialState, action) => {
                 background: action.background,
                 skills: {
                   ...state.skills,
-                  survival: true
+                  survival: true,
                 },
-                skillsPool: state.skillsPool + 1
+                skillsPool: state.skillsPool + 1,
               };
             } else {
               return {
@@ -402,8 +402,8 @@ const reducer = (state = initialState, action) => {
                 skills: {
                   ...state.skills,
                   nature: true,
-                  survival: true
-                }
+                  survival: true,
+                },
               };
             }
           case "Sage":
@@ -414,9 +414,9 @@ const reducer = (state = initialState, action) => {
                 background: action.background,
                 skills: {
                   ...state.skills,
-                  history: true
+                  history: true,
                 },
-                skillsPool: state.skillsPool + 1
+                skillsPool: state.skillsPool + 1,
               };
             } else {
               return {
@@ -426,8 +426,8 @@ const reducer = (state = initialState, action) => {
                 skills: {
                   ...state.skills,
                   arcana: true,
-                  history: true
-                }
+                  history: true,
+                },
               };
             }
           case "Soldier":
@@ -438,9 +438,9 @@ const reducer = (state = initialState, action) => {
                 background: action.background,
                 skills: {
                   ...state.skills,
-                  athletics: true
+                  athletics: true,
                 },
-                skillsPool: state.skillsPool + 1
+                skillsPool: state.skillsPool + 1,
               };
             } else {
               return {
@@ -450,8 +450,8 @@ const reducer = (state = initialState, action) => {
                 skills: {
                   ...state.skills,
                   athletics: true,
-                  intimidation: true
-                }
+                  intimidation: true,
+                },
               };
             }
           default:
@@ -462,7 +462,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         active: "attributes",
-        avatar: action.avatar
+        avatar: action.avatar,
       };
     case actionTypes.INCREASE_ATTRIBUTE:
       if (state.attributes[action.attributeName] <= 19 && state.attributesPool >= 1) {
@@ -470,9 +470,9 @@ const reducer = (state = initialState, action) => {
           ...state,
           attributes: {
             ...state.attributes,
-            [action.attributeName]: state.attributes[action.attributeName] + 1
+            [action.attributeName]: state.attributes[action.attributeName] + 1,
           },
-          attributesPool: state.attributesPool - 1
+          attributesPool: state.attributesPool - 1,
         };
       } else {
         return state;
@@ -483,9 +483,9 @@ const reducer = (state = initialState, action) => {
           ...state,
           attributes: {
             ...state.attributes,
-            [action.attributeName]: state.attributes[action.attributeName] - 1
+            [action.attributeName]: state.attributes[action.attributeName] - 1,
           },
-          attributesPool: state.attributesPool + 1
+          attributesPool: state.attributesPool + 1,
         };
       } else {
         return state;
@@ -494,7 +494,7 @@ const reducer = (state = initialState, action) => {
       if (state.attributesPool <= 0) {
         return {
           ...state,
-          active: "skills"
+          active: "skills",
         };
       } else {
         return {
@@ -502,12 +502,12 @@ const reducer = (state = initialState, action) => {
           modal: {
             ...state.modal,
             show: true,
-            message: "You still have points left to spend!"
-          }
+            message: "You still have points left to spend!",
+          },
         };
       }
     case actionTypes.APPLY_SKILLS:
-      const handleAddSkills = skills => {
+      const handleAddSkills = (skills) => {
         let newSkills = {};
         for (let key in skills) {
           if (skills[key]) {
@@ -525,8 +525,8 @@ const reducer = (state = initialState, action) => {
           active: "traits",
           skills: {
             ...state.skills,
-            ...addedSkills
-          }
+            ...addedSkills,
+          },
         };
       } else {
         return {
@@ -534,22 +534,22 @@ const reducer = (state = initialState, action) => {
           modal: {
             ...state.modal,
             show: true,
-            message: "You have skill points left to spend!"
-          }
+            message: "You have skill points left to spend!",
+          },
         };
       }
     case actionTypes.APPLY_TRAITS:
       return {
         ...state,
         active: "story",
-        traits: action.traits
+        traits: action.traits,
       };
     case actionTypes.APPLY_STORY:
       action.event.preventDefault();
       return {
         ...state,
         active: "summary",
-        story: action.story
+        story: action.story,
       };
     case actionTypes.NEW_CHARACTER:
       return {
@@ -567,7 +567,7 @@ const reducer = (state = initialState, action) => {
           toughness: 10,
           intelligence: 10,
           willpower: 10,
-          charisma: 10
+          charisma: 10,
         },
         attributesPool: 5,
         skills: {
@@ -586,11 +586,11 @@ const reducer = (state = initialState, action) => {
           religion: false,
           stealth: false,
           survival: false,
-          trickery: false
+          trickery: false,
         },
         skillsPool: 3,
         traits: [],
-        story: ""
+        story: "",
       };
     case actionTypes.SAVE_CHARACTER:
       const character = {
@@ -603,18 +603,18 @@ const reducer = (state = initialState, action) => {
         attributes: state.attributes,
         skills: state.skills,
         traits: state.traits,
-        story: state.story
+        story: state.story,
       };
       axios
         .post("/characters.json", character)
         .then(() => ({ ...state, loading: true }))
         .then(() => this.props.history.pathname.push("/saved"))
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
       return {
         ...state,
         active: "saved",
         loading: false,
-        saving: true
+        saving: true,
       };
     case actionTypes.DISPLAY_CHARACTER:
       return {
@@ -629,13 +629,13 @@ const reducer = (state = initialState, action) => {
         attributes: action.info.attributes,
         skills: action.info.skills,
         traits: action.info.traits,
-        story: action.info.story
+        story: action.info.story,
       };
     case actionTypes.DELETE_CHARACTER:
       axios
         .delete(`/characters/${action.char}.json`)
         .then(() => ({ ...state, loading: true }))
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
       return {
         ...state,
         gender: "",
@@ -650,7 +650,7 @@ const reducer = (state = initialState, action) => {
           toughness: 10,
           intelligence: 10,
           willpower: 10,
-          charisma: 10
+          charisma: 10,
         },
         skills: {
           arcana: false,
@@ -668,11 +668,11 @@ const reducer = (state = initialState, action) => {
           religion: false,
           stealth: false,
           survival: false,
-          trickery: false
+          trickery: false,
         },
         traits: [],
         story: "",
-        loading: false
+        loading: false,
       };
     default:
       return state;

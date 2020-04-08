@@ -1,6 +1,6 @@
-import * as actionTypes from "./actions/actions";
-import blank from "../images/blank_01.png";
-import axios from "../axios-characters";
+import * as actionTypes from "../actions/data";
+import blank from "../../images/blank_01.png";
+import axios from "../../axios-characters";
 
 const initialState = {
   active: "start",

@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actionTypes from "../store/actions/actions";
+import { passState, closeModal, moveBack } from "../store/actions/ui";
+import {
+  selectGender,
+  selectRace,
+  selectClass,
+  submitName,
+  selectBackground,
+  selectAvatar,
+  increaseAttribute,
+  decreaseAttribute,
+  applyAttributes,
+  applySkills,
+  applyTraits,
+  applyStory,
+} from "../store/actions/steps";
+import { newCharacter, saveCharacter, displayCharacter, deleteCharacter } from "../store/actions/data";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -120,107 +135,25 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPassState: (active) => {
-      dispatch({
-        type: actionTypes.PASS_STATE,
-        active: active,
-      });
-    },
-    onModalClose: () =>
-      dispatch({
-        type: actionTypes.CLOSE_MODAL,
-      }),
-    onMoveBack: () => {
-      dispatch({
-        type: actionTypes.MOVE_BACK,
-      });
-    },
-    onGenderSelect: (gender) => {
-      dispatch({
-        type: actionTypes.SELECT_GENDER,
-        gender: gender,
-      });
-    },
-    onRaceSelect: (races) =>
-      dispatch({
-        type: actionTypes.SELECT_RACE,
-        race: races,
-      }),
-    onClassSelect: (classes) =>
-      dispatch({
-        type: actionTypes.SELECT_CLASS,
-        class: classes,
-      }),
-    onNameSubmit: (name) =>
-      dispatch({
-        type: actionTypes.SUBMIT_NAME,
-        name: name,
-      }),
-    onBackgroundSelect: (bgd, e) =>
-      dispatch({
-        type: actionTypes.SELECT_BACKGROUND,
-        background: bgd,
-        event: e,
-      }),
-    onAvatarSelect: (avatar) =>
-      dispatch({
-        type: actionTypes.SELECT_AVATAR,
-        avatar: avatar,
-      }),
-    onAttributeIncrease: (attrName) =>
-      dispatch({
-        type: actionTypes.INCREASE_ATTRIBUTE,
-        attributeName: attrName,
-      }),
-    onAttributeDecrease: (attrName) =>
-      dispatch({
-        type: actionTypes.DECREASE_ATTRIBUTE,
-        attributeName: attrName,
-      }),
-    onApplyAttributes: () =>
-      dispatch({
-        type: actionTypes.APPLY_ATTRIBUTES,
-      }),
-    onApplySkills: (skills, pool) =>
-      dispatch({
-        type: actionTypes.APPLY_SKILLS,
-        skills: skills,
-        skillsPool: pool,
-      }),
-    onApplyTraits: (traits) =>
-      dispatch({
-        type: actionTypes.APPLY_TRAITS,
-        traits: traits,
-      }),
-    onApplyStory: (e, story) => {
-      dispatch({
-        type: actionTypes.APPLY_STORY,
-        story: story,
-        event: e,
-      });
-    },
-    onNewCharacter: () => {
-      dispatch({
-        type: actionTypes.NEW_CHARACTER,
-      });
-    },
-    onSaveCharacter: () => {
-      dispatch({
-        type: actionTypes.SAVE_CHARACTER,
-      });
-    },
-    onCharacterDisplay: (char) => {
-      dispatch({
-        type: actionTypes.DISPLAY_CHARACTER,
-        info: char,
-      });
-    },
-    onCharacterDelete: (char) => {
-      dispatch({
-        type: actionTypes.DELETE_CHARACTER,
-        char: char,
-      });
-    },
+    onPassState: (active) => dispatch(passState(active)),
+    onModalClose: () => dispatch(closeModal()),
+    onMoveBack: () => dispatch(moveBack()),
+    onGenderSelect: (gender) => dispatch(selectGender(gender)),
+    onRaceSelect: (races) => dispatch(selectRace(races)),
+    onClassSelect: (classes) => dispatch(selectClass(classes)),
+    onNameSubmit: (name) => dispatch(submitName(name)),
+    onBackgroundSelect: (bgd, e) => dispatch(selectBackground(bgd, e)),
+    onAvatarSelect: (avatar) => dispatch(selectAvatar(avatar)),
+    onAttributeIncrease: (attrName) => dispatch(increaseAttribute(attrName)),
+    onAttributeDecrease: (attrName) => dispatch(decreaseAttribute(attrName)),
+    onApplyAttributes: () => dispatch(applyAttributes()),
+    onApplySkills: (skills, pool) => dispatch(applySkills(skills, pool)),
+    onApplyTraits: (traits) => dispatch(applyTraits(traits)),
+    onApplyStory: (e, story) => dispatch(applyStory(e, story)),
+    onNewCharacter: () => dispatch(newCharacter()),
+    onSaveCharacter: () => dispatch(saveCharacter()),
+    onCharacterDisplay: (char) => dispatch(displayCharacter(char)),
+    onCharacterDelete: (char) => dispatch(deleteCharacter(char)),
   };
 };
 

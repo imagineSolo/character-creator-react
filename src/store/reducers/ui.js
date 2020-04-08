@@ -1,5 +1,5 @@
-import * as actionTypes from "./actions/actions";
-import blank from "../images/blank_01.png";
+import * as actionTypes from "../actions/ui";
+import blank from "../../images/blank_01.png";
 
 const initialState = {
   active: "start",

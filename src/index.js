@@ -4,9 +4,15 @@ import "./index.module.scss";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import registerServiceWorker from "./registerServiceWorker";
 import reducer from "./store/reducer";
+
+const rootReducer = combineReducers({
+  ui: 
+  steps:
+  data: 
+})
 
 const store = createStore(reducer);
 

@@ -1,6 +1,5 @@
-import * as actionTypes from "./actions";
+import * as actionTypes from "./actions/actions";
 import blank from "../images/blank_01.png";
-import axios from "../axios-characters";
 
 const initialState = {
   active: "start",
@@ -48,97 +47,8 @@ const initialState = {
   saving: false,
 };
 
-const reducer = (state = initialState, action) => {
+const steps = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.PASS_STATE:
-      return {
-        ...state,
-        active: action.active,
-      };
-    case actionTypes.CLOSE_MODAL:
-      return {
-        ...state,
-        modal: {
-          ...state.modal,
-          show: false,
-        },
-      };
-    case actionTypes.MOVE_BACK:
-      if (state.active === "gender") {
-        return {
-          ...state,
-          active: "start",
-          gender: "",
-        };
-      }
-      if (state.active === "race") {
-        return {
-          ...state,
-          active: "gender",
-          gender: "",
-          race: "",
-        };
-      }
-      if (state.active === "class") {
-        return {
-          ...state,
-          active: "race",
-          race: "",
-          class: "",
-        };
-      }
-      if (state.active === "name") {
-        return {
-          ...state,
-          active: "class",
-          name: "",
-          class: "",
-        };
-      }
-      if (state.active === "background") {
-        return {
-          ...state,
-          active: "name",
-          name: "",
-          background: "",
-        };
-      }
-      if (state.active === "avatar") {
-        return {
-          ...state,
-          active: "background",
-          background: "",
-          avatar: blank,
-        };
-      }
-      if (state.active === "attributes") {
-        return {
-          ...state,
-          active: "avatar",
-          avatar: blank,
-        };
-      }
-      if (state.active === "skills") {
-        return {
-          ...state,
-          active: "attributes",
-        };
-      }
-      if (state.active === "traits") {
-        return {
-          ...state,
-          active: "skills",
-          traits: [],
-        };
-      }
-      if (state.active === "story") {
-        return {
-          ...state,
-          active: "traits",
-          story: [],
-        };
-      }
-      break;
     case actionTypes.SELECT_GENDER:
       if (action.gender === "female") {
         return {
@@ -551,132 +461,9 @@ const reducer = (state = initialState, action) => {
         active: "summary",
         story: action.story,
       };
-    case actionTypes.NEW_CHARACTER:
-      return {
-        ...state,
-        active: "start",
-        gender: "",
-        race: "",
-        class: "",
-        name: "",
-        background: "",
-        avatar: blank,
-        attributes: {
-          strength: 10,
-          dexterity: 10,
-          toughness: 10,
-          intelligence: 10,
-          willpower: 10,
-          charisma: 10,
-        },
-        attributesPool: 5,
-        skills: {
-          arcana: false,
-          athletics: false,
-          crafting: false,
-          deception: false,
-          history: false,
-          intimidation: false,
-          investigation: false,
-          medicine: false,
-          nature: false,
-          perception: false,
-          performance: false,
-          persuasion: false,
-          religion: false,
-          stealth: false,
-          survival: false,
-          trickery: false,
-        },
-        skillsPool: 3,
-        traits: [],
-        story: "",
-      };
-    case actionTypes.SAVE_CHARACTER:
-      const character = {
-        gender: state.gender,
-        race: state.race,
-        class: state.class,
-        name: state.name,
-        background: state.background,
-        avatar: state.avatar,
-        attributes: state.attributes,
-        skills: state.skills,
-        traits: state.traits,
-        story: state.story,
-      };
-      axios
-        .post("/characters.json", character)
-        .then(() => ({ ...state, loading: true }))
-        .then(() => this.props.history.pathname.push("/saved"))
-        .catch((error) => console.log(error));
-      return {
-        ...state,
-        active: "saved",
-        loading: false,
-        saving: true,
-      };
-    case actionTypes.DISPLAY_CHARACTER:
-      return {
-        ...state,
-        active: "start",
-        gender: action.info.gender,
-        race: action.info.race,
-        class: action.info.class,
-        name: action.info.name,
-        background: action.info.background,
-        avatar: action.info.avatar,
-        attributes: action.info.attributes,
-        skills: action.info.skills,
-        traits: action.info.traits,
-        story: action.info.story,
-      };
-    case actionTypes.DELETE_CHARACTER:
-      axios
-        .delete(`/characters/${action.char}.json`)
-        .then(() => ({ ...state, loading: true }))
-        .catch((error) => console.log(error));
-      return {
-        ...state,
-        gender: "",
-        race: "",
-        class: "",
-        name: "",
-        background: "",
-        avatar: blank,
-        attributes: {
-          strength: 10,
-          dexterity: 10,
-          toughness: 10,
-          intelligence: 10,
-          willpower: 10,
-          charisma: 10,
-        },
-        skills: {
-          arcana: false,
-          athletics: false,
-          crafting: false,
-          deception: false,
-          history: false,
-          intimidation: false,
-          investigation: false,
-          medicine: false,
-          nature: false,
-          perception: false,
-          performance: false,
-          persuasion: false,
-          religion: false,
-          stealth: false,
-          survival: false,
-          trickery: false,
-        },
-        traits: [],
-        story: "",
-        loading: false,
-      };
     default:
       return state;
   }
 };
 
-export default reducer;
+export default steps;

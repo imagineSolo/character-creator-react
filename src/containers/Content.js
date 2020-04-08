@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actionTypes from "../store/actions";
+import * as actionTypes from "../store/actions/actions";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -18,8 +18,8 @@ class Content extends Component {
     active: this.props.active,
     modal: {
       show: this.props.modal.show,
-      message: "Alert"
-    }
+      message: "Alert",
+    },
   };
 
   render() {
@@ -97,7 +97,7 @@ class Content extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     active: state.active,
     modal: state.modal,
@@ -114,113 +114,113 @@ const mapStateToProps = state => {
     traits: state.traits,
     story: state.story,
     loading: state.loading,
-    saving: state.saving
+    saving: state.saving,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onPassState: active => {
+    onPassState: (active) => {
       dispatch({
         type: actionTypes.PASS_STATE,
-        active: active
+        active: active,
       });
     },
     onModalClose: () =>
       dispatch({
-        type: actionTypes.CLOSE_MODAL
+        type: actionTypes.CLOSE_MODAL,
       }),
     onMoveBack: () => {
       dispatch({
-        type: actionTypes.MOVE_BACK
+        type: actionTypes.MOVE_BACK,
       });
     },
-    onGenderSelect: gender => {
+    onGenderSelect: (gender) => {
       dispatch({
         type: actionTypes.SELECT_GENDER,
-        gender: gender
+        gender: gender,
       });
     },
-    onRaceSelect: races =>
+    onRaceSelect: (races) =>
       dispatch({
         type: actionTypes.SELECT_RACE,
-        race: races
+        race: races,
       }),
-    onClassSelect: classes =>
+    onClassSelect: (classes) =>
       dispatch({
         type: actionTypes.SELECT_CLASS,
-        class: classes
+        class: classes,
       }),
-    onNameSubmit: name =>
+    onNameSubmit: (name) =>
       dispatch({
         type: actionTypes.SUBMIT_NAME,
-        name: name
+        name: name,
       }),
     onBackgroundSelect: (bgd, e) =>
       dispatch({
         type: actionTypes.SELECT_BACKGROUND,
         background: bgd,
-        event: e
+        event: e,
       }),
-    onAvatarSelect: avatar =>
+    onAvatarSelect: (avatar) =>
       dispatch({
         type: actionTypes.SELECT_AVATAR,
-        avatar: avatar
+        avatar: avatar,
       }),
-    onAttributeIncrease: attrName =>
+    onAttributeIncrease: (attrName) =>
       dispatch({
         type: actionTypes.INCREASE_ATTRIBUTE,
-        attributeName: attrName
+        attributeName: attrName,
       }),
-    onAttributeDecrease: attrName =>
+    onAttributeDecrease: (attrName) =>
       dispatch({
         type: actionTypes.DECREASE_ATTRIBUTE,
-        attributeName: attrName
+        attributeName: attrName,
       }),
     onApplyAttributes: () =>
       dispatch({
-        type: actionTypes.APPLY_ATTRIBUTES
+        type: actionTypes.APPLY_ATTRIBUTES,
       }),
     onApplySkills: (skills, pool) =>
       dispatch({
         type: actionTypes.APPLY_SKILLS,
         skills: skills,
-        skillsPool: pool
+        skillsPool: pool,
       }),
-    onApplyTraits: traits =>
+    onApplyTraits: (traits) =>
       dispatch({
         type: actionTypes.APPLY_TRAITS,
-        traits: traits
+        traits: traits,
       }),
     onApplyStory: (e, story) => {
       dispatch({
         type: actionTypes.APPLY_STORY,
         story: story,
-        event: e
+        event: e,
       });
     },
     onNewCharacter: () => {
       dispatch({
-        type: actionTypes.NEW_CHARACTER
+        type: actionTypes.NEW_CHARACTER,
       });
     },
     onSaveCharacter: () => {
       dispatch({
-        type: actionTypes.SAVE_CHARACTER
+        type: actionTypes.SAVE_CHARACTER,
       });
     },
-    onCharacterDisplay: char => {
+    onCharacterDisplay: (char) => {
       dispatch({
         type: actionTypes.DISPLAY_CHARACTER,
-        info: char
+        info: char,
       });
     },
-    onCharacterDelete: char => {
+    onCharacterDelete: (char) => {
       dispatch({
         type: actionTypes.DELETE_CHARACTER,
-        char: char
+        char: char,
       });
-    }
+    },
   };
 };
 

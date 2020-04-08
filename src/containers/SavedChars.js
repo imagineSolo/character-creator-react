@@ -36,6 +36,12 @@ class SavedChars extends Component {
     // });
   };
 
+  handleDeleteCharacter = (id) => {
+    return new Promise((resolve, reject) => {
+      this.props.delete(id).then(console.log("xxxxx"));
+    });
+  };
+
   // handleSetCharacters = (data) => {
   //   console.log("set state");
   //   this.setState({ characters: data, loading: false, newLength: this.state.characters.length });
@@ -69,7 +75,7 @@ class SavedChars extends Component {
           <div className={styles.Character} key={i} title="Select">
             <img src={char.avatar} alt="Portrait" onClick={() => this.props.display(this.state.characters[i])} />
             <span>{char.name}</span>
-            <div className={styles.Delete} title="Delete" onClick={() => this.props.delete(char.fbId)}>
+            <div className={styles.Delete} title="Delete" onClick={() => this.handleDeleteCharacter(char.fbId)}>
               x
             </div>
           </div>

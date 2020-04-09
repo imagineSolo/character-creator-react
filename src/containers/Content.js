@@ -54,7 +54,7 @@ class Content extends Component {
             <SavedChars display={this.props.onCharacterDisplay} delete={this.props.onCharacterDelete} />
           </Route>
           <Route path="/" exact>
-            <Modal modal={this.props.modal} clicked={this.props.onModalClose} />
+            <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
             <Steps
               active={this.props.active}
               undo={this.props.onMoveBack}
@@ -114,22 +114,22 @@ class Content extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    active: state.active,
-    modal: state.modal,
-    gender: state.gender,
-    race: state.race,
-    class: state.class,
-    name: state.name,
-    background: state.background,
-    avatar: state.avatar,
-    attr: state.attributes,
-    attrPool: state.attributesPool,
-    skills: state.skills,
-    skillsPool: state.skillsPool,
-    traits: state.traits,
-    story: state.story,
-    loading: state.loading,
-    saving: state.saving,
+    active: state.ui.active,
+    modal: state.ui.modal,
+    gender: state.steps.gender,
+    race: state.steps.race,
+    class: state.steps.class,
+    name: state.steps.name,
+    background: state.steps.background,
+    avatar: state.steps.avatar,
+    attr: state.steps.attributes,
+    attrPool: state.steps.attributesPool,
+    skills: state.steps.skills,
+    skillsPool: state.steps.skillsPool,
+    traits: state.steps.traits,
+    story: state.steps.story,
+    loading: state.data.loading,
+    saving: state.data.saving,
   };
 };
 

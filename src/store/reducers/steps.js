@@ -2,7 +2,6 @@ import * as actionTypes from "../actions/steps";
 import blank from "../../images/blank_01.png";
 
 const initialState = {
-  active: "start",
   gender: "",
   race: "",
   class: "",
@@ -39,12 +38,6 @@ const initialState = {
   skillsPool: 3,
   traits: [],
   story: "",
-  modal: {
-    show: false,
-    message: "Alert",
-  },
-  loading: false,
-  saving: false,
 };
 
 const steps = (state = initialState, action) => {

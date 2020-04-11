@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { passState, closeModal, moveBack } from "../store/actions/ui";
+import { activeWindowAction } from "../store/actions/active";
+import { closeModal, moveBack } from "../store/actions/ui";
 import {
   selectGender,
   selectRace,
@@ -28,6 +29,21 @@ import Spinner from "../components/Spinner/Spinner";
 // import ErrorHandler from "../containers/ErrorHandler";
 import styles from "../App.module.scss";
 
+const steps = [
+  "start",
+  "gender",
+  "race",
+  "class",
+  "name",
+  "background",
+  "avatar",
+  "attributes",
+  "skills",
+  "traits",
+  "story",
+  "summary",
+];
+
 class Content extends Component {
   state = {
     active: this.props.active,
@@ -35,6 +51,23 @@ class Content extends Component {
       show: this.props.modal.show,
       message: "Alert",
     },
+  };
+
+  handleActiveWindow = () => {
+    const index = steps.indexOf(this.props.active);
+    const nextStep = steps[index + 1];
+
+    this.props.onActiveWindow(nextStep);
+  };
+
+  handleUndo = (active) => {
+    if (this.props.active !== "start") {
+      const index = steps.indexOf(active);
+      const prevStep = steps[index - 1];
+
+      this.props.onActiveWindow(prevStep);
+      this.props.onMoveBack();
+    }
   };
 
   render() {
@@ -57,9 +90,12 @@ class Content extends Component {
             <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
             <Steps
               active={this.props.active}
-              undo={this.props.onMoveBack}
-              passAppState={this.props.onPassState}
-              selectGender={this.props.onGenderSelect}
+              undo={() => this.handleUndo()}
+              passActiveWindow={() => this.handleActiveWindow()}
+              selectGender={() => {
+                this.handleActiveWindow();
+                this.props.onGenderSelect();
+              }}
               selectRace={this.props.onRaceSelect}
               selectClass={this.props.onClassSelect}
               submitName={this.props.onNameSubmit}
@@ -114,7 +150,7 @@ class Content extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    active: state.ui.active,
+    active: state.active.active,
     modal: state.ui.modal,
     gender: state.steps.gender,
     race: state.steps.race,
@@ -135,7 +171,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPassState: (active) => dispatch(passState(active)),
+    onActiveWindow: (nextStep) => dispatch(activeWindowAction(nextStep)),
     onModalClose: () => dispatch(closeModal()),
     onMoveBack: () => dispatch(moveBack()),
     onGenderSelect: (gender) => dispatch(selectGender(gender)),

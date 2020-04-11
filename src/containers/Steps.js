@@ -15,22 +15,22 @@ class Steps extends Component {
   state = {
     name: "",
     background: "",
-    traits: []
+    traits: [],
   };
 
-  handleNameChange = e => {
+  handleNameChange = (e) => {
     e.preventDefault();
     this.setState({
       ...this.state,
-      name: e.target.value
+      name: e.target.value,
     });
   };
 
-  handleBackgroundChange = e => {
+  handleBackgroundChange = (e) => {
     e.preventDefault();
     this.setState({
       ...this.state,
-      background: e.target.value
+      background: e.target.value,
     });
   };
 
@@ -47,7 +47,7 @@ class Steps extends Component {
               <br />
               Enjoy & have fun!
             </p>
-            <button className={styles.Start} onClick={() => this.props.passAppState("gender")}>
+            <button className={styles.Start} onClick={() => this.props.passActiveWindow()}>
               Start
             </button>
           </section>
@@ -72,7 +72,7 @@ class Steps extends Component {
         {this.props.active === "background" && (
           <Background
             change={this.handleBackgroundChange}
-            submit={e => this.props.submitBackground(this.state.background, e)}
+            submit={(e) => this.props.submitBackground(this.state.background, e)}
             undo={() => this.props.undo(this.props.active)}
           />
         )}
@@ -80,7 +80,7 @@ class Steps extends Component {
           <Avatar
             gender={this.props.gender}
             race={this.props.race}
-            selectPortrait={el => this.props.selectPortrait(el)}
+            selectPortrait={(el) => this.props.selectPortrait(el)}
             undo={() => this.props.undo(this.props.active)}
           />
         )}

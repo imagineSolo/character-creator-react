@@ -46,13 +46,11 @@ const steps = (state = initialState, action) => {
       if (action.gender === "female") {
         return {
           ...state,
-          active: "race",
           gender: "Female",
         };
       } else if (action.gender === "male") {
         return {
           ...state,
-          active: "race",
           gender: "Male",
         };
       }
@@ -62,7 +60,6 @@ const steps = (state = initialState, action) => {
         case "Human":
           return {
             ...state,
-            active: "class",
             race: action.race,
             attributes: {
               ...state.attributes,
@@ -73,7 +70,6 @@ const steps = (state = initialState, action) => {
         case "Elf":
           return {
             ...state,
-            active: "class",
             race: action.race,
             attributes: {
               ...state.attributes,
@@ -85,7 +81,6 @@ const steps = (state = initialState, action) => {
         case "Dwarf":
           return {
             ...state,
-            active: "class",
             race: action.race,
             attributes: {
               ...state.attributes,
@@ -97,7 +92,6 @@ const steps = (state = initialState, action) => {
         case "Halfling":
           return {
             ...state,
-            active: "class",
             race: action.race,
             attributes: {
               ...state.attributes,
@@ -109,7 +103,6 @@ const steps = (state = initialState, action) => {
         case "Tiefling":
           return {
             ...state,
-            active: "class",
             race: action.race,
             attributes: {
               ...state.attributes,

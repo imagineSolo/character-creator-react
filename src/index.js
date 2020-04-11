@@ -10,12 +10,14 @@ import thunk from "redux-thunk";
 import uiReducer from "./store/reducers/ui";
 import stepsReducer from "./store/reducers/steps";
 import dataReducer from "./store/reducers/data";
+import activeReducer from "./store/reducers/active";
 import registerServiceWorker from "./registerServiceWorker";
 
 const rootReducer = combineReducers({
   ui: uiReducer,
   steps: stepsReducer,
   data: dataReducer,
+  active: activeReducer,
 });
 
 const middleware = (store) => {

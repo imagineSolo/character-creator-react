@@ -1,8 +1,8 @@
 import * as actionTypes from "../actions/ui";
 import blank from "../../images/blank_01.png";
+import { activeWindowAction } from "../actions/active";
 
 const initialState = {
-  active: "start",
   modal: {
     show: false,
     message: "Alert",
@@ -11,11 +11,6 @@ const initialState = {
 
 const ui = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.PASS_STATE:
-      return {
-        ...state,
-        active: action.active,
-      };
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,

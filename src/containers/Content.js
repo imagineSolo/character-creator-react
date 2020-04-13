@@ -60,13 +60,14 @@ class Content extends Component {
     this.props.onActiveWindow(nextStep);
   };
 
-  handleUndo = (active) => {
+  handleUndo = () => {
+    console.log(this.props.active);
     if (this.props.active !== "start") {
-      const index = steps.indexOf(active);
+      const index = steps.indexOf(this.props.active);
       const prevStep = steps[index - 1];
 
       this.props.onActiveWindow(prevStep);
-      this.props.onMoveBack();
+      // this.props.onMoveBack();
     }
   };
 

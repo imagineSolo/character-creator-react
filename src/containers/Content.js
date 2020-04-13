@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { activeWindowAction } from "../store/actions/active";
-import { closeModal, moveBack } from "../store/actions/ui";
+import { closeModal } from "../store/actions/ui";
 import {
+  moveBack,
   selectGender,
   selectRace,
   selectClass,
@@ -61,13 +62,12 @@ class Content extends Component {
   };
 
   handleUndo = () => {
-    console.log(this.props.active);
     if (this.props.active !== "start") {
       const index = steps.indexOf(this.props.active);
       const prevStep = steps[index - 1];
 
       this.props.onActiveWindow(prevStep);
-      // this.props.onMoveBack();
+      this.props.onMoveBack(prevStep);
     }
   };
 
@@ -198,10 +198,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onActiveWindow: (nextStep) => dispatch(activeWindowAction(nextStep)),
+    onActiveWindow: (step) => dispatch(activeWindowAction(step)),
     onModalClose: () => dispatch(closeModal()),
-    onMoveBack: () => dispatch(moveBack()),
 
+    onMoveBack: (step) => dispatch(moveBack(step)),
     onGenderSelect: (gender) => dispatch(selectGender(gender)),
     onRaceSelect: (races) => dispatch(selectRace(races)),
     onClassSelect: (classes) => dispatch(selectClass(classes)),

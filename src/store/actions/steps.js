@@ -1,3 +1,4 @@
+export const MOVE_BACK = "MOVE_BACK";
 export const SELECT_GENDER = "SELECT_GENDER";
 export const SELECT_RACE = "SELECT_RACE";
 export const SELECT_CLASS = "SELECT_CLASS";
@@ -10,6 +11,13 @@ export const APPLY_ATTRIBUTES = "APPLY_ATTRIBUTES";
 export const APPLY_SKILLS = "APPLY_SKILLS";
 export const APPLY_TRAITS = "APPLY_TRAITS";
 export const APPLY_STORY = "APPLY_STORY";
+
+export const moveBack = (active) => {
+  return {
+    type: MOVE_BACK,
+    active,
+  };
+};
 
 export const selectGender = (gndr) => {
   return {

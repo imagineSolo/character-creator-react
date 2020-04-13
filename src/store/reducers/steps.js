@@ -42,19 +42,36 @@ const initialState = {
 
 const steps = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SELECT_GENDER:
-      if (action.gender === "female") {
-        return {
-          ...state,
-          gender: "Female",
-        };
-      } else if (action.gender === "male") {
-        return {
-          ...state,
-          gender: "Male",
-        };
+    case actionTypes.MOVE_BACK:
+      switch (action.active) {
+        case "gender":
+          return { ...state, gender: "" };
+        case "race":
+          return { ...state, race: "" };
+        case "class":
+          return { ...state, class: "" };
+        case "name":
+          return { ...state, name: "" };
+        case "background":
+          return { ...state, background: "" };
+        case "avatar":
+          return { ...state, avatar: blank };
+        case "attributes":
+          return { ...state };
+        case "skills":
+          return { ...state, skillsPool: 0 };
+        case "traits":
+          return { ...state, traits: [] };
+        case "story":
+          return { ...state, story: "" };
+        default:
+          return state;
       }
-      break;
+    case actionTypes.SELECT_GENDER:
+      return {
+        ...state,
+        gender: action.gender,
+      };
     case actionTypes.SELECT_RACE:
       switch (action.race) {
         case "Human":

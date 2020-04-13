@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-const ui = (state = initialState, action) => {
+const ui = (state = initialState, action, step) => {
   switch (action.type) {
     case actionTypes.CLOSE_MODAL:
       return {

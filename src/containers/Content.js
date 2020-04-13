@@ -92,28 +92,54 @@ class Content extends Component {
               active={this.props.active}
               undo={() => this.handleUndo()}
               passActiveWindow={() => this.handleActiveWindow()}
-              selectGender={() => {
-                this.handleActiveWindow();
-                this.props.onGenderSelect();
-              }}
-              selectRace={this.props.onRaceSelect}
-              selectClass={this.props.onClassSelect}
-              submitName={this.props.onNameSubmit}
-              submitBackground={this.props.onBackgroundSelect}
               gender={this.props.gender}
               race={this.props.race}
-              selectPortrait={this.props.onAvatarSelect}
               attributes={this.props.attr}
               pool={this.props.attrPool}
               increment={this.props.onAttributeIncrease}
               decrement={this.props.onAttributeDecrease}
               skills={this.props.skills}
               skillsPool={this.props.skillsPool}
-              submitSkills={this.handleSkillsSubmit}
-              applyAttributes={this.props.onApplyAttributes}
-              applySkills={this.props.onApplySkills}
-              applyTraits={this.props.onApplyTraits}
-              applyStory={this.props.onApplyStory}
+              selectGender={(gender) => {
+                this.handleActiveWindow();
+                this.props.onGenderSelect(gender);
+              }}
+              selectRace={(races) => {
+                this.handleActiveWindow();
+                this.props.onRaceSelect(races);
+              }}
+              selectClass={(classes) => {
+                this.handleActiveWindow();
+                this.props.onClassSelect(classes);
+              }}
+              submitName={(name) => {
+                this.handleActiveWindow();
+                this.props.onNameSubmit(name);
+              }}
+              submitBackground={(bgd, e) => {
+                this.handleActiveWindow();
+                this.props.onBackgroundSelect(bgd, e);
+              }}
+              selectPortrait={(av) => {
+                this.handleActiveWindow();
+                this.props.onAvatarSelect(av);
+              }}
+              applyAttributes={(attr) => {
+                this.handleActiveWindow();
+                this.props.onApplyAttributes(attr);
+              }}
+              applySkills={(skills, pool) => {
+                this.handleActiveWindow();
+                this.props.onApplySkills(skills, pool);
+              }}
+              applyTraits={(traits) => {
+                this.handleActiveWindow();
+                this.props.onApplyTraits(traits);
+              }}
+              applyStory={(story, e) => {
+                this.handleActiveWindow();
+                this.props.onApplyStory(story, e);
+              }}
             />
           </Route>
         </Switch>
@@ -174,6 +200,7 @@ const mapDispatchToProps = (dispatch) => {
     onActiveWindow: (nextStep) => dispatch(activeWindowAction(nextStep)),
     onModalClose: () => dispatch(closeModal()),
     onMoveBack: () => dispatch(moveBack()),
+
     onGenderSelect: (gender) => dispatch(selectGender(gender)),
     onRaceSelect: (races) => dispatch(selectRace(races)),
     onClassSelect: (classes) => dispatch(selectClass(classes)),
@@ -185,7 +212,8 @@ const mapDispatchToProps = (dispatch) => {
     onApplyAttributes: () => dispatch(applyAttributes()),
     onApplySkills: (skills, pool) => dispatch(applySkills(skills, pool)),
     onApplyTraits: (traits) => dispatch(applyTraits(traits)),
-    onApplyStory: (e, story) => dispatch(applyStory(e, story)),
+    onApplyStory: (story, e) => dispatch(applyStory(e, story)),
+
     onNewCharacter: () => dispatch(newCharacter()),
     onSaveCharacter: () => dispatch(saveCharacter()),
     onCharacterDisplay: (char) => dispatch(displayCharacter(char)),

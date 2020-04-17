@@ -38,6 +38,8 @@ const initialState = {
   skillsPool: 3,
   traits: [],
   story: "",
+  loading: false,
+  saving: false,
 };
 
 const steps = (state = initialState, action) => {
@@ -68,10 +70,7 @@ const steps = (state = initialState, action) => {
           return state;
       }
     case actionTypes.SELECT_GENDER:
-      return {
-        ...state,
-        gender: action.gender,
-      };
+      return { ...state, gender: action.gender };
     case actionTypes.SELECT_RACE:
       switch (action.race) {
         case "Human":
@@ -209,11 +208,7 @@ const steps = (state = initialState, action) => {
           return state;
       }
     case actionTypes.SUBMIT_NAME:
-      return {
-        ...state,
-        active: "background",
-        name: action.name,
-      };
+      return { ...state, active: "background", name: action.name };
     case actionTypes.SELECT_BACKGROUND:
       action.event.preventDefault();
       if (!action.background) {
@@ -429,9 +424,7 @@ const steps = (state = initialState, action) => {
         }
         return newSkills;
       };
-
       const addedSkills = handleAddSkills(action.skills);
-
       if (action.skillsPool <= 0) {
         return {
           ...state,
@@ -452,17 +445,76 @@ const steps = (state = initialState, action) => {
         };
       }
     case actionTypes.APPLY_TRAITS:
-      return {
-        ...state,
-        active: "story",
-        traits: action.traits,
-      };
+      return { ...state, active: "story", traits: action.traits };
     case actionTypes.APPLY_STORY:
       action.event.preventDefault();
+      return { ...state, active: "summary", story: action.story };
+    case actionTypes.NEW_CHARACTER:
+      return state;
+    case actionTypes.SAVE_CHARACTER:
       return {
         ...state,
-        active: "summary",
-        story: action.story,
+        active: "saved",
+        loading: false,
+        saving: true,
+      };
+    case actionTypes.DISPLAY_CHARACTER:
+      return {
+        ...state,
+        gender: action.info.gender,
+        race: action.info.race,
+        class: action.info.class,
+        name: action.info.name,
+        background: action.info.background,
+        avatar: action.info.avatar,
+        attributes: action.info.attributes,
+        skills: action.info.skills,
+        traits: action.info.traits,
+        story: action.info.story,
+      };
+    case actionTypes.DELETE_CHARACTER:
+      // axios
+      //   .delete(`/characters/${action.char}.json`)
+      //   .then(() => ({ ...state, loading: true }))
+      //   .then()
+      //   .catch((error) => console.log(error));
+      return {
+        ...state,
+        gender: "",
+        race: "",
+        class: "",
+        name: "",
+        background: "",
+        avatar: blank,
+        attributes: {
+          strength: 10,
+          dexterity: 10,
+          toughness: 10,
+          intelligence: 10,
+          willpower: 10,
+          charisma: 10,
+        },
+        skills: {
+          arcana: false,
+          athletics: false,
+          crafting: false,
+          deception: false,
+          history: false,
+          intimidation: false,
+          investigation: false,
+          medicine: false,
+          nature: false,
+          perception: false,
+          performance: false,
+          persuasion: false,
+          religion: false,
+          stealth: false,
+          survival: false,
+          trickery: false,
+        },
+        traits: [],
+        story: "",
+        loading: false,
       };
     default:
       return state;

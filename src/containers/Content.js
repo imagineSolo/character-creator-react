@@ -3,22 +3,26 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { activeWindowAction } from "../store/actions/active";
 import { closeModal } from "../store/actions/ui";
-import {
-  moveBack,
-  selectGender,
-  selectRace,
-  selectClass,
-  submitName,
-  selectBackground,
-  selectAvatar,
-  increaseAttribute,
-  decreaseAttribute,
-  applyAttributes,
-  applySkills,
-  applyTraits,
-  applyStory,
-} from "../store/actions/steps";
-import { newCharacter, saveCharacter, displayCharacter, deleteCharacter } from "../store/actions/data";
+import * as actionCreators from "../store/actions/steps";
+// import {
+//   moveBack,
+//   selectGender,
+//   selectRace,
+//   selectClass,
+//   submitName,
+//   selectBackground,
+//   selectAvatar,
+//   increaseAttribute,
+//   decreaseAttribute,
+//   applyAttributes,
+//   applySkills,
+//   applyTraits,
+//   applyStory,
+//   newCharacter,
+//   saveCharacter,
+//   displayCharacter,
+//   deleteCharacter,
+// } from "../store/actions/steps";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -166,7 +170,7 @@ class Content extends Component {
         </div>
         <div
           className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
-          onClick={this.props.onSaveCharacter}
+          onClick={this.props.onSaveCharacter(this.props.character)}
         >
           Save Character
         </div>
@@ -191,8 +195,20 @@ const mapStateToProps = (state) => {
     skillsPool: state.steps.skillsPool,
     traits: state.steps.traits,
     story: state.steps.story,
-    loading: state.data.loading,
-    saving: state.data.saving,
+    character: {
+      gender: state.steps.gender,
+      race: state.steps.race,
+      class: state.steps.class,
+      name: state.steps.name,
+      background: state.steps.background,
+      avatar: state.steps.avatar,
+      attr: state.steps.attributes,
+      skills: state.steps.skills,
+      traits: state.steps.traits,
+      story: state.steps.story,
+    },
+    loading: state.steps.loading,
+    saving: state.steps.saving,
   };
 };
 
@@ -201,24 +217,24 @@ const mapDispatchToProps = (dispatch) => {
     onActiveWindow: (step) => dispatch(activeWindowAction(step)),
     onModalClose: () => dispatch(closeModal()),
 
-    onMoveBack: (step) => dispatch(moveBack(step)),
-    onGenderSelect: (gender) => dispatch(selectGender(gender)),
-    onRaceSelect: (races) => dispatch(selectRace(races)),
-    onClassSelect: (classes) => dispatch(selectClass(classes)),
-    onNameSubmit: (name) => dispatch(submitName(name)),
-    onBackgroundSelect: (bgd, e) => dispatch(selectBackground(bgd, e)),
-    onAvatarSelect: (avatar) => dispatch(selectAvatar(avatar)),
-    onAttributeIncrease: (attrName) => dispatch(increaseAttribute(attrName)),
-    onAttributeDecrease: (attrName) => dispatch(decreaseAttribute(attrName)),
-    onApplyAttributes: () => dispatch(applyAttributes()),
-    onApplySkills: (skills, pool) => dispatch(applySkills(skills, pool)),
-    onApplyTraits: (traits) => dispatch(applyTraits(traits)),
-    onApplyStory: (story, e) => dispatch(applyStory(e, story)),
+    onMoveBack: (step) => dispatch(actionCreators.moveBack(step)),
+    onGenderSelect: (gender) => dispatch(actionCreators.selectGender(gender)),
+    onRaceSelect: (races) => dispatch(actionCreators.selectRace(races)),
+    onClassSelect: (classes) => dispatch(actionCreators.selectClass(classes)),
+    onNameSubmit: (name) => dispatch(actionCreators.submitName(name)),
+    onBackgroundSelect: (bgd, e) => dispatch(actionCreators.selectBackground(bgd, e)),
+    onAvatarSelect: (avatar) => dispatch(actionCreators.selectAvatar(avatar)),
+    onAttributeIncrease: (attrName) => dispatch(actionCreators.increaseAttribute(attrName)),
+    onAttributeDecrease: (attrName) => dispatch(actionCreators.decreaseAttribute(attrName)),
+    onApplyAttributes: () => dispatch(actionCreators.applyAttributes()),
+    onApplySkills: (skills, pool) => dispatch(actionCreators.applySkills(skills, pool)),
+    onApplyTraits: (traits) => dispatch(actionCreators.applyTraits(traits)),
+    onApplyStory: (story, e) => dispatch(actionCreators.applyStory(e, story)),
 
-    onNewCharacter: () => dispatch(newCharacter()),
-    onSaveCharacter: () => dispatch(saveCharacter()),
-    onCharacterDisplay: (char) => dispatch(displayCharacter(char)),
-    onCharacterDelete: (char) => dispatch(deleteCharacter(char)),
+    onNewCharacter: () => dispatch(actionCreators.newCharacter()),
+    onSaveCharacter: (char) => dispatch(actionCreators.saveCharacter(char)),
+    onCharacterDisplay: (char) => dispatch(actionCreators.displayCharacter(char)),
+    onCharacterDelete: (char) => dispatch(actionCreators.deleteCharacter(char)),
   };
 };
 

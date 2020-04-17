@@ -7,11 +7,9 @@ class SavedChars extends Component {
   state = {
     characters: [],
     loading: true,
-    // newLength: 0,
   };
 
   handleLoadCharacters = () => {
-    // return new Promise(function (resolve, reject) {
     console.log("load from database");
     let data = [];
     axios
@@ -24,16 +22,9 @@ class SavedChars extends Component {
           };
           data.push(char);
         }
-        // return data;
         this.setState({ characters: data, loading: false });
       })
       .catch((error) => console.log(error));
-    //   if (data) {
-    //     resolve();
-    //   } else {
-    //     reject("Error: Something went wrong");
-    //   }
-    // });
   };
 
   handleDeleteCharacter = (id) => {
@@ -42,17 +33,8 @@ class SavedChars extends Component {
     });
   };
 
-  // handleSetCharacters = (data) => {
-  //   console.log("set state");
-  //   this.setState({ characters: data, loading: false, newLength: this.state.characters.length });
-  // };
-
   componentDidMount() {
     this.handleLoadCharacters();
-    // .then((data) => this.handleSetCharacters(data))
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   }
 
   componentDidUpdate(prevProps, prevState) {

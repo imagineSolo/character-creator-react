@@ -1,3 +1,5 @@
+import axios from "../../axios-characters";
+
 export const MOVE_BACK = "MOVE_BACK";
 export const SELECT_GENDER = "SELECT_GENDER";
 export const SELECT_RACE = "SELECT_RACE";
@@ -11,6 +13,11 @@ export const APPLY_ATTRIBUTES = "APPLY_ATTRIBUTES";
 export const APPLY_SKILLS = "APPLY_SKILLS";
 export const APPLY_TRAITS = "APPLY_TRAITS";
 export const APPLY_STORY = "APPLY_STORY";
+export const NEW_CHARACTER = "NEW_CHARACTER";
+export const SET_CHARACTER = "SET_CHARACTER";
+export const SAVE_CHARACTER = "SAVE_CHARACTER";
+export const DISPLAY_CHARACTER = "DISPLAY_CHARACTER";
+export const DELETE_CHARACTER = "DELETE_CHARACTER";
 
 export const moveBack = (active) => {
   return {
@@ -102,5 +109,41 @@ export const applyStory = (story, e) => {
     type: APPLY_STORY,
     story: story,
     event: e,
+  };
+};
+
+export const newCharacter = () => {
+  return {
+    type: NEW_CHARACTER,
+  };
+};
+
+export const setCharacter = (character) => {
+  return {
+    type: SET_CHARACTER,
+    character,
+  };
+};
+
+export const saveCharacter = (char) => {
+  return (dispatch) => {
+    axios
+      .post("/characters.json", char)
+      .then(() => this.props.history.pathname.push("/saved"))
+      .catch((error) => console.log(error));
+  };
+};
+
+export const displayCharacter = (char) => {
+  return {
+    type: DISPLAY_CHARACTER,
+    info: char,
+  };
+};
+
+export const deleteCharacter = (char) => {
+  return {
+    type: DELETE_CHARACTER,
+    char: char,
   };
 };

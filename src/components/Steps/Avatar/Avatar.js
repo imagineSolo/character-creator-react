@@ -85,31 +85,32 @@ class Avatar extends Component {
       TM_01,
       TM_02,
       TM_03,
-      TM_04
+      TM_04,
     ],
-    filtered: []
+    filtered: [],
   };
 
   loadPortraits = () => {
+    console.log("loading portraits...");
     let portraits = this.state.portraits;
     let filteredPortraits = portraits;
     switch (this.props.gender) {
       case "Female":
         switch (this.props.race) {
           case "Human":
-            filteredPortraits = portraits.filter(img => img.indexOf("HF") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("HF") > -1);
             break;
           case "Dwarf":
-            filteredPortraits = portraits.filter(img => img.indexOf("DF") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("DF") > -1);
             break;
           case "Elf":
-            filteredPortraits = portraits.filter(img => img.indexOf("EF") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("EF") > -1);
             break;
           case "Halfling":
-            filteredPortraits = portraits.filter(img => img.indexOf("HLF") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("HLF") > -1);
             break;
           case "Tiefling":
-            filteredPortraits = portraits.filter(img => img.indexOf("TF") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("TF") > -1);
             break;
           default:
             return;
@@ -118,19 +119,19 @@ class Avatar extends Component {
       case "Male":
         switch (this.props.race) {
           case "Human":
-            filteredPortraits = portraits.filter(img => img.indexOf("HM") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("HM") > -1);
             break;
           case "Dwarf":
-            filteredPortraits = portraits.filter(img => img.indexOf("DM") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("DM") > -1);
             break;
           case "Elf":
-            filteredPortraits = portraits.filter(img => img.indexOf("EM") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("EM") > -1);
             break;
           case "Halfling":
-            filteredPortraits = portraits.filter(img => img.indexOf("HLM") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("HLM") > -1);
             break;
           case "Tiefling":
-            filteredPortraits = portraits.filter(img => img.indexOf("TM") > -1);
+            filteredPortraits = portraits.filter((img) => img.indexOf("TM") > -1);
             break;
           default:
             return;
@@ -140,7 +141,7 @@ class Avatar extends Component {
         return;
     }
     this.setState({
-      filtered: filteredPortraits
+      filtered: filteredPortraits,
     });
   };
 
@@ -152,7 +153,7 @@ class Avatar extends Component {
     const mappedPortraits = this.state.filtered.map((el, index) => {
       return (
         <div key={index}>
-          <img src={el} key={index} alt="Portrait" onClick={e => this.props.selectPortrait(e.target.src)} />
+          <img src={el} key={index} alt="Portrait" onClick={(e) => this.props.selectPortrait(e.target.src)} />
         </div>
       );
     });

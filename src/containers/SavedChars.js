@@ -10,7 +10,6 @@ class SavedChars extends Component {
   };
 
   handleLoadCharacters = () => {
-    console.log("load from database");
     let data = [];
     axios
       .get("https://character-creator-react.firebaseio.com/characters.json")

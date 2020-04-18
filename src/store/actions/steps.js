@@ -120,18 +120,17 @@ export const newCharacter = () => {
 
 export const setCharacter = (character) => {
   return {
-    type: SET_CHARACTER,
+    type: SAVE_CHARACTER,
     character,
   };
 };
 
 export const saveCharacter = (char) => {
-  console.log(char);
   return (dispatch) => {
     axios
       .post("/characters.json", char)
-      .then((dispatch) => {
-        setCharacter(char);
+      .then(() => {
+        dispatch(setCharacter(char));
       })
       // .then(() => this.props.history.pathname.push("/saved"))
       .catch((error) => console.log(error));

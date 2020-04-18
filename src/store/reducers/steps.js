@@ -400,10 +400,7 @@ const steps = (state = initialState, action) => {
       }
     case actionTypes.APPLY_ATTRIBUTES:
       if (state.attributesPool <= 0) {
-        return {
-          ...state,
-          active: "skills",
-        };
+        return { ...state };
       } else {
         return {
           ...state,
@@ -428,7 +425,6 @@ const steps = (state = initialState, action) => {
       if (action.skillsPool <= 0) {
         return {
           ...state,
-          active: "traits",
           skills: {
             ...state.skills,
             ...addedSkills,
@@ -445,19 +441,14 @@ const steps = (state = initialState, action) => {
         };
       }
     case actionTypes.APPLY_TRAITS:
-      return { ...state, active: "story", traits: action.traits };
+      return { ...state, traits: action.traits };
     case actionTypes.APPLY_STORY:
       action.event.preventDefault();
-      return { ...state, active: "summary", story: action.story };
+      return { ...state, story: action.story };
     case actionTypes.NEW_CHARACTER:
       return state;
     case actionTypes.SAVE_CHARACTER:
-      return {
-        ...state,
-        active: "saved",
-        loading: false,
-        saving: true,
-      };
+      return { ...state, loading: false, saving: true };
     case actionTypes.DISPLAY_CHARACTER:
       return {
         ...state,

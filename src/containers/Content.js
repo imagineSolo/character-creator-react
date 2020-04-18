@@ -1,28 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { activeWindowAction } from "../store/actions/active";
 import { closeModal } from "../store/actions/ui";
 import * as actionCreators from "../store/actions/steps";
-// import {
-//   moveBack,
-//   selectGender,
-//   selectRace,
-//   selectClass,
-//   submitName,
-//   selectBackground,
-//   selectAvatar,
-//   increaseAttribute,
-//   decreaseAttribute,
-//   applyAttributes,
-//   applySkills,
-//   applyTraits,
-//   applyStory,
-//   newCharacter,
-//   saveCharacter,
-//   displayCharacter,
-//   deleteCharacter,
-// } from "../store/actions/steps";
 
 import Modal from "../components/Modal/Modal";
 import Header from "./Header";
@@ -202,7 +184,7 @@ const mapStateToProps = (state) => {
       name: state.steps.name,
       background: state.steps.background,
       avatar: state.steps.avatar,
-      attr: state.steps.attributes,
+      attributes: state.steps.attributes,
       skills: state.steps.skills,
       traits: state.steps.traits,
       story: state.steps.story,

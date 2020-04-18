@@ -20,7 +20,9 @@ class SavedChars extends Component {
             ...response.data[key],
             fbId: key,
           };
-          data.push(char);
+          if (char.name !== "") {
+            data.push(char);
+          }
         }
         this.setState({ characters: data, loading: false });
       })
@@ -29,7 +31,7 @@ class SavedChars extends Component {
 
   handleDeleteCharacter = (id) => {
     return new Promise((resolve, reject) => {
-      this.props.delete(id).then(console.log("xxxxx"));
+      this.props.delete(id).then(console.log("delete"));
     });
   };
 

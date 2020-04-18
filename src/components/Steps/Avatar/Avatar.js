@@ -91,11 +91,10 @@ class Avatar extends Component {
   };
 
   loadPortraits = () => {
-    console.log("loading portraits...");
     let portraits = this.state.portraits;
     let filteredPortraits = portraits;
     switch (this.props.gender) {
-      case "Female":
+      case "female":
         switch (this.props.race) {
           case "Human":
             filteredPortraits = portraits.filter((img) => img.indexOf("HF") > -1);
@@ -116,7 +115,7 @@ class Avatar extends Component {
             return;
         }
         break;
-      case "Male":
+      case "male":
         switch (this.props.race) {
           case "Human":
             filteredPortraits = portraits.filter((img) => img.indexOf("HM") > -1);

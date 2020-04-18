@@ -36,7 +36,7 @@ export const selectGender = (gndr) => {
 export const selectRace = (race) => {
   return {
     type: SELECT_RACE,
-    race: race,
+    race,
   };
 };
 
@@ -92,7 +92,7 @@ export const applyAttributes = () => {
 export const applySkills = (skills, pool) => {
   return {
     type: APPLY_SKILLS,
-    skills: skills,
+    skills,
     skillsPool: pool,
   };
 };
@@ -100,14 +100,14 @@ export const applySkills = (skills, pool) => {
 export const applyTraits = (traits) => {
   return {
     type: APPLY_TRAITS,
-    traits: traits,
+    traits,
   };
 };
 
 export const applyStory = (story, e) => {
   return {
     type: APPLY_STORY,
-    story: story,
+    story,
     event: e,
   };
 };
@@ -126,10 +126,14 @@ export const setCharacter = (character) => {
 };
 
 export const saveCharacter = (char) => {
+  console.log(char);
   return (dispatch) => {
     axios
       .post("/characters.json", char)
-      .then(() => this.props.history.pathname.push("/saved"))
+      .then((dispatch) => {
+        setCharacter(char);
+      })
+      // .then(() => this.props.history.pathname.push("/saved"))
       .catch((error) => console.log(error));
   };
 };

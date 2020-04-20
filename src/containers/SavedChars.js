@@ -39,13 +39,7 @@ class SavedChars extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("current state: " + this.state.characters.length);
-    console.log("previous state: " + prevState.characters.length);
-
     if (this.state.characters.length !== prevState.characters.length) {
-      console.log("update: " + this.state.characters.length);
-      console.log("update: " + prevState.characters.length);
-
       this.handleLoadCharacters();
     }
   }

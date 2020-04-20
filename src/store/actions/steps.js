@@ -132,7 +132,7 @@ export const saveCharacter = (char) => {
       .then(() => {
         dispatch(setCharacter(char));
       })
-      // .then(() => this.props.history.pathname.push("/saved"))
+      .then(() => this.props.history.push("/saved"))
       .catch((error) => console.log(error));
   };
 };
@@ -144,9 +144,21 @@ export const displayCharacter = (char) => {
   };
 };
 
-export const deleteCharacter = (char) => {
+export const chooseCharacter = (char) => {
   return {
     type: DELETE_CHARACTER,
     char: char,
+  };
+};
+
+export const deleteCharacter = (char) => {
+  console.log(char);
+  return (dispatch) => {
+    axios
+      .delete(`/characters/${char}.json`)
+      .then(() => {
+        dispatch(chooseCharacter(char));
+      })
+      .catch((error) => console.log(error));
   };
 };

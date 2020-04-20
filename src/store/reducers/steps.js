@@ -448,7 +448,7 @@ const steps = (state = initialState, action) => {
     case actionTypes.NEW_CHARACTER:
       return state;
     case actionTypes.SAVE_CHARACTER:
-      return { ...state, loading: false, saving: true };
+      return { ...state, saving: true };
     case actionTypes.DISPLAY_CHARACTER:
       return {
         ...state,
@@ -464,11 +464,6 @@ const steps = (state = initialState, action) => {
         story: action.info.story,
       };
     case actionTypes.DELETE_CHARACTER:
-      // axios
-      //   .delete(`/characters/${action.char}.json`)
-      //   .then(() => ({ ...state, loading: true }))
-      //   .then()
-      //   .catch((error) => console.log(error));
       return {
         ...state,
         gender: "",
@@ -505,7 +500,6 @@ const steps = (state = initialState, action) => {
         },
         traits: [],
         story: "",
-        loading: false,
       };
     default:
       return state;

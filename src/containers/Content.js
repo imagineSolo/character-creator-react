@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { activeWindowAction } from "../store/actions/active";
@@ -58,8 +58,9 @@ class Content extends Component {
   };
 
   render() {
-    if (this.props.saving === true) {
-      return <Redirect to="/saved" />;
+    let redirect = null;
+    if (this.props.saving) {
+      redirect = <Redirect to="/saved" />;
     }
 
     return (
@@ -69,66 +70,73 @@ class Content extends Component {
           <Nav />
         </div>
         {this.props.loading ? <Spinner /> : null}
+        <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
         <Switch>
-          <Route path="/saved" exact>
-            <SavedChars display={this.props.onCharacterDisplay} delete={this.props.onCharacterDelete} />
-          </Route>
-          <Route path="/" exact>
-            <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
-            <Steps
-              active={this.props.active}
-              undo={() => this.handleUndo()}
-              passActiveWindow={() => this.handleActiveWindow()}
-              gender={this.props.gender}
-              race={this.props.race}
-              attributes={this.props.attr}
-              pool={this.props.attrPool}
-              increment={this.props.onAttributeIncrease}
-              decrement={this.props.onAttributeDecrease}
-              skills={this.props.skills}
-              skillsPool={this.props.skillsPool}
-              selectGender={(gender) => {
-                this.handleActiveWindow();
-                this.props.onGenderSelect(gender);
-              }}
-              selectRace={(races) => {
-                this.handleActiveWindow();
-                this.props.onRaceSelect(races);
-              }}
-              selectClass={(classes) => {
-                this.handleActiveWindow();
-                this.props.onClassSelect(classes);
-              }}
-              submitName={(name) => {
-                this.handleActiveWindow();
-                this.props.onNameSubmit(name);
-              }}
-              submitBackground={(bgd, e) => {
-                this.handleActiveWindow();
-                this.props.onBackgroundSelect(bgd, e);
-              }}
-              selectPortrait={(av) => {
-                this.handleActiveWindow();
-                this.props.onAvatarSelect(av);
-              }}
-              applyAttributes={(attr) => {
-                this.handleActiveWindow();
-                this.props.onApplyAttributes(attr);
-              }}
-              applySkills={(skills, pool) => {
-                this.handleActiveWindow();
-                this.props.onApplySkills(skills, pool);
-              }}
-              applyTraits={(traits) => {
-                this.handleActiveWindow();
-                this.props.onApplyTraits(traits);
-              }}
-              applyStory={(story, e) => {
-                this.handleActiveWindow();
-                this.props.onApplyStory(story, e);
-              }}
-            />
-          </Route>
+          {redirect}
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Steps
+                active={this.props.active}
+                undo={() => this.handleUndo()}
+                passActiveWindow={() => this.handleActiveWindow()}
+                gender={this.props.gender}
+                race={this.props.race}
+                attributes={this.props.attr}
+                pool={this.props.attrPool}
+                increment={this.props.onAttributeIncrease}
+                decrement={this.props.onAttributeDecrease}
+                skills={this.props.skills}
+                skillsPool={this.props.skillsPool}
+                selectGender={(gender) => {
+                  this.handleActiveWindow();
+                  this.props.onGenderSelect(gender);
+                }}
+                selectRace={(races) => {
+                  this.handleActiveWindow();
+                  this.props.onRaceSelect(races);
+                }}
+                selectClass={(classes) => {
+                  this.handleActiveWindow();
+                  this.props.onClassSelect(classes);
+                }}
+                submitName={(name) => {
+                  this.handleActiveWindow();
+                  this.props.onNameSubmit(name);
+                }}
+                submitBackground={(bgd, e) => {
+                  this.handleActiveWindow();
+                  this.props.onBackgroundSelect(bgd, e);
+                }}
+                selectPortrait={(av) => {
+                  this.handleActiveWindow();
+                  this.props.onAvatarSelect(av);
+                }}
+                applyAttributes={(attr) => {
+                  this.handleActiveWindow();
+                  this.props.onApplyAttributes(attr);
+                }}
+                applySkills={(skills, pool) => {
+                  this.handleActiveWindow();
+                  this.props.onApplySkills(skills, pool);
+                }}
+                applyTraits={(traits) => {
+                  this.handleActiveWindow();
+                  this.props.onApplyTraits(traits);
+                }}
+                applyStory={(story, e) => {
+                  this.handleActiveWindow();
+                  this.props.onApplyStory(story, e);
+                }}
+              />
+            )}
+          />
+          <Route
+            path="/saved"
+            exact
+            render={() => <SavedChars display={this.props.onCharacterDisplay} delete={this.props.onCharacterDelete} />}
+          />
         </Switch>
 
         <CharSheet
@@ -144,18 +152,20 @@ class Content extends Component {
           traits={this.props.traits}
           story={this.props.story}
         />
-        <div
+        <Link
+          to="/"
           className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}
           onClick={this.props.onNewCharacter}
         >
-          <a href="/">New Character</a>
-        </div>
-        <div
+          <span>New Character</span>
+        </Link>
+        <Link
+          to="/saved"
           className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
-          onClick={this.props.onSaveCharacter(this.props.character)}
+          onClick={() => this.props.onSaveCharacter(this.props.character)}
         >
-          Save Character
-        </div>
+          <span>Save Character</span>
+        </Link>
       </div>
     );
   }

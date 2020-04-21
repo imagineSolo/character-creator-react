@@ -18,6 +18,7 @@ export const SET_CHARACTER = "SET_CHARACTER";
 export const SAVE_CHARACTER = "SAVE_CHARACTER";
 export const DISPLAY_CHARACTER = "DISPLAY_CHARACTER";
 export const DELETE_CHARACTER = "DELETE_CHARACTER";
+export const CLEAR_CHARACTER = "CLEAR_CHARACTER";
 
 export const moveBack = (active) => {
   return {
@@ -160,5 +161,11 @@ export const deleteCharacter = (char) => {
         dispatch(chooseCharacter(char));
       })
       .catch((error) => console.log(error));
+  };
+};
+
+export const clearCharacter = () => {
+  return {
+    type: CLEAR_CHARACTER,
   };
 };

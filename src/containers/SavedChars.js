@@ -9,6 +9,20 @@ class SavedChars extends Component {
     loading: true,
   };
 
+  componentDidMount() {
+    this.handleLoadCharacters();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.characters.length !== prevState.characters.length) {
+      this.handleLoadCharacters();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.clear();
+  }
+
   handleLoadCharacters = () => {
     let data = [];
     axios
@@ -33,16 +47,6 @@ class SavedChars extends Component {
       this.props.delete(id).then(console.log("delete"));
     });
   };
-
-  componentDidMount() {
-    this.handleLoadCharacters();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.characters.length !== prevState.characters.length) {
-      this.handleLoadCharacters();
-    }
-  }
 
   render() {
     let characters = <p>No characters</p>;

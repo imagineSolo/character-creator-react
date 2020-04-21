@@ -20,28 +20,28 @@ const skills = [
   "Religion",
   "Stealth",
   "Survival",
-  "Trickery"
+  "Trickery",
 ];
 
 class CharSheet extends Component {
   state = {
-    draw: false
+    draw: false,
   };
 
   drawOut = () => {
     this.setState({
-      draw: !this.state.draw
+      draw: !this.state.draw,
     });
   };
 
   render() {
     const summary = {
       left: "10vw",
-      transition: "ease-in-out 1.5s"
+      transition: "ease-in-out 1.5s",
     };
 
     const draw = {
-      display: "none"
+      display: "none",
     };
 
     const mappedInfo = info.map((info, index) => (

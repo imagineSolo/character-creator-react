@@ -135,7 +135,13 @@ class Content extends Component {
           <Route
             path="/saved"
             exact
-            render={() => <SavedChars display={this.props.onCharacterDisplay} delete={this.props.onCharacterDelete} />}
+            render={() => (
+              <SavedChars
+                display={this.props.onCharacterDisplay}
+                delete={this.props.onCharacterDelete}
+                clear={this.props.onCharacterClear}
+              />
+            )}
           />
         </Switch>
 
@@ -227,6 +233,7 @@ const mapDispatchToProps = (dispatch) => {
     onSaveCharacter: (char) => dispatch(actionCreators.saveCharacter(char)),
     onCharacterDisplay: (char) => dispatch(actionCreators.displayCharacter(char)),
     onCharacterDelete: (char) => dispatch(actionCreators.deleteCharacter(char)),
+    onCharacterClear: () => dispatch(actionCreators.clearCharacter()),
   };
 };
 

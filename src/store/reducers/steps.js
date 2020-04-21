@@ -501,6 +501,47 @@ const steps = (state = initialState, action) => {
         traits: [],
         story: "",
       };
+    case actionTypes.CLEAR_CHARACTER:
+      return {
+        gender: "",
+        race: "",
+        class: "",
+        name: "",
+        background: "",
+        avatar: blank,
+        attributes: {
+          strength: 10,
+          dexterity: 10,
+          toughness: 10,
+          intelligence: 10,
+          willpower: 10,
+          charisma: 10,
+        },
+        attributesPool: 5,
+        skills: {
+          arcana: false,
+          athletics: false,
+          crafting: false,
+          deception: false,
+          history: false,
+          intimidation: false,
+          investigation: false,
+          medicine: false,
+          nature: false,
+          perception: false,
+          performance: false,
+          persuasion: false,
+          religion: false,
+          stealth: false,
+          survival: false,
+          trickery: false,
+        },
+        skillsPool: 3,
+        traits: [],
+        story: "",
+        loading: false,
+        saving: false,
+      };
     default:
       return state;
   }

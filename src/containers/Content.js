@@ -29,11 +29,11 @@ const steps = [
   "traits",
   "story",
   "summary",
+  "saved",
 ];
 
 class Content extends Component {
   state = {
-    active: this.props.active,
     modal: {
       show: this.props.modal.show,
       message: "Alert",
@@ -157,6 +157,7 @@ class Content extends Component {
           skills={this.props.skills}
           traits={this.props.traits}
           story={this.props.story}
+          saving={this.props.saving}
         />
         <Link
           to="/"
@@ -168,7 +169,10 @@ class Content extends Component {
         <Link
           to="/saved"
           className={[styles.RibbonSave, this.props.active === "summary" ? styles.drawRibbonsSave : null].join(" ")}
-          onClick={() => this.props.onSaveCharacter(this.props.character)}
+          onClick={() => {
+            this.handleActiveWindow();
+            this.props.onSaveCharacter(this.props.character);
+          }}
         >
           <span>Save Character</span>
         </Link>

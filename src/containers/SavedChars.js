@@ -24,6 +24,7 @@ class SavedChars extends Component {
   }
 
   handleLoadCharacters = () => {
+    console.log("load");
     let data = [];
     axios
       .get("https://character-creator-react.firebaseio.com/characters.json")
@@ -43,9 +44,7 @@ class SavedChars extends Component {
   };
 
   handleDeleteCharacter = (id) => {
-    return new Promise((resolve, reject) => {
-      this.props.delete(id).then(console.log("delete"));
-    });
+    this.props.delete(id).then(() => this.handleLoadCharacters());
   };
 
   render() {

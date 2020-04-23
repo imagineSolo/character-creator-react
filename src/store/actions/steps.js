@@ -155,12 +155,14 @@ export const chooseCharacter = (char) => {
 export const deleteCharacter = (char) => {
   console.log(char);
   return (dispatch) => {
-    axios
-      .delete(`/characters/${char}.json`)
-      .then(() => {
-        dispatch(chooseCharacter(char));
-      })
-      .catch((error) => console.log(error));
+    return new Promise((resolve, reject) => {
+      axios
+        .delete(`/characters/${char}.json`)
+        .then(() => {
+          dispatch(chooseCharacter(char));
+        })
+        .catch((error) => console.log(error));
+    });
   };
 };
 

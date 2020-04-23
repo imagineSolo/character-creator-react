@@ -42,6 +42,8 @@ const initialState = {
   saving: false,
 };
 
+const clearSteps = { ...initialState };
+
 const steps = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.MOVE_BACK:
@@ -464,84 +466,9 @@ const steps = (state = initialState, action) => {
         story: action.info.story,
       };
     case actionTypes.DELETE_CHARACTER:
-      return {
-        ...state,
-        gender: "",
-        race: "",
-        class: "",
-        name: "",
-        background: "",
-        avatar: blank,
-        attributes: {
-          strength: 10,
-          dexterity: 10,
-          toughness: 10,
-          intelligence: 10,
-          willpower: 10,
-          charisma: 10,
-        },
-        skills: {
-          arcana: false,
-          athletics: false,
-          crafting: false,
-          deception: false,
-          history: false,
-          intimidation: false,
-          investigation: false,
-          medicine: false,
-          nature: false,
-          perception: false,
-          performance: false,
-          persuasion: false,
-          religion: false,
-          stealth: false,
-          survival: false,
-          trickery: false,
-        },
-        traits: [],
-        story: "",
-      };
+      return clearSteps;
     case actionTypes.CLEAR_CHARACTER:
-      return {
-        gender: "",
-        race: "",
-        class: "",
-        name: "",
-        background: "",
-        avatar: blank,
-        attributes: {
-          strength: 10,
-          dexterity: 10,
-          toughness: 10,
-          intelligence: 10,
-          willpower: 10,
-          charisma: 10,
-        },
-        attributesPool: 5,
-        skills: {
-          arcana: false,
-          athletics: false,
-          crafting: false,
-          deception: false,
-          history: false,
-          intimidation: false,
-          investigation: false,
-          medicine: false,
-          nature: false,
-          perception: false,
-          performance: false,
-          persuasion: false,
-          religion: false,
-          stealth: false,
-          survival: false,
-          trickery: false,
-        },
-        skillsPool: 3,
-        traits: [],
-        story: "",
-        loading: false,
-        saving: false,
-      };
+      return clearSteps;
     default:
       return state;
   }

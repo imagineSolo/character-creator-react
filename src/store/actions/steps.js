@@ -153,13 +153,13 @@ export const chooseCharacter = (char) => {
 };
 
 export const deleteCharacter = (char) => {
-  console.log(char);
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       axios
         .delete(`/characters/${char}.json`)
         .then(() => {
           dispatch(chooseCharacter(char));
+          resolve();
         })
         .catch((error) => console.log(error));
     });

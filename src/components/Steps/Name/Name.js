@@ -3,11 +3,11 @@ import ButtonUndo from "../../Button/Undo/Undo";
 import styles from "./Name.module.scss";
 import inkwell from "../../../images/inkwell.png";
 
-const name = props => {
+const name = (props) => {
   return (
     <div className={styles.Content}>
       <h3 className={styles.Header}>Choose a name:</h3>
-      <form onSubmit={props.submit}>
+      <form className={styles.Form} onSubmit={props.submit}>
         <input
           className={styles.InputText}
           type="text"

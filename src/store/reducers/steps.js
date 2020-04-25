@@ -447,8 +447,6 @@ const steps = (state = initialState, action) => {
     case actionTypes.APPLY_STORY:
       action.event.preventDefault();
       return { ...state, story: action.story };
-    case actionTypes.NEW_CHARACTER:
-      return state;
     case actionTypes.SAVE_CHARACTER:
       return { ...state, saving: true };
     case actionTypes.DISPLAY_CHARACTER:

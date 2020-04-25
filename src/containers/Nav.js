@@ -6,7 +6,14 @@ const nav = (props) => (
   <nav className={styles.Nav}>
     <ul>
       <li>
-        <NavLink exact to="/" onClick={props.new}>
+        <NavLink
+          exact
+          to="/"
+          onClick={() => {
+            props.start();
+            props.new();
+          }}
+        >
           New Character
         </NavLink>
       </li>

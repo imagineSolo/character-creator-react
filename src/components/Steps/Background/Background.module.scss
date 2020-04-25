@@ -26,7 +26,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 5px;
 
     .BackgroundLabel {
       padding: 1vw;
@@ -48,7 +48,7 @@
       box-shadow: 0px 10px 14px -7px #000000;
       background: linear-gradient(to bottom, #91d171 5%, #6ba64b 100%);
       background-color: #91d171;
-      border-radius: 20px;
+      border-radius: 10px;
       border: 1px solid #4b8f29;
       display: inline-block;
       cursor: pointer;
@@ -70,6 +70,31 @@
     .BackgroundSubmit:active {
       position: relative;
       top: 1px;
+    }
+  }
+
+  .BackgroundDescription {
+    width: 60%;
+    padding: 5px;
+    text-align: left;
+    border: 1px solid white;
+
+    h5 {
+      text-align: center;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+    }
+
+    p {
+      width: 10vw;
+      text-decoration: underline;
+    }
+
+    span {
+      font-size: calc(5px + 2vmin);
     }
   }
 

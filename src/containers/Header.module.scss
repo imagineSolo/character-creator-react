@@ -6,11 +6,7 @@
   background-color: rgb(65, 65, 65);
   height: 8vh;
   border-bottom: 1px solid black;
-
-  h1 {
-    padding-left: 1vw;
-    color: black;
-  }
+  user-select: none;
 
   img {
     height: 100%;

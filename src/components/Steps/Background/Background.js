@@ -10,18 +10,22 @@ const backgrounds = [
   { name: "Investigator", skills: "Investigation. Perception" },
   { name: "Outlander", skills: "Nature, Survival" },
   { name: "Sage", skills: "Arcana, History" },
-  { name: "Soldier", skills: "Athletics, Intimidation" }
+  { name: "Soldier", skills: "Athletics, Intimidation" },
 ];
 
-const mappedOptions = backgrounds.map(bgd => (
+const mappedOptions = backgrounds.map((bgd) => (
   <option value={bgd.name} key={bgd.name}>
     {bgd.name}
   </option>
 ));
 
-const mappedSummary = backgrounds.map(bgd => <p key={bgd.name}>{`${bgd.name}: ${bgd.skills}`}</p>);
+const mappedSummary = backgrounds.map((bgd) => (
+  <div>
+    <p key={bgd.name}>{`${bgd.name}`}:</p> <span>{`${bgd.skills}`}</span>
+  </div>
+));
 
-const background = props => {
+const background = (props) => {
   return (
     <div className={styles.Content}>
       <h3 className={styles.Header}>Background:</h3>

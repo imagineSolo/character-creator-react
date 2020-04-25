@@ -25,12 +25,16 @@
     align-items: center;
     justify-content: center;
     padding: 2vw 0 2vw 0;
+    margin: 2vw;
 
     .AttributeControl {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      width: 10vw;
+      padding-bottom: 16px;
+      border-left: 1px solid white;
 
       .Button {
         display: flex;
@@ -57,6 +61,10 @@
       }
     }
 
+    .AttributeControl:first-child {
+      border-left: none;
+    }
+
     p {
       display: flex;
       flex-direction: column;
@@ -73,7 +81,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: calc(10px + 2vmin);
+      font-size: calc(20px + 2vmin);
       padding: 1vh;
       text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.85);
     }

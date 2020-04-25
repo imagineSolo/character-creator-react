@@ -21,31 +21,31 @@ class Skills extends Component {
       religion: false,
       stealth: false,
       survival: false,
-      trickery: false
+      trickery: false,
     },
     skillsPool: this.props.skillsPool,
-    checked: 0
+    checked: 0,
   };
 
-  handleSkillsSubmit = key => {
+  handleSkillsSubmit = (key) => {
     if (this.state.skills[key]) {
       this.setState({
         ...this.state,
         skills: {
           ...this.state.skills,
-          [key]: false
+          [key]: false,
         },
-        skillsPool: this.state.skillsPool + 1
+        skillsPool: this.state.skillsPool + 1,
       });
     } else if (!this.state.skills[key] && this.state.skillsPool > 0) {
       this.setState({
         ...this.state,
         skills: {
           ...this.state.skills,
-          [key]: true
+          [key]: true,
         },
         skillsPool: this.state.skillsPool - 1,
-        checked: this.state.checked + 1
+        checked: this.state.checked + 1,
       });
     }
   };
@@ -73,7 +73,7 @@ class Skills extends Component {
         <h3>Add additional skills:</h3>
         <p>Select three additional skills of your choice to shape up your character.</p>
         <form className={styles.SkillsForm}>{mappedSkills}</form>
-        <p>
+        <p className={styles.PointsLeft}>
           Points left: <span>{this.state.skillsPool}</span>
         </p>
         <div className={styles.Buttons}>

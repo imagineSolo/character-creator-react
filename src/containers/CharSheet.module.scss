@@ -48,7 +48,7 @@
     flex-direction: column;
     grid-column: 1 / 4;
     grid-row: 2 / 4;
-    font-size: calc(7px + 2vmin);
+    font-size: calc(8px + 2vmin);
     margin: 5px;
     border-top: 1px solid black;
 
@@ -80,8 +80,8 @@
   .Portrait {
     grid-column: 3 / 5;
     grid-row: 2 / 6;
-    width: 140px;
-    height: 220px;
+    width: 80%;
+    height: 90%;
     margin-top: 5px;
     margin-left: 50%;
     border: 1px solid black;
@@ -145,7 +145,7 @@
     grid-row: 4 / -1;
 
     p {
-      font-size: calc(3px + 2vmin);
+      font-size: calc(5px + 2vmin);
       height: 90%;
       width: 90%;
       margin: 3px;

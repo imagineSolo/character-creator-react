@@ -67,7 +67,7 @@ class Content extends Component {
       <div className={styles.App}>
         <div className={styles.Menu}>
           <Header />
-          <Nav new={this.props.onStart} />
+          <Nav start={this.props.onStart} new={this.props.onCharacterClear} />
         </div>
         {this.props.loading ? <Spinner /> : null}
         <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
@@ -162,7 +162,7 @@ class Content extends Component {
         <Link
           to="/"
           className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}
-          onClick={this.props.onNewCharacter}
+          onClick={this.props.onCharacterClear}
         >
           <span>New Character</span>
         </Link>
@@ -232,7 +232,6 @@ const mapDispatchToProps = (dispatch) => {
     onApplySkills: (skills, pool) => dispatch(actionCreators.applySkills(skills, pool)),
     onApplyTraits: (traits) => dispatch(actionCreators.applyTraits(traits)),
     onApplyStory: (story, e) => dispatch(actionCreators.applyStory(e, story)),
-    onNewCharacter: () => dispatch(actionCreators.newCharacter()),
     onSaveCharacter: (char) => dispatch(actionCreators.saveCharacter(char)),
     onCharacterDisplay: (char) => dispatch(actionCreators.displayCharacter(char)),
     onCharacterDelete: (char) => dispatch(actionCreators.deleteCharacter(char)),

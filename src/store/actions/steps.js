@@ -13,7 +13,6 @@ export const APPLY_ATTRIBUTES = "APPLY_ATTRIBUTES";
 export const APPLY_SKILLS = "APPLY_SKILLS";
 export const APPLY_TRAITS = "APPLY_TRAITS";
 export const APPLY_STORY = "APPLY_STORY";
-export const NEW_CHARACTER = "NEW_CHARACTER";
 export const SET_CHARACTER = "SET_CHARACTER";
 export const SAVE_CHARACTER = "SAVE_CHARACTER";
 export const DISPLAY_CHARACTER = "DISPLAY_CHARACTER";
@@ -110,12 +109,6 @@ export const applyStory = (story, e) => {
     type: APPLY_STORY,
     story,
     event: e,
-  };
-};
-
-export const newCharacter = () => {
-  return {
-    type: NEW_CHARACTER,
   };
 };
 

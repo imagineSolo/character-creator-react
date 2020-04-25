@@ -23,7 +23,7 @@ class Traits extends Component {
         "Talks very fast",
         "Is older than it looks",
         "Has an ear ring",
-        "Always wears a mysterious signet ring"
+        "Always wears a mysterious signet ring",
       ],
       mental: [
         "Is ambitious",
@@ -34,7 +34,7 @@ class Traits extends Component {
         "Has a positive attitude",
         "Is always pesimistic",
         "Always gives the best ideas",
-        "Forgets names"
+        "Forgets names",
       ],
       social: [
         "Laughs loud",
@@ -49,19 +49,19 @@ class Traits extends Component {
         "Tells bad jokes",
         "Likes smoking",
         "Always wakes up at sunrise",
-        "Loves trinkets"
+        "Loves trinkets",
       ],
-      traits: []
-    }
+      traits: [],
+    },
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      input: e.target.value
+      input: e.target.value,
     });
   };
 
-  handleAddTrait = e => {
+  handleAddTrait = (e) => {
     e.preventDefault();
     const traits = [...this.state.traits];
     if (this.state.traits.length <= 2) {
@@ -70,23 +70,17 @@ class Traits extends Component {
     this.setState({
       active: "custom",
       input: "",
-      traits
+      traits,
     });
   };
 
   handleRandomTraits = () => {
     const physical = this.state.random.physical;
-    const rndmPhysical = Math.floor(
-      Math.random() * this.state.random.physical.length
-    );
+    const rndmPhysical = Math.floor(Math.random() * this.state.random.physical.length);
     const mental = this.state.random.mental;
-    const rndmMental = Math.floor(
-      Math.random() * this.state.random.mental.length
-    );
+    const rndmMental = Math.floor(Math.random() * this.state.random.mental.length);
     const social = this.state.random.social;
-    const rndmSocial = Math.floor(
-      Math.random() * this.state.random.social.length
-    );
+    const rndmSocial = Math.floor(Math.random() * this.state.random.social.length);
 
     const physicalTrait = physical[rndmPhysical];
     const mentalTrait = mental[rndmMental];
@@ -98,17 +92,17 @@ class Traits extends Component {
       active: "random",
       random: {
         ...this.state.random,
-        traits: mergedTraits
-      }
+        traits: mergedTraits,
+      },
     });
   };
 
-  deleteTrait = i => {
+  deleteTrait = (i) => {
     const traits = [...this.state.traits];
-    const index = traits.findIndex(trait => trait.index === i);
+    const index = traits.findIndex((trait) => trait.index === i);
     traits.splice(index, 1);
     this.setState({
-      traits
+      traits,
     });
   };
 
@@ -116,10 +110,7 @@ class Traits extends Component {
     const customTraits = this.state.traits.map((trait, index) => (
       <li key={index} className={styles.Item}>
         <span>{trait}</span>
-        <button
-          className={styles.Delete}
-          onClick={() => this.deleteTrait(trait.index)}
-        >
+        <button className={styles.Delete} onClick={() => this.deleteTrait(trait.index)}>
           [x]
         </button>
       </li>
@@ -134,10 +125,7 @@ class Traits extends Component {
     return (
       <div className={styles.Content}>
         <h3 className={styles.Header}>Personality Traits</h3>
-        <p>
-          Add up to three personality traits characterize your hero. You can
-          also select them randomly.
-        </p>
+        <p>Add up to three personality traits that will characterize your hero. You can also select them randomly.</p>
         <div className={styles.Form}>
           <form className={styles.TraitsForm} onSubmit={this.handleAddTrait}>
             <label>Add personality trait:</label>
@@ -150,9 +138,9 @@ class Traits extends Component {
               autoFocus
               onChange={this.handleChange}
             />
-            <input className={styles.Submit} type="submit" value="Add trait" />
+            <input className={styles.Submit} type="submit" value="Add trait" title="Add trait" />
           </form>
-          <button className={styles.Random} onClick={this.handleRandomTraits}>
+          <button className={styles.Random} title="Random 3 traits" onClick={this.handleRandomTraits}>
             <i className="fas fa-dice"></i>
           </button>
         </div>
@@ -161,11 +149,7 @@ class Traits extends Component {
           <Undo undo={this.props.undo} />
           <Apply
             apply={() =>
-              this.props.submit(
-                this.state.active === "custom"
-                  ? this.state.traits
-                  : this.state.random.traits
-              )
+              this.props.submit(this.state.active === "custom" ? this.state.traits : this.state.random.traits)
             }
           />
         </div>

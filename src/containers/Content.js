@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { activeWindowAction } from "../store/actions/active";
+import { activeWindowAction, start } from "../store/actions/active";
 import { closeModal } from "../store/actions/ui";
 import * as actionCreators from "../store/actions/steps";
 
@@ -67,7 +67,7 @@ class Content extends Component {
       <div className={styles.App}>
         <div className={styles.Menu}>
           <Header />
-          <Nav />
+          <Nav new={this.props.onStart} />
         </div>
         {this.props.loading ? <Spinner /> : null}
         <Modal modal={this.state.modal} clicked={this.props.onModalClose} />
@@ -217,8 +217,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onActiveWindow: (step) => dispatch(activeWindowAction(step)),
+    onStart: () => dispatch(start()),
     onModalClose: () => dispatch(closeModal()),
-
     onMoveBack: (step) => dispatch(actionCreators.moveBack(step)),
     onGenderSelect: (gender) => dispatch(actionCreators.selectGender(gender)),
     onRaceSelect: (races) => dispatch(actionCreators.selectRace(races)),
@@ -232,7 +232,6 @@ const mapDispatchToProps = (dispatch) => {
     onApplySkills: (skills, pool) => dispatch(actionCreators.applySkills(skills, pool)),
     onApplyTraits: (traits) => dispatch(actionCreators.applyTraits(traits)),
     onApplyStory: (story, e) => dispatch(actionCreators.applyStory(e, story)),
-
     onNewCharacter: () => dispatch(actionCreators.newCharacter()),
     onSaveCharacter: (char) => dispatch(actionCreators.saveCharacter(char)),
     onCharacterDisplay: (char) => dispatch(actionCreators.displayCharacter(char)),

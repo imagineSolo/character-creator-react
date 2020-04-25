@@ -1,4 +1,5 @@
 export const ACTIVE_WINDOW = "ACTIVE_WINDOW";
+export const START = "START";
 
 export const activeWindowAction = (active) => {
   return {
@@ -7,4 +8,10 @@ export const activeWindowAction = (active) => {
   };
 };
 
-export const actions = { activeWindowAction };
+export const start = () => {
+  return {
+    type: START,
+  };
+};
+
+export const actions = { activeWindowAction, start };

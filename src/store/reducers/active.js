@@ -1,17 +1,22 @@
-import { ACTIVE_WINDOW } from "../actions/active";
+import * as actionTypes from "../actions/active";
 
 const initialState = {
   active: "start",
 };
 
 const active = (state = initialState, action) => {
-  if (action.type === ACTIVE_WINDOW) {
-    return {
-      ...state,
-      active: action.active,
-    };
-  } else {
-    return state;
+  switch (action.type) {
+    case actionTypes.ACTIVE_WINDOW:
+      return {
+        ...state,
+        active: action.active,
+      };
+    case actionTypes.START:
+      return {
+        active: "start",
+      };
+    default:
+      return state;
   }
 };
 

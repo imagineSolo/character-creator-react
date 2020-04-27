@@ -74,7 +74,7 @@ class Content extends Component {
         <Switch>
           {redirect}
           <Route
-            path="/"
+            path={process.env.PUBLIC_URL + "/"}
             exact
             render={() => (
               <Steps

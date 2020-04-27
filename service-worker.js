@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/character-creator-react/precache-manifest.2528702b9689b93575f8a77603826aee.js"
+  "/character-creator-react/precache-manifest.de7bf46498d9323a935267c1e9935991.js"
 );
 
 self.addEventListener('message', (event) => {

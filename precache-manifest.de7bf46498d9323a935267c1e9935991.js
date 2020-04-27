@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e852ba73ae6b2d1d50c0d012e9aec56c",
+    "revision": "6101809c4dea2bef3ca6cd851856c6dc",
     "url": "/character-creator-react/index.html"
   },
   {
-    "revision": "3ebe996cc6b004028589",
+    "revision": "e7b4f228af7e1befa23c",
     "url": "/character-creator-react/static/css/main.688e6ca4.chunk.css"
   },
   {
-    "revision": "69357ec006fb7a9d331c",
-    "url": "/character-creator-react/static/js/2.8234e202.chunk.js"
+    "revision": "53d2d5340ff7ce75c679",
+    "url": "/character-creator-react/static/js/2.2a5d318b.chunk.js"
   },
   {
     "revision": "928d7b5eb39d16fe9a880722c974b51e",
-    "url": "/character-creator-react/static/js/2.8234e202.chunk.js.LICENSE.txt"
+    "url": "/character-creator-react/static/js/2.2a5d318b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3ebe996cc6b004028589",
-    "url": "/character-creator-react/static/js/main.6854a374.chunk.js"
+    "revision": "e7b4f228af7e1befa23c",
+    "url": "/character-creator-react/static/js/main.ca984fdf.chunk.js"
   },
   {
     "revision": "66b8e08ccf5305f641e6",

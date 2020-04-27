@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6101809c4dea2bef3ca6cd851856c6dc",
+    "revision": "469c098878dcc48b796fe78ed0f1cc20",
     "url": "/character-creator-react/index.html"
   },
   {
-    "revision": "e7b4f228af7e1befa23c",
+    "revision": "e0a318b947379851b567",
     "url": "/character-creator-react/static/css/main.688e6ca4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/character-creator-react/static/js/2.2a5d318b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e7b4f228af7e1befa23c",
-    "url": "/character-creator-react/static/js/main.ca984fdf.chunk.js"
+    "revision": "e0a318b947379851b567",
+    "url": "/character-creator-react/static/js/main.b1adcf53.chunk.js"
   },
   {
     "revision": "66b8e08ccf5305f641e6",

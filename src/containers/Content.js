@@ -162,7 +162,10 @@ class Content extends Component {
         <Link
           to="/"
           className={[styles.RibbonNew, this.props.active === "summary" ? styles.drawRibbonsNew : null].join(" ")}
-          onClick={this.props.onCharacterClear}
+          onClick={() => {
+            this.handleActiveWindow();
+            this.props.onCharacterClear();
+          }}
         >
           <span>New Character</span>
         </Link>

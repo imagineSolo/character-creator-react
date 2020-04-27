@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.module.scss";
 import App from "./App";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
@@ -33,7 +33,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(middlewa
 
 const app = (
   <Provider store={store}>
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <App />
     </Router>
   </Provider>

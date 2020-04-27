@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp build/index.html build/200.html",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://imaginesolo.github.io/character-creator-react/"
+  "homepage": "https://imaginesolo.github.io/character-creator-react"
 }
